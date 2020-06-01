@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "Paybox": "/components/Paybox/Paybox"
+  }
+}

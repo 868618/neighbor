@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "Grids": "/miniprogram_npm/weui-miniprogram/grids/grids"
+  }
+}

@@ -1,0 +1,79 @@
+<!--pages/order/order.wxml-->
+<view class="order">
+
+	<mp-tabs tabs="{{tabs}}" tab-class="header" active-class="active" swiper-class="swiper">
+
+		<block wx:for="{{tabs}}" wx:key="title">
+			<scroll-view class="tab-content" scroll-y slot="tab-content-{{index}}">
+				<view class="list">
+
+					<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+						<view class="list_item">
+
+							<view class="list_item_top">
+								<view class="name">借一年级语文书</view>
+								<view class="status">进行中</view>
+							</view>
+
+							<view class="list_item_bottom">
+								<view class="desc">求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。</view>
+								<view class="price">￥6</view>
+							</view>
+
+						</view>
+					</mp-slideview>
+          <mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+						<view class="list_item">
+
+							<view class="list_item_top">
+								<view class="name">借一年级语文书</view>
+								<view class="status">进行中</view>
+							</view>
+
+							<view class="list_item_bottom">
+								<view class="desc">求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。</view>
+								<view class="price">￥6</view>
+							</view>
+
+						</view>
+					</mp-slideview>
+
+				</view>
+			</scroll-view>
+		</block>
+	</mp-tabs>
+
+
+
+	<view class="list" hidden>
+		<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+			<view class="list_item">
+				<view class="list_item_top">
+					<view class="name jiaji">借一年级语文书</view>
+					<view class="status">进行中</view>
+				</view>
+
+				<view class="list_item_bottom">
+					<view class="desc">求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。</view>
+					<view class="price">￥6</view>
+				</view>
+			</view>
+		</mp-slideview>
+
+		<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+			<view class="list_item">
+				<view class="list_item_top">
+					<view class="name">借一年级语文书</view>
+					<view class="status">进行中</view>
+				</view>
+
+				<view class="list_item_bottom">
+					<view class="desc">求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。</view>
+					<view class="price">￥6</view>
+				</view>
+			</view>
+		</mp-slideview>
+	</view>
+
+
+</view>

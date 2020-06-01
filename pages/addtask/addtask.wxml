@@ -1,0 +1,75 @@
+<!--pages/addtask/addtask.wxml-->
+<view class="addtask">
+  <view class="header">
+    <text class="active">问个问题</text>
+    <text class="tag">借个东西</text>
+    <text class="tag">转让了</text>
+    <text class="tag">我馋了</text>
+    <text class="tag">捎点东西</text>
+    <text class="tag">其它求助</text>
+  </view>
+
+
+  <view class="main">
+    <view class="title">您的求助描述</view>
+    <view class="desc">我们会根据您提供的描述，给您推荐合适的服</view>
+
+    <view class="tip">
+      标题<text>(不超过10个字）</text>
+    </view>
+
+    <view class="input_title">
+      <input auto-focus placeholder="您要问什么" placeholder-class="placeholder" />
+    </view>
+
+    <!-- <view class="tip">
+      问题描述
+    </view> -->
+
+    <view class="helpdesc">
+      <text>求助描述</text>
+      <image src="/images/helpdesc/camera.png"></image>
+    </view>
+
+    <view class="input_title">
+      <input placeholder="请尽力描述您的问题吧，有助于..." placeholder-class="placeholder" />
+    </view>
+
+    <view class="select">
+
+      <view class="select_item">
+        <view class="select_name">酬金
+          <text>1元</text>
+        </view>
+        <view class="select_tip">请选择</view>
+      </view>
+
+
+      <view class="select_item">
+        <view class="select_name">加急
+          <text>0元</text>
+        </view>
+        <view class="select_tip">请选择</view>
+      </view>
+
+    </view>
+
+
+  </view>
+
+  <view class="footer">
+    <view class="footer_title">发布前请阅读以下知情</view>
+    <view class="footer_list">
+      <view>你可以查看5个答案，酬金会由他们平分</view>
+      <view>如果您非常着急,可以支付加急费,您的问题</view>
+    </view>
+  </view>
+
+  <view class="fixdbtn">
+    <view>支付并发布</view>
+  </view>
+
+
+  <Paybox wx:if="{{false}}" />
+
+</view>
