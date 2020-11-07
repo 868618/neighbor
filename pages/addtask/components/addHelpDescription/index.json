@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "Custom-Button": "/components/Custom-Button/index"
+  }
+}
