@@ -1,0 +1,9 @@
+<view class="navbar" style="{{ sectionStyle }}">
+  <view class="navbar_box" catch:tap="tapHandle" style="{{  }}">
+    <image src="../../images/back_arrow.png" mode="widthFix" class="navbar_location" catch:tap="goBack" />
+<!--    <image src="../../images/home_icon@2x.png" mode="widthFix" class="navbar_location" />-->
+    <text>{{ title }}</text>
+  </view>
+</view>
+
+<view class="bastard" style="{{ bastardStyle }}" wx:if="{{ !isImmersive }}"></view>

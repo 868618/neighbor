@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "weui-miniprogram": "^1.0.3"
+    "weui-miniprogram": "^1.0.6"
   }
 }

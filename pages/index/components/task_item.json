@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "Avatar-Time": "/components/Avatar-Time/index"
+  }
+}

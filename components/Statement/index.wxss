@@ -1,0 +1,36 @@
+/* components/Statement/index.wxss */
+.statement{
+    padding: 0 32rpx;
+    margin-top: 30rpx;
+}
+
+.statement_title{
+    font-size: 32rpx;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.75);
+}
+.statement_detail{
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.65);
+    padding-left: 32rpx;
+    margin-top: 26rpx;
+}
+
+.statement_line{
+    position: relative;
+    line-height: 1;
+    margin-top: 16rpx;
+}
+
+.statement_line::after{
+    position: absolute;
+    content: '';
+    width: 16rpx;
+    height: 16rpx;
+    background: rgba(0, 0, 0, 0.5);
+    left: 0;
+    top: 14rpx;
+    transform: translate(-30rpx, -50%);
+    border-radius: 50%;
+}

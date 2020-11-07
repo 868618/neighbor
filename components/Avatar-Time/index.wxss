@@ -1,0 +1,37 @@
+.avatar-time{
+    display: flex;
+    align-items: center;
+}
+
+.avatar-time .avator{
+    width: 42rpx;
+    height: 42rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar-time .avator image{
+    width: 100%;
+}
+
+.avatar-time .name {
+    margin-left: 12rpx;
+    /*margin-right: 20rpx;*/
+    font-size: 28rpx;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.avatar-time .line {
+    width: 2rpx;
+    height: 22rpx;
+    background: rgba(0,0,0,0.45);
+    display: inline-block;
+    margin: 0 20rpx;
+}
+
+.avatar-time .time{
+    font-size: 24rpx;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.45);
+}

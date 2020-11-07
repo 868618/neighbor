@@ -31,5 +31,8 @@ Page({
   },
   slideButtonTap () {
     console.log(123456)
+  },
+  toDetail () {
+    wx.navigateTo({ url: '/pages/helpDetail/index' })
   }
 })

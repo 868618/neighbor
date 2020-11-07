@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "Paybox": "/components/Paybox/Paybox"
+    "Paybox": "/components/Paybox/Paybox",
+    "Statement": "/components/Statement/index"
   }
 }

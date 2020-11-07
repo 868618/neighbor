@@ -1,42 +1,28 @@
 <!--components/Paybox/Paybox.wxml-->
 
-<view class="bg"></view>
+<view class="bg" catch:touchstart></view>
 
 <view class="paybox">
   <view class="paybox_head">
-    <view class="paybox_cancel">取消</view>
+    <view class="paybox_cancel" catch:tap="cancel">取消</view>
     <view class="paybox_name">酬金</view>
-    <view class="paybox_ok">确定</view>
+    <view class="paybox_ok" catch:tap="ok">确定</view>
   </view>
 
-  <view class="paybox_container">
-    <view class="paybox_grids">
-      <view class="grids_item grids_item_active">不加了</view>
-      <view class="grids_item">
-        ￥
-        <text>1</text>
-      </view>
-      <view class="grids_item">
-        ￥
-        <text>2</text>
-      </view>
+  <view class="panel">
+    <view
+            class="panel_item {{ activeNum == index ? 'panel_item_active': '' }}"
+            wx:for="{{ grids }}"
+            wx:key="index"
+            data-index="{{ index }}"
+            data-item="{{ item }}"
+            bind:tap="selectChange"
+    >
+      <text wx:if="{{item !== 0}}">￥{{item}}</text>
+      <text wx:else>不加了</text>
     </view>
 
-    <view class="paybox_grids">
-      <view class="grids_item">￥
-        <text>3</text>
-      </view>
-      <view class="grids_item">
-        ￥
-        <text>4</text>
-      </view>
-      <view class="grids_item">
-        ￥
-        <text>5</text>
-      </view>
-    </view>
-
-    <view class="paybox_btn">其他金额</view>
+    <view class="panel_item panel_btn {{ activeNum == -1 && 'panel_item_active' }}" bind:tap="selectOther">其它金额</view>
   </view>
 
 </view>

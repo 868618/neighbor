@@ -138,6 +138,8 @@ Component({
     result: [] // 搜索结果
 
   },
+
+  /* @ts-ignore */
   lastSearch: Date.now(),
   lifetimes: {
     // @ts-ignore
@@ -191,6 +193,7 @@ Component({
       this.setData({
         searchState: false
       });
+      this.triggerEvent('cancel');
     },
 
     // @ts-ignore
@@ -210,7 +213,7 @@ Component({
 
       this.lastSearch = Date.now();
       this.timerId = setTimeout(() => {
-        this.data.search(e.detail.value).then(json => {
+        this.data.search(this.data.value).then(json => {
           this.setData({
             result: json
           });

@@ -1,0 +1,41 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login .box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 59vh;
+  align-items: center;
+}
+
+.login .box .logo{
+  width: 210rpx;
+  height: 208rpx;
+}
+
+.btn{
+  width: 590rpx;
+  height: 80rpx;
+  background: linear-gradient(165deg, #FF8B3E 0%, #FE990C 100%);
+  border-radius: 42rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-size: 32rpx;
+  position: relative;
+}
+
+.btn button{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}

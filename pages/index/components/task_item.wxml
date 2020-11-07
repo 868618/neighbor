@@ -1,0 +1,21 @@
+<view class="task_item">
+    <view class="task_header">
+        <view class="task_title jiaji">求打扫一下卫生</view>
+        <view class="task_price">15元</view>
+    </view>
+
+    <view class="task_body">
+        无所谓只要能看就行
+    </view>
+
+    <view class="task_tag">
+        <text class="tag">上门取</text>
+        <text class="tag">归还</text>
+    </view>
+
+    <view class="task_footer">
+        <view class="task_footer_box">
+            <Avatar-Time />
+        </view>
+    </view>
+</view>

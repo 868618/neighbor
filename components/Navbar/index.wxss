@@ -1,0 +1,32 @@
+.navbar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  z-index: 1000;
+}
+.navbar_box{
+  display: flex;
+  font-size: 32rpx;
+  font-weight: 400;
+  color: #353535;
+  align-items: center;
+  background: red;
+}
+.navbar_box .navbar_location{
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 6rpx;
+}
+.navbar_box .navbar_location image{
+  width: 100%;
+}
+
+
+.bastard{
+  opacity: 0;
+}

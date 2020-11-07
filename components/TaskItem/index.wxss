@@ -1,0 +1,78 @@
+/* components/TaskItem/index.wxss */
+.taskitem{
+    /*margin-bottom: 20rpx;*/
+    box-sizing: border-box;
+    margin-bottom: 20rpx;
+}
+
+.taskbox{
+    height: 210rpx;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    padding: 0 32rpx;
+    padding-top: 34rpx;
+}
+
+.urgent{
+    position: relative;
+}
+.urgent::after{
+    content: '加急';
+    width: 58rpx;
+    height: 32rpx;
+    border-radius: 16rpx 0px;
+    line-height: 32rpx;
+    background: #F77051;
+    position: absolute;
+    right: -72rpx;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20rpx;
+    text-align: center;
+    font-weight: bold;
+    color: #FFF;
+    z-index: 1;
+}
+
+
+.taskbox .task_header{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.taskbox .task_header .task_title{
+    font-size: 32rpx;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.95);
+}
+
+.taskbox .task_header .task_state{
+    font-size: 28rpx;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.task_footer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 14rpx;
+}
+
+.task_footer .task_abstract{
+    font-size: 28rpx;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.75);
+    line-height: 40rpx;
+    max-width: 410rpx;
+}
+
+.task_footer .task_price{
+    font-size: 30rpx;
+    color: #BBBBBB;
+}
+
+.task_footer .orange {
+    color: #FF5500;
+}

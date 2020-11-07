@@ -93,6 +93,23 @@ module.exports =
 "use strict";
 
 
+const defaultGridProps = {
+  target: 'self',
+  url: '',
+  openType: 'navigate',
+  delta: 1,
+  appId: '',
+  path: '',
+  extraData: '',
+  version: 'release',
+  hoverClass: 'navigator-hover',
+  hoverStopPropagation: false,
+  hoverStartTime: 50,
+  hoverStayTime: 600,
+  bindsuccess: () => {},
+  bindfail: () => {},
+  bindcomplete: () => {}
+};
 Component({
   options: {
     addGlobalClass: true,
@@ -105,41 +122,21 @@ Component({
     },
     grids: {
       type: Array,
-      value: []
+      value: [],
+      observer: '_onGridsChange'
     }
   },
   data: {
-    innerGrids: [],
-    _defaultGridProps: {
-      target: 'self',
-      url: '',
-      openType: 'navigate',
-      delta: 1,
-      appId: '',
-      path: '',
-      extraData: '',
-      version: 'release',
-      hoverClass: 'navigator-hover',
-      hoverStopPropagation: false,
-      hoverStartTime: 50,
-      hoverStayTime: 600,
-
-      bindsuccess() {},
-
-      bindfail() {},
-
-      bindcomplete() {}
-
-    }
+    innerGrids: []
   },
 
   ready() {},
 
-  lifetimes: {
-    attached() {
-      if (this.data.grids) {
+  methods: {
+    _onGridsChange(grids) {
+      if (grids) {
         this.setData({
-          innerGrids: this.data.grids.map(grid => Object.assign({}, this.data._defaultGridProps, grid))
+          innerGrids: grids.map(grid => Object.assign({}, defaultGridProps, grid))
         });
       }
     }

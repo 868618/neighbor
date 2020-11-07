@@ -1,0 +1,10 @@
+<view class="login">
+    <view class="box">
+        <image src="{{src}}" mode="widthFix" class="logo" />
+
+        <view class="btn">
+            微信一键登录
+            <button open-type="getUserInfo" bind:getuserinfo="goLogin" />
+        </view>
+    </view>
+</view>

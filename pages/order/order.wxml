@@ -8,8 +8,7 @@
 				<view class="list">
 
 					<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
-						<view class="list_item">
-
+						<view class="list_item"  bind:tap="toDetail">
 							<view class="list_item_top">
 								<view class="name">借一年级语文书</view>
 								<view class="status">进行中</view>
@@ -22,8 +21,8 @@
 
 						</view>
 					</mp-slideview>
-          <mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
-						<view class="list_item">
+          			<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+						<view class="list_item"  bind:tap="toDetail">
 
 							<view class="list_item_top">
 								<view class="name">借一年级语文书</view>
@@ -46,7 +45,7 @@
 
 
 	<view class="list" hidden>
-		<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+		<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" >
 			<view class="list_item">
 				<view class="list_item_top">
 					<view class="name jiaji">借一年级语文书</view>

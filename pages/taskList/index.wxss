@@ -1,0 +1,52 @@
+/* pages/taskList/index.wxss */
+page{
+    background: #F9F9F9;
+}
+
+.custom_btn .weui-slideview__btn {
+    background-color: #E75F5F !important;
+}
+
+.taskList{
+
+}
+
+.taskList_nav{
+    display: flex;
+    align-items: center;
+    background: #FFF;
+    height: 88rpx;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.taskList_nav text{
+    width: 33.333%;
+    text-align: center;
+}
+
+.taskList_nav .active{
+    color: #E9792C;
+}
+
+.taskList_nav text:nth-of-type(even) {
+    border-left: 1rpx solid #D4D4D4;
+    border-right: 1rpx solid #D4D4D4;
+}
+
+.empty{
+    width: 260rpx;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 290rpx;
+
+    font-size: 28rpx;
+    font-weight: 400;
+    color: #BBBBBB;
+}
+
+.empty image{
+    width: 100%;
+    margin-top: 24rpx;
+}

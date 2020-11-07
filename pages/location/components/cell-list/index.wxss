@@ -1,0 +1,68 @@
+/* pages/location/components/cell_list.wxss */
+.cell_list{
+    width: 100%;
+    margin-top: 22rpx;
+}
+
+.desc{
+    font-size: 28rpx;
+    font-weight: 400;
+    color: #BBBBBB;
+    line-height: 1;
+}
+
+.cell_list .cell_list_empty{
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 140rpx;
+    background: #FFFFFF;
+    border-top: 22rpx solid #F9F9F9;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: #888888;
+    padding-bottom: 170rpx;
+}
+
+.cell_list .cell_list_empty .desc{
+    margin-top: 22rpx;
+}
+
+.cell_list .cell_list_empty .cell_list_btn{
+    width: 150rpx;
+    height: 60rpx;
+    background: #FE990C;
+    box-shadow: 0px 0px 8rpx 0px rgba(0,0,0,0.02);
+    border-radius: 8rpx;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-top: 34rpx;
+}
+
+.cell_list .cell_list_empty image{
+    /*width: 100%;*/
+    width: 262rpx;
+    height: 158rpx;
+}
+
+.cell_list_form{
+    padding: 0 32rpx;
+    padding-top: 26rpx;
+    border-top: 22rpx solid #F9F9F9;
+    border-bottom: 20rpx solid #F9F9F9;
+}
+
+.cell_list_form .list_item{
+    box-sizing: border-box;
+    height: 110rpx;
+    line-height: 110rpx;
+    border-bottom: 2rpx solid #F9F9F9;
+    padding-left: 32rpx;
+    font-size: 32rpx;
+    font-weight: 400;
+    color: #252525;
+}

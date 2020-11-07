@@ -1,9 +1,10 @@
 <view class="mine">
+<!--  <Navbar />-->
   <view class="header">
 
     <view class="info">
       <view class="avator">
-        <image src="https://www.baidu.com/img/pc_cc75653cd975aea6d4ba1f59b3697455.png" mode="widthFix" lazy-load />
+        <image src="{{src}}" mode="widthFix" lazy-load />
       </view>
       <text>张三</text>
     </view>
@@ -19,17 +20,17 @@
   <view class="menu">
     <view class="tip">我的帮助</view>
     <view class="box">
-      <view class="item">
+      <view class="item" bind:tap="toTaskList">
         <image src="/images/mine/ing.png" mode="widthFix" lazy-load />
         进行中
       </view>
 
-      <view class="item">
+      <view class="item" bind:tap="toTaskList">
         <image src="/images/mine/over.png" mode="widthFix" lazy-load />
         已完成
       </view>
 
-      <view class="item">
+      <view class="item" bind:tap="toTaskList">
         <image src="/images/mine/all.png" mode="widthFix" lazy-load />
         全部
       </view>
@@ -40,17 +41,17 @@
   <view class="menu">
     <view class="tip">我的求助</view>
     <view class="box">
-      <view class="item">
+      <view class="item" bind:tap="toTaskList">
         <image src="/images/mine/ing.png" mode="widthFix" lazy-load />
         进行中
       </view>
 
-      <view class="item">
+      <view class="item" bind:tap="toTaskList">
         <image src="/images/mine/over.png" mode="widthFix" lazy-load />
         已完成
       </view>
 
-      <view class="item">
+      <view class="item" bind:tap="toTaskList">
         <image src="/images/mine/all.png" mode="widthFix" lazy-load />
         全部
       </view>
@@ -63,5 +64,7 @@
     <view class="title">邻居帮 帮邻居</view>
     <view class="sub">联系我们 微信:qq363731991</view>
   </view>
+
+  <Tarbars />
 
 </view>

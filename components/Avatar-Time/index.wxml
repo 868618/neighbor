@@ -1,0 +1,8 @@
+<view class="avatar-time avatar-class">
+    <view class="avator">
+        <image src="{{avator}}" mode="widthFix" />
+    </view>
+    <text class="name">愈筝</text>
+    <text class="line" />
+    <text class="time">2小时前</text>
+</view>

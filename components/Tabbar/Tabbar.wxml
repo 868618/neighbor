@@ -1,11 +1,11 @@
 <!--components/Tabbar/Tabbar.wxml-->
 <cover-view class="tabbar">
 
-  <cover-view class="tabbar_left tabbar_item active">
+  <cover-view class="tabbar_left tabbar_item {{ isIndex ? 'active' : '' }}" bind:tap="toPage" data-url="/pages/index/index" data-type="navigateTo">
     <cover-view class="tabbar_item_box">
       <cover-view>
-        <cover-image mode="widthFix" src="/images/tabbar/home.png" hidden />
-        <cover-image mode="widthFix" src="/images/tabbar/home_active.png" />
+        <cover-image mode="widthFix" src="/images/tabbar/home_active.png" wx:if="{{ isIndex }}"/>
+        <cover-image mode="widthFix" src="/images/tabbar/home.png" wx:else />
       </cover-view>
       <cover-view>
       首页
@@ -14,7 +14,7 @@
   </cover-view>
 
 
-  <cover-view class="tabbar_center">
+  <cover-view class="tabbar_center" bind:tap="toPage" data-url="/pages/addtask/addtask" data-type="navigateTo">
     <cover-view class="tabbar_center_box">
       <cover-image mode="widthFix" src="/images/tabbar/light.png" />
       <cover-view>求助</cover-view>
@@ -22,11 +22,11 @@
   </cover-view>
 
 
-  <cover-view class="tabbar_right tabbar_item">
+  <cover-view class="tabbar_right tabbar_item {{ !isIndex ? 'active' : '' }}" bind:tap="toPage" data-url="/pages/mine/mine" data-type="reLaunch">
     <cover-view class="tabbar_item_box">
       <cover-view>
-        <cover-image mode="widthFix" src="/images/tabbar/mine.png" />
-        <cover-image mode="widthFix" src="/images/tabbar/mine_active.png" hidden />
+        <cover-image mode="widthFix" src="/images/tabbar/mine.png" wx:if="{{ isIndex }}" />
+        <cover-image mode="widthFix" src="/images/tabbar/mine_active.png" wx:else />
       </cover-view>
       <cover-view>
       我的

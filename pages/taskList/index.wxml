@@ -1,0 +1,14 @@
+
+<view class="taskList">
+    <view class="taskList_nav">
+        <text class="active">进行中</text>
+        <text>完成</text>
+        <text>全部</text>
+    </view>
+    <TaskItem wx:for="{{ 10 }}" wx:key="index" type="{{ item % 2 }}" bind:tap="toDetail" />
+
+    <view class="empty" wx:if="{{ false }}">
+        <image src="{{ src }}" mode="widthFix"  />
+        <text> 还没有帮助哦</text>
+    </view>
+</view>

@@ -1,14 +1,13 @@
 <!--pages/addtask/addtask.wxml-->
 <view class="addtask">
   <view class="header">
-    <text class="active">问个问题</text>
-    <text class="tag">借个东西</text>
-    <text class="tag">转让了</text>
-    <text class="tag">我馋了</text>
-    <text class="tag">捎点东西</text>
-    <text class="tag">其它求助</text>
+    <text wx:for="{{btns}}"
+          wx:key="index"
+          class="tag {{item.type == 'active' ? 'active' : ''}}"
+          bind:tap="changeBtn"
+          data-index="{{index}}"
+    >{{ item.text }}</text>
   </view>
-
 
   <view class="main">
     <view class="title">您的求助描述</view>
@@ -57,19 +56,21 @@
 
   </view>
 
-  <view class="footer">
-    <view class="footer_title">发布前请阅读以下知情</view>
-    <view class="footer_list">
-      <view>你可以查看5个答案，酬金会由他们平分</view>
-      <view>如果您非常着急,可以支付加急费,您的问题</view>
-    </view>
-  </view>
+<!--  <view class="footer">-->
+<!--    <view class="footer_title">发布前请阅读以下知情</view>-->
+<!--    <view class="footer_list">-->
+<!--      <view>你可以查看5个答案，酬金会由他们平分</view>-->
+<!--      <view>如果您非常着急,可以支付加急费,您的问题</view>-->
+<!--    </view>-->
+<!--  </view>-->
 
-  <view class="fixdbtn">
+  <Statement type="{{ statementType }}" />
+
+  <view class="fixdbtn" bind:tap="showPayBox">
     <view>支付并发布</view>
   </view>
 
 
-  <Paybox wx:if="{{false}}" />
+  <Paybox wx:if="{{isShowPayBox}}" bind:ok="selectChange" bind:cancel="cancel" />
 
 </view>

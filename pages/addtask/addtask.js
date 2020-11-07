@@ -5,7 +5,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    btns: [
+      {
+        text: '问个问题',
+        type: 'active'
+      },
+      {
+        text: '借个东西',
+        type: 'default'
+      },
+      {
+        text: '转让了',
+        type: 'default'
+      },
+      {
+        text: '我馋了',
+        type: 'default'
+      },
+      {
+        text: '捎点东西',
+        type: 'default'
+      },
+      {
+        text: '其它求助',
+        type: 'default'
+      }
+    ],
+    isShowPayBox: false,
+    statementType: 1
   },
 
   /**
@@ -14,53 +41,24 @@ Page({
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  changeBtn (e) {
+    const { index } = e.currentTarget.dataset
+    console.log('index', index)
+    const btns = this.data.btns.map((item, idx) => Object.assign(item, { type: index == idx ? 'active' : 'default'}))
+    this.setData({ btns, statementType: index + 1 })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  cancel () {
+    this.setData({
+      isShowPayBox: false
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  selectChange (e) {
+    console.log('selectChange', e)
+    this.cancel()
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  showPayBox () {
+    this.setData({
+      isShowPayBox: true
+    })
   }
 })

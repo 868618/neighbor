@@ -2,8 +2,6 @@ page {
   background-color: #F5F5F5;
 }
 
-
-
 .mine {
   padding: 32rpx;
 }
@@ -22,7 +20,6 @@ page {
 .mine .header .info .avator {
   width: 112rpx;
   height: 112rpx;
-  background-color: red;
   overflow: hidden;
   border-radius: 50%;
   display: flex;

@@ -1,0 +1,18 @@
+<view class="cell_list">
+
+    <view class="cell_list_empty">
+        <image src="{{ src }}" mode="widthFix" />
+        <view class="desc">您还没有设置小区</view>
+        <view class="cell_list_btn" bind:tap="addLocation">新增小区</view>
+    </view>
+
+    <view class="cell_list_form" wx:if="{{ false }}">
+        <view class="desc">已有小区</view>
+
+        <view class="list_item">润杰经典</view>
+        <view class="list_item">北京新天地</view>
+        <view class="list_item">万象新天</view>
+        <view class="list_item">柳芳北里社区东区</view>
+    </view>
+
+</view>

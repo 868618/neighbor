@@ -1,0 +1,5 @@
+<view class="custom-botton custom-class custom-class1 custom-class2">
+    <view class="btn">
+        <text><slot></slot></text>
+    </view>
+</view>

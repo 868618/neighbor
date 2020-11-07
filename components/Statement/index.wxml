@@ -1,0 +1,9 @@
+<view class="statement">
+    <view class="statement_title">发布前请阅读以下知情</view>
+    <view class="statement_detail">
+<!--        <view class="statement_line">你可以查看5个答案，酬金会由他们平分</view>-->
+<!--        <view class="statement_line">如果您非常着急,可以支付加急费,您的问题</view>-->
+
+        <view class="statement_line" wx:for="{{list}}" wx:key="index">{{ item }}</view>
+    </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "Navbar": "/components/Navbar/index",
+    "Avatar-Time": "/components/Avatar-Time/index",
+    "Custom-Button": "/components/Custom-Button/index"
+  },
+  "navigationStyle": "custom"
+}

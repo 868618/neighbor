@@ -1,0 +1,35 @@
+<view class="location">
+    <Navbar title="选择附近小区" />
+
+    <view class="location_header">
+        <view class="desc">当前定位</view>
+        <view class="title">
+            <text>北京新天地</text>
+        </view>
+    </view>
+
+    <Cell-List bind:addLocation="addLocation" />
+
+    <view class="locationNear">
+        <view class="desc">附近小区</view>
+        <view class="tags">
+            <view class="tag">柳芳北里</view>
+            <view class="tag">柳芳北里</view>
+            <view class="tag">柳芳北里</view>
+            <view class="tag">柳芳北里</view>
+        </view>
+    </view>
+
+    <Custom-Button bind:tap="addLocation" custom-class="custom-class">+ 新建小区</Custom-Button>
+
+    <Mask id="mask" bind:ok="ok" bind:cancel="cancel">
+        <view class="location_fullname">小区全称</view>
+        <view class="desc" style="margin-top: 16rpx">详细的小区名称方便求助者更精确的找到你</view>
+
+        <view class="location_name">小区名称</view>
+        <input class="location_input" auto-focus placeholder="请输入小区详细名称" placeholder-class="input_placeholder" />
+
+        <Custom-Button custom-class1="custom-class1">获取当前位置</Custom-Button>
+    </Mask>
+
+</view>

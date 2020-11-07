@@ -133,14 +133,12 @@ Component({
     },
     select: {
       // 过滤某个文件
-      type: Function,
-
-      value() {}
-
+      type: null,
+      value: () => {}
     },
     upload: {
       // 返回Promise的一个文件上传的函数
-      type: Function,
+      type: null,
       value: null
     },
     tips: {
@@ -185,6 +183,8 @@ Component({
       if (this.uploading) return;
       wx.chooseImage({
         count: this.data.maxCount - this.data.files.length,
+        sizeType: this.data.sizeType,
+        sourceType: this.data.sourceType,
         success: res => {
           // console.log('chooseImage resp', res)
           // 首先检查文件大小
@@ -231,7 +231,7 @@ Component({
           const files = res.tempFilePaths.map((item, i) => ({
             loading: true,
             // @ts-ignore
-            url: `data:image/jpg;base64,${wx.arrayBufferToBase64(contents[i])}`
+            url: res.tempFilePaths[i] || `data:image/jpg;base64,${wx.arrayBufferToBase64(contents[i])}`
           }));
           if (!files || !files.length) return;
 

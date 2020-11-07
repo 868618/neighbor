@@ -65,6 +65,7 @@
   bottom: 0;
   width: 111rpx;
   height: 111rpx;
+  z-index: 888;
 }
 
 .tabbar_center .tabbar_center_box {

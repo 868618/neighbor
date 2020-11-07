@@ -1,0 +1,14 @@
+<view class="taskitem">
+    <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+        <view class="taskbox">
+            <view class="task_header">
+                <text class="task_title urgent">求打扫一下卫生</text>
+                <text class="task_state">进行中</text>
+            </view>
+            <view class="task_footer">
+                <text class="task_abstract">2居室，要求收拾桌面，厕所，擦 拭地板，以及卫间</text>
+                <text class="task_price {{ type ? 'orange' : '' }}">￥ 15元</text>
+            </view>
+        </view>
+    </mp-slideview>
+</view>

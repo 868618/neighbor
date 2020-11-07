@@ -231,14 +231,12 @@ Component({
     },
 
     _modelChange(newVal, oldVal) {
-      if (!this.isInit) {
-        this.isInit = true;
+      if (!this.formValidator) {
         return newVal;
       } // 这个必须在前面
 
 
       this.formValidator.setModel(newVal);
-      this.isInit = true;
       const diffObj = (0, _object.diffObject)(oldVal, newVal);
 
       if (diffObj) {
@@ -448,7 +446,7 @@ class FormValidator {
           valid,
           error: valid ? undefined : error
         });
-        cb(valid, valid ? undefined : errObj);
+        cb && cb(valid, valid ? undefined : errObj);
         const oldError = this.errors[name];
         const errorChanged = (0, _object.diff)(oldError, error);
 
@@ -464,7 +462,7 @@ class FormValidator {
     const rules = this.rules[name];
 
     if (!rules) {
-      console.warn(`[form-validtor] rule name ${name} not exists.`);
+      console.warn(`[form-validator] rule name ${name} not exists.`);
       cb(true);
       return;
     } // 处理参数
@@ -587,7 +585,7 @@ var _default = {
   },
 
   rangelength(r, val) {
-    const range = r.range;
+    const range = r.rangelength;
     val = val || '';
 
     if (val.length > range[1] || val.length < range[0]) {
@@ -673,7 +671,8 @@ var _default = {
   },
 
   bytelength(r, value, param) {
-    param = r.param; // eslint-disable-next-line no-control-regex
+    param = r.param;
+    value = value || ''; // eslint-disable-next-line no-control-regex
 
     const len = value.replace(/[^\x00-\xff]/g, '**').length;
 

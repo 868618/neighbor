@@ -4,13 +4,23 @@
     "pages/addtask/addtask",
     "pages/mine/mine",
     "pages/helpdesc/helpdesc",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/login/index",
+    "pages/taskList/index",
+    "pages/location/index",
+    "pages/helpDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "邻居帮",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "Tarbars": "/components/Tabbar/Tabbar",
+    "Navbar": "/components/Navbar/index",
+    "Mask": "/components/Mask/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -8,5 +8,10 @@ Page({
   },
   onLoad() {
     console.log('onLoad')
+  },
+  toDetail () {
+    wx.navigateTo({
+      url: '/pages/helpDetail/index'
+    })
   }
 })

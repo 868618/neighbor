@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "Tarbars": "/components/Tabbar/Tabbar"
+    "Task_Item": "./components/task_item"
   }
 }
