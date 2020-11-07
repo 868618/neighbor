@@ -60,5 +60,8 @@ Page({
     this.setData({
       isShowPayBox: true
     })
+  },
+  addHelpDescription () {
+
   }
 })

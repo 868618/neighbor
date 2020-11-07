@@ -1,16 +1,19 @@
 import './polyfill'
-const { surface } = getApp()
+const { surface, globalData, getToken, getHeaders } = getApp()
 import config from "../config.js"
 
 class Http {
-    async request ({ url, data = {}, method = "POST" } = {}) {
+    async request ({ url, data = {  }, method = "POST" } = {}) {
+        const _token = getToken()
+        // const headers = getHeaders()
         const options = {
             timeout: 10000,
             url: config.baseUrl + url,
-            data,
+            data: Object.assign({ ...globalData.systemInfo }, data),
             method,
             header: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                _token
             }
         }
         return surface(wx.request, options).then(res => {

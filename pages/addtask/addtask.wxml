@@ -1,4 +1,6 @@
-<!--pages/addtask/addtask.wxml-->
+
+<Navbar type="location" title="康泉小区" />
+
 <view class="addtask">
   <view class="header">
     <text wx:for="{{btns}}"
@@ -27,11 +29,11 @@
 
     <view class="helpdesc">
       <text>求助描述</text>
-      <image src="/images/helpdesc/camera.png"></image>
+      <image src="/images/camera.png"></image>
     </view>
 
     <view class="input_title">
-      <input placeholder="请尽力描述您的问题吧，有助于..." placeholder-class="placeholder" />
+      <input placeholder="请尽力描述您的问题吧，有助于..." placeholder-class="placeholder" disabled bind:tap="addHelpDescription" />
     </view>
 
     <view class="select">
@@ -69,6 +71,8 @@
   <view class="fixdbtn" bind:tap="showPayBox">
     <view>支付并发布</view>
   </view>
+
+  <AddHelpDescription />
 
 
   <Paybox wx:if="{{isShowPayBox}}" bind:ok="selectChange" bind:cancel="cancel" />

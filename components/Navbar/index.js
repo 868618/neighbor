@@ -1,3 +1,4 @@
+const { globalData } = getApp()
 Component({
   properties: {
     background: {
@@ -41,6 +42,8 @@ Component({
     isHome: false,
     sectionStyle: '',
     bastardStyle: '',
+    _type: null,
+    menuButtonHeight: null
   },
   lifetimes: {
     attached() {
@@ -48,25 +51,21 @@ Component({
     }
   },
   methods: {
+    makeType () {
+      const [{ is }] = getCurrentPages().reverse()
+      console.log('is', is)
+    },
     makeMenuButton () {
-      // 右侧胶囊位置信息
-      const menuRect = wx.getMenuButtonBoundingClientRect()
-      const { height, top, right } = menuRect
-      console.log('胶囊信息', menuRect)
-      // 系统信息
-      const { windowWidth } =  wx.getSystemInfoSync()
-      // 导航区域总高度
-      const sectionHeight = height + top
-      // 导航区域内边距
-      const sectionPaddingLeft = windowWidth - right
+      const { allHeight, height, left } = globalData.navbarInfo
+      const menuButtonHeight = height
 
       const { isImmersive } = this.properties
       const background = !isImmersive ? '#FFF' : 'rgba(0, 0, 0, 0)'
 
-      const bastardStyle = `width: 100vw;height: ${sectionHeight}px;`
+      const bastardStyle = `width: 100vw;height: ${allHeight}px;`
 
-      const sectionStyle = `height: ${sectionHeight}px;padding-left: ${sectionPaddingLeft}px; background: ${background};`
-      this.setData({ sectionStyle, bastardStyle })
+      const sectionStyle = `height: ${allHeight}px;padding-left: ${left}px; background: ${background};`
+      this.setData({ bastardStyle, sectionStyle, menuButtonHeight })
     },
     tapHandle () {
       this.triggerEvent('tapHandle')

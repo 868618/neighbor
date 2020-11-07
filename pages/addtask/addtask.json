@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "Paybox": "/components/Paybox/Paybox",
-    "Statement": "/components/Statement/index"
+    "Statement": "/components/Statement/index",
+    "AddHelpDescription": "./components/addHelpDescription/index"
   }
 }

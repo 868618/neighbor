@@ -30,6 +30,20 @@ App({
         }
       },
     });
+
+    /**
+     * 初次加载拿到系统部分信息
+     */
+
+    const { platform: gw_platform, system: gw_platVersion } = utils.getSystemInfo()
+    const accountInfo = utils.getAccountInfo()
+    const { version: gw_version } = accountInfo.miniProgram
+    // console.log('systemInfo', systemInfo)
+    // console.log('accountInfo', accountInfo)
+    // console.info('platform version', gw_platform, gw_version, gw_platVersion)
+    that.globalData.systemInfo = { gw_platform, gw_version: gw_version || '1.0.0', gw_platVersion, gw_deviceId: '123456' }
+    that.globalData.navbarInfo = utils.getNavbarInfo()
+
     /**
      * 监听网络状态变化
      * 可根据业务需求进行调整

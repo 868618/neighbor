@@ -1,5 +1,5 @@
 // components/Tabbar/Tabbar.js
-const { surface, getUserInfo, isLogin } = getApp()
+const { surface, getHeaders } = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -30,10 +30,7 @@ Component({
     toPage (e) {
       const { type, url } = e.currentTarget.dataset
       if (url != 'pages/index/index') {
-        const userInfo = getUserInfo()
-        const login = isLogin()
-        console.log('login', login)
-        if (login) {
+        if (getHeaders()) {
           wx[type]({ url })
           return;
         }

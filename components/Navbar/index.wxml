@@ -1,8 +1,18 @@
 <view class="navbar" style="{{ sectionStyle }}">
-  <view class="navbar_box" catch:tap="tapHandle" style="{{  }}">
-    <image src="../../images/back_arrow.png" mode="widthFix" class="navbar_location" catch:tap="goBack" />
-<!--    <image src="../../images/home_icon@2x.png" mode="widthFix" class="navbar_location" />-->
-    <text>{{ title }}</text>
+
+  <view class="navbar_box navbar_goBack" catch:tap="tapHandle" wx:if="{{ type === 'goBack' }}">
+    <image src="../../images/back_arrow.png" mode="widthFix" class="icon" catch:tap="goBack" />
+    <text class="title">{{ title }}</text>
+  </view>
+
+  <view class="navbar_box navbar_location" wx:if="{{ type === 'location' }}" style="height: {{menuButtonHeight}}px">
+    <image src="../../images/back_arrow.png" mode="widthFix" class="icon" />
+    <text class="title">{{ title }}</text>
+  </view>
+
+  <view class="navbar_box navbar_home" wx:if="{{ type === 'home' }}">
+    <image src="../../images/home_icon@2x.png" mode="widthFix" class="icon" />
+    <text class="title">{{ title }}</text>
   </view>
 </view>
 

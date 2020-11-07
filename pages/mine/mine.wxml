@@ -1,12 +1,12 @@
 <view class="mine">
-<!--  <Navbar />-->
+  <Navbar type="location" />
   <view class="header">
 
     <view class="info">
       <view class="avator">
-        <image src="{{src}}" mode="widthFix" lazy-load />
+        <image src="{{ userInfo.headerUrl }}" mode="widthFix" lazy-load />
       </view>
-      <text>张三</text>
+      <text>{{ userInfo.nick }}</text>
     </view>
 
 

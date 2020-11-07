@@ -240,6 +240,28 @@ const checkIsX = () => {
     console.log('isX', isX)
     return isX
 }
+
+/**
+ 获取系统相关信息
+ **/
+const getSystemInfo = () => wx.getSystemInfoSync()
+const getAccountInfo = () => wx.getAccountInfoSync()
+
+const getNavbarInfo = () => {
+    // 右侧胶囊位置信息
+    const menuRect = wx.getMenuButtonBoundingClientRect()
+    const { windowWidth } =  wx.getSystemInfoSync()
+    const { height, top, right } = menuRect
+    console.log('胶囊信息', menuRect)
+    // 导航区域总高度
+    const allHeight = height + top
+    // 导航区域内边距
+    const left = windowWidth - right
+    return { allHeight, height, left }
+}
+
+const getToken = (key = 'headers') => wx.getStorageSync(key).token;
+const getHeaders = (key = 'headers') => wx.getStorageSync(key);
 module.exports = {
     formatThousands,
     getWechatAddress,
@@ -259,5 +281,10 @@ module.exports = {
     getDetetailAddress,
     orderStatusMapFun,
     checkConnected,
-    checkIsX
+    checkIsX,
+    getSystemInfo,
+    getAccountInfo,
+    getNavbarInfo,
+    getToken,
+    getHeaders
 };

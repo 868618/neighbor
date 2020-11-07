@@ -1,8 +1,0 @@
-<!--pages/helpdesc/helpdesc.wxml-->
-<view class="helpdesc">
-	<view class="header">
-		<text>求助描述</text>
-		<image src="/images/helpdesc/camera.png" mode="widthFix" />
-	</view>
-  <view class="tip">详细清晰的描述，有助于应助者正确理解你的详细清晰的描述，有助于应助者正确理解你的</view>
-</view>
