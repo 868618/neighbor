@@ -1,7 +1,7 @@
 <!--components/Tabbar/Tabbar.wxml-->
 <cover-view class="tabbar">
 
-  <cover-view class="tabbar_left tabbar_item {{ isIndex ? 'active' : '' }}" bind:tap="toPage" data-url="/pages/index/index" data-type="navigateTo">
+  <cover-view class="tabbar_left tabbar_item {{ isIndex ? 'active' : '' }}" bind:tap="toPage" data-url="/pages/index/index" data-type="switchTab">
     <cover-view class="tabbar_item_box">
       <cover-view>
         <cover-image mode="widthFix" src="/images/tabbar/home_active.png" wx:if="{{ isIndex }}"/>
@@ -22,7 +22,7 @@
   </cover-view>
 
 
-  <cover-view class="tabbar_right tabbar_item {{ !isIndex ? 'active' : '' }}" bind:tap="toPage" data-url="/pages/mine/mine" data-type="reLaunch">
+  <cover-view class="tabbar_right tabbar_item {{ !isIndex ? 'active' : '' }}" bind:tap="toPage" data-url="/pages/mine/mine" data-type="switchTab">
     <cover-view class="tabbar_item_box">
       <cover-view>
         <cover-image mode="widthFix" src="/images/tabbar/mine.png" wx:if="{{ isIndex }}" />

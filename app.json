@@ -21,6 +21,17 @@
     "Navbar": "/components/Navbar/index",
     "Mask": "/components/Mask/index"
   },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath":"pages/index/index"
+      },
+      {
+        "pagePath":"pages/mine/mine"
+      }
+    ]
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
