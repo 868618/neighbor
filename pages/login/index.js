@@ -15,7 +15,6 @@ Page({
     const detail = e.detail
     const { errMsg, userInfo } = detail
     if (errMsg.endsWith('ok')) {
-      console.log('detail.userInfo--------', detail.userInfo)
       // 清除掉本地的缓存数据
       wx.clearStorageSync()
       const res = await surface(wx.login)
@@ -34,15 +33,17 @@ Page({
 
           const { body } = await mine.getAccountInfo()
           console.log('个人信息', body)
+          const { avatarUrl: avatar, nickName: nick, gender: sex } = userInfo
           if (body.headerUrl === '') {
-            const { avatarUrl: avatar, nickName: nick, gender: sex } = userInfo
             const updateAccountInfo = await mine.updateAccountInfo({
               avatar,
               nick,
               sex
             })
-            console.log('updateAccountInfo', updateAccountInfo)
           }
+          wx.setStorageSync('userInfo', { avatar, nick, sex })
+          // 预加载图片
+          wx.getImageInfo({ src: body.headerUrl })
           const eventChannel = this.getOpenerEventChannel()
           eventChannel.emit('onSucc', result)
         } else {

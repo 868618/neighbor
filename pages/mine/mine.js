@@ -14,11 +14,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad (options) {
-    const { info, body } = await mine.getAccountInfo()
-    console.log('info', info)
-    console.log('body', body)
+    // const { info, body } = await mine.getAccountInfo()
+    // console.log('info', info)
+    // console.log('body', body)
+    const userInfo = wx.getStorageSync('userInfo')
     this.setData({
-      userInfo: body
+      userInfo
     })
   },
   toTaskList () {

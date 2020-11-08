@@ -122,7 +122,8 @@ Page({
   },
   // 支付并发布
   async payAndPost () {
-    const res = await addOrder.forHelpSubmit(this.data.formData)
-    console.log('res', res)
+    const { rewardMoney, urgentMoney } = this.data.formData
+    const res = await addOrder.forHelpSubmit({ ...this.data.formData,rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100  })
+    console.log('forHelpSubmit', res)
   }
 })

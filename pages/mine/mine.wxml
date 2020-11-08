@@ -4,7 +4,7 @@
 
     <view class="info">
       <view class="avator">
-        <image src="{{ userInfo.headerUrl }}" mode="widthFix" lazy-load />
+        <image src="{{ userInfo.avatar }}" mode="widthFix" lazy-load />
       </view>
       <text>{{ userInfo.nick }}</text>
     </view>
