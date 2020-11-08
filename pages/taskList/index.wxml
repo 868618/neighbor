@@ -1,5 +1,5 @@
-
 <view class="taskList">
+    <Navbar title="康泉小区" />
     <view class="taskList_nav">
         <text class="active">进行中</text>
         <text>完成</text>

@@ -1,5 +1,7 @@
 page {
   background-color: #F9F9F9;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .order {}
@@ -24,6 +26,10 @@ page {
   
 }
 
+.order .list{
+  padding-bottom: 20rpx;
+}
+
 .order .list .list_item {
   box-sizing: border-box;
   background-color: #FFF;
@@ -38,8 +44,9 @@ page {
 }
 
 .custom {
-  height: 210rpx !important;
-  margin-top: 20rpx;
+  /*height: 210rpx !important;*/
+  /*margin-top: 20rpx;*/
+  box-sizing: border-box;
 }
 
 .custom .weui-slideview__btn {
@@ -48,6 +55,12 @@ page {
   color: #FFFFFF;
   display: flex;
 }
+.order .list .list_item{
+  height: 210rpx;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+
 
 .order .list .list_item .list_item_top {
   display: flex;

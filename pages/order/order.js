@@ -11,7 +11,8 @@ Page({
       extClass: 'test',
         src: '/page/weui/cell/icon_del.svg', // icon的路径
     }],
-    tabs: []
+    tabs: [],
+    scrollViewStyle: null
   },
 
   /**
@@ -27,12 +28,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   this.makeScrollViewStyle()
   },
   slideButtonTap () {
     console.log(123456)
   },
   toDetail () {
     wx.navigateTo({ url: '/pages/helpDetail/index' })
+  },
+  makeScrollViewStyle () {
+    const sysInfo = wx.getSystemInfoSync()
+    const query = wx.createSelectorQuery()
+    query.select('#firstScroll').boundingClientRect(rect => {
+      const height = sysInfo.windowHeight - rect.top
+      const scrollViewStyle = `height: ${height}px;overflow: hidden;`
+      this.setData({ scrollViewStyle })
+    }).exec()
   }
 })

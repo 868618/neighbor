@@ -72,6 +72,9 @@ Component({
     },
     goBack () {
       wx.navigateBack()
+    },
+    custom (){
+      this.triggerEvent('custom')
     }
   }
 });

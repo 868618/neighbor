@@ -32,7 +32,9 @@ Page({
       }
     ],
     isShowPayBox: false,
-    statementType: 1
+    statementType: 1,
+    isShowAddHelpDescription: false,
+    content: null
   },
 
   /**
@@ -63,5 +65,27 @@ Page({
   },
   addHelpDescription () {
 
+  },
+  save(e) {
+    const { content } = e.detail
+    this.setData({
+      isShowAddHelpDescription: false,
+      content
+    })
+  },
+  openAddHelpDescription () {
+    this.setData({
+      isShowAddHelpDescription: true
+    })
+  },
+  custom () {
+    const { isShowAddHelpDescription } = this.data
+    if (isShowAddHelpDescription) {
+      this.setData({
+        isShowAddHelpDescription: false
+      })
+    } else {
+      wx.navigateBack()
+    }
   }
 })

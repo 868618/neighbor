@@ -18,6 +18,17 @@ class Http {
         }
         return surface(wx.request, options).then(res => {
             const { statusCode, data } = res
+            if (data.code == -101) {
+                wx.navigateTo({
+                    url: '/pages/login/index',
+                    events: {
+                        onSucc () {
+                            wx.navigateBack()
+                        }
+                    }
+                })
+                return
+            }
             return statusCode == 200 ? data : res
         })
     }

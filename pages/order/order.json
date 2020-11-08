@@ -2,5 +2,6 @@
   "usingComponents": {
     "mp-slideview": "/miniprogram_npm/weui-miniprogram/slideview/slideview",
     "mp-tabs": "/components/Tabs/index"
-  }
+  },
+  "navigationStyle": "custom"
 }

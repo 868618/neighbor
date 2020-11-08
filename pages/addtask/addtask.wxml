@@ -1,5 +1,5 @@
 
-<Navbar type="location" title="康泉小区" />
+<Navbar title="康泉小区" type="custom" bind:custom="custom" />
 
 <view class="addtask">
   <view class="header">
@@ -32,8 +32,8 @@
       <image src="/images/camera.png"></image>
     </view>
 
-    <view class="input_title">
-      <input placeholder="请尽力描述您的问题吧，有助于..." placeholder-class="placeholder" disabled bind:tap="addHelpDescription" />
+    <view class="input_title" bind:tap="openAddHelpDescription">
+      <input placeholder="请尽力描述您的问题吧，有助于..." placeholder-class="placeholder" disabled bind:tap="addHelpDescription" value="{{ content }}" />
     </view>
 
     <view class="select">
@@ -72,7 +72,7 @@
     <view>支付并发布</view>
   </view>
 
-  <AddHelpDescription />
+  <AddHelpDescription wx:if="{{ isShowAddHelpDescription }}" content="{{ content }}"  bind:save="save" />
 
 
   <Paybox wx:if="{{isShowPayBox}}" bind:ok="selectChange" bind:cancel="cancel" />

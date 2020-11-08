@@ -10,7 +10,7 @@
             <view>2.有什么要求</view>
             <view> 3.需不需要上传图片</view>
         </view>
-        <textarea class="textarea" bind:input="input" focus="{{focus}}" auto-height />
+        <textarea class="textarea" bind:input="input" focus="{{focus}}" auto-height value="{{ _content }}" />
     </view>
 
     <view class="images">
@@ -19,5 +19,5 @@
         </view>
     </view>
 
-    <Custom-Button custom-class="custom-class" bind:tap="toLocation">接受本次求助</Custom-Button>
+    <Custom-Button custom-class="custom-class" bind:tap="save">保存</Custom-Button>
 </view>

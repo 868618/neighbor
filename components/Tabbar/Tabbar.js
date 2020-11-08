@@ -30,8 +30,6 @@ Component({
     toPage (e) {
       const { type, url } = e.currentTarget.dataset
       const [ { is: currPage } ] = getCurrentPages().sort()
-      console.log('url-----------', url)
-      console.log('currPage-----------', currPage)
       if (url.includes(currPage)) return
       if (url != '/pages/index/index') {
         if (getHeaders()) {
