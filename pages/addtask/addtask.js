@@ -1,4 +1,4 @@
-// pages/addtask/addtask.js
+import { addOrder } from '../../api/index'
 Page({
 
   /**
@@ -32,9 +32,22 @@ Page({
       }
     ],
     isShowPayBox: false,
-    statementType: 1,
+    forHelpType: 1,
     isShowAddHelpDescription: false,
-    content: null
+    formData: {
+      title: '',
+      content: null,
+      image: '',
+      forHelpType: 1,
+      // 酬金
+      rewardMoney: 1,
+      // 加急费
+      urgentMoney: 0,
+    },
+    moneybox: {
+      title: '',
+      defPrice: 0
+    }
   },
 
   /**
@@ -43,11 +56,17 @@ Page({
   onLoad: function (options) {
 
   },
+  input (e) {
+    const { value: title } = e.detail
+    this.setData({
+      'formData.title': title
+    })
+  },
   changeBtn (e) {
     const { index } = e.currentTarget.dataset
     console.log('index', index)
     const btns = this.data.btns.map((item, idx) => Object.assign(item, { type: index == idx ? 'active' : 'default'}))
-    this.setData({ btns, statementType: index + 1 })
+    this.setData({ btns, 'formData.forHelpType': index + 1 })
   },
   cancel () {
     this.setData({
@@ -55,22 +74,21 @@ Page({
     })
   },
   selectChange (e) {
-    console.log('selectChange', e)
-    this.cancel()
-  },
-  showPayBox () {
+    const { type } = this.data.moneybox
+    const { activeMoney } = e.detail
     this.setData({
-      isShowPayBox: true
-    })
-  },
-  addHelpDescription () {
-
+      [type == 1 ? 'formData.rewardMoney': 'formData.urgentMoney']: activeMoney,
+      ['formData.forHelpType']: type,
+    }, this.cancel)
   },
   save(e) {
-    const { content } = e.detail
+    console.log(e.detail)
+    const { content, tempFilePaths } = e.detail
+    const image = tempFilePaths.join(',')
     this.setData({
       isShowAddHelpDescription: false,
-      content
+      'formData.content': content,
+      'formData.image': image
     })
   },
   openAddHelpDescription () {
@@ -78,14 +96,33 @@ Page({
       isShowAddHelpDescription: true
     })
   },
-  custom () {
+  customHandle () {
     const { isShowAddHelpDescription } = this.data
-    if (isShowAddHelpDescription) {
-      this.setData({
-        isShowAddHelpDescription: false
-      })
-    } else {
-      wx.navigateBack()
-    }
+    isShowAddHelpDescription ? this.setData({ isShowAddHelpDescription: false }): wx.navigateBack()
+  },
+  // 酬金
+  monetaryReward () {
+    this.setData({
+      moneybox: {
+        type: 1,
+        defPrice: 1
+      },
+      isShowPayBox: true
+    })
+  },
+  // 加急
+  expedited () {
+    this.setData({
+      moneybox: {
+        type: 2,
+        defPrice: 0
+      },
+      isShowPayBox: true
+    })
+  },
+  // 支付并发布
+  async payAndPost () {
+    const res = await addOrder.forHelpSubmit(this.data.formData)
+    console.log('res', res)
   }
 })

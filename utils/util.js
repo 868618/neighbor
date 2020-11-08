@@ -234,10 +234,8 @@ const checkConnected = async (hideToast) => {
 const checkIsX = () => {
     const res = wx.getSystemInfoSync()
     const { model } = res
-    console.log('model', model)
     const xArr = ['X', 'iPhone 11']
     const isX = xArr.some(item => model.includes(item)) ? model : null
-    console.log('isX', isX)
     return isX
 }
 
@@ -252,7 +250,6 @@ const getNavbarInfo = () => {
     const menuRect = wx.getMenuButtonBoundingClientRect()
     const { windowWidth } =  wx.getSystemInfoSync()
     const { height, top, right } = menuRect
-    console.log('胶囊信息', menuRect)
     // 导航区域总高度
     const allHeight = height + top
     // 导航区域内边距

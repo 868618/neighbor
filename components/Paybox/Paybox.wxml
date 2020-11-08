@@ -5,18 +5,18 @@
 <view class="paybox">
   <view class="paybox_head">
     <view class="paybox_cancel" catch:tap="cancel">取消</view>
-    <view class="paybox_name">酬金</view>
+    <view class="paybox_name">{{ title }}</view>
     <view class="paybox_ok" catch:tap="ok">确定</view>
   </view>
 
   <view class="panel">
     <view
-            class="panel_item {{ activeNum == index ? 'panel_item_active': '' }}"
-            wx:for="{{ grids }}"
-            wx:key="index"
-            data-index="{{ index }}"
-            data-item="{{ item }}"
-            bind:tap="selectChange"
+      class="panel_item {{ activeNum == item ? 'panel_item_active': '' }}"
+      wx:for="{{ grids }}"
+      wx:key="index"
+      data-index="{{ index }}"
+      data-item="{{ item }}"
+      bind:tap="selectChange"
     >
       <text wx:if="{{item !== 0}}">￥{{item}}</text>
       <text wx:else>不加了</text>

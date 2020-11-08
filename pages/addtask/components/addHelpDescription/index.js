@@ -43,13 +43,9 @@ Component({
     async chooseImage () {
       const _tempFilePaths = this.data.tempFilePaths
       const { tempFilePaths } = await surface(wx.chooseImage)
-      console.log('tempFilePaths-----', tempFilePaths)
       const [ filePath ] = tempFilePaths
-
       const upLoadRes = await this.upLoadFile(filePath)
-      const { body } = JSON.parse(upLoadRes)
-      console.log('body***', body)
-
+      const { body } = upLoadRes
       this.setData({
         tempFilePaths: _tempFilePaths.concat([body])
       })
@@ -79,8 +75,21 @@ Component({
           _token
         },
       })
-      const { statusCode, data, } = upLoadRes
-      return statusCode == 200 ? data : upLoadRes
+      const { statusCode, data } = upLoadRes
+      const json = JSON.parse(data)
+      const { code } = json
+      if (code == -101) {
+        wx.navigateTo({
+          url: '/pages/login/index',
+          events: {
+            onSucc () {
+              wx.navigateBack()
+            }
+          }
+        })
+        return
+      }
+      return statusCode == 200 ? json : upLoadRes
     },
     save () {
       const { tempFilePaths, _content } = this.data

@@ -1,5 +1,5 @@
 
-<Navbar title="康泉小区" type="custom" bind:custom="custom" />
+<Navbar title="康泉小区" type="custom" bind:custom="customHandle" />
 
 <view class="addtask">
   <view class="header">
@@ -20,61 +20,52 @@
     </view>
 
     <view class="input_title">
-      <input auto-focus placeholder="您要问什么" placeholder-class="placeholder" />
+      <input auto-focus placeholder="您要问什么" placeholder-class="placeholder" bind:input="input" value="{{ formData.title }}" />
     </view>
 
     <!-- <view class="tip">
       问题描述
     </view> -->
 
-    <view class="helpdesc">
-      <text>求助描述</text>
-      <image src="/images/camera.png"></image>
-    </view>
+    <view bind:tap="openAddHelpDescription">
+      <view class="helpdesc">
+        <text>求助描述</text>
+        <image src="/images/camera.png" />
+      </view>
 
-    <view class="input_title" bind:tap="openAddHelpDescription">
-      <input placeholder="请尽力描述您的问题吧，有助于..." placeholder-class="placeholder" disabled bind:tap="addHelpDescription" value="{{ content }}" />
+      <view class="input_title">
+        <input placeholder="请尽力描述您的问题吧，有助于..." placeholder-class="placeholder" disabled value="{{ formData.content }}" />
+      </view>
     </view>
 
     <view class="select">
 
-      <view class="select_item">
+      <view class="select_item" bind:tap="monetaryReward">
         <view class="select_name">酬金
-          <text>1元</text>
+          <text>{{ formData.rewardMoney }}元</text>
         </view>
         <view class="select_tip">请选择</view>
       </view>
 
 
-      <view class="select_item">
+      <view class="select_item" bind:tap="expedited">
         <view class="select_name">加急
-          <text>0元</text>
+          <text>{{ formData.urgentMoney }}元</text>
         </view>
         <view class="select_tip">请选择</view>
       </view>
-
     </view>
-
 
   </view>
 
-<!--  <view class="footer">-->
-<!--    <view class="footer_title">发布前请阅读以下知情</view>-->
-<!--    <view class="footer_list">-->
-<!--      <view>你可以查看5个答案，酬金会由他们平分</view>-->
-<!--      <view>如果您非常着急,可以支付加急费,您的问题</view>-->
-<!--    </view>-->
-<!--  </view>-->
+  <Statement type="{{ formData.forHelpType }}" />
 
-  <Statement type="{{ statementType }}" />
-
-  <view class="fixdbtn" bind:tap="showPayBox">
+  <view class="fixdbtn" bind:tap="payAndPost">
     <view>支付并发布</view>
   </view>
 
-  <AddHelpDescription wx:if="{{ isShowAddHelpDescription }}" content="{{ content }}"  bind:save="save" />
+  <AddHelpDescription wx:if="{{ isShowAddHelpDescription }}" content="{{ formData.content }}"  bind:save="save" />
 
-
-  <Paybox wx:if="{{isShowPayBox}}" bind:ok="selectChange" bind:cancel="cancel" />
+  <Paybox wx:if="{{isShowPayBox}}" title="{{ moneybox.title }}" defPrice="{{ moneybox.defPrice }}" bind:ok="selectChange" bind:cancel="cancel" />
 
 </view>

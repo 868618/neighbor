@@ -1,5 +1,5 @@
 import login from './login'
 import mine from './mine'
-import tool from './tool'
+import addOrder from './addOrder'
 
-module.exports = { login, mine, tool }
+module.exports = { login, mine, addOrder }

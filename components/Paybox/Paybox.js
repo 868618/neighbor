@@ -4,7 +4,14 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    type: {
+      type:Number,
+      value: 1
+    },
+    defPrice: {
+      type:Number,
+      value: 0
+    }
   },
 
   /**
@@ -13,7 +20,18 @@ Component({
   data: {
     grids: [0, 1, 2, 3, 4, 5],
     activeNum: 0,
-    activeMoney: null
+    activeMoney: null,
+    title: null
+  },
+
+  lifetimes: {
+    attached() {
+      const { defPrice: activeNum, type } = this.properties
+      this.setData({
+        activeNum,
+        title: type == 1 ? '酬金': '加急'
+      })
+    }
   },
 
   /**
@@ -29,7 +47,6 @@ Component({
     },
     selectChange (e) {
       const { index:activeNum, item: activeMoney } = e.currentTarget.dataset
-      console.log(activeNum, activeMoney)
       this.setData({ activeNum, activeMoney })
     },
     selectOther () {
