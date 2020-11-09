@@ -8,27 +8,33 @@ Page({
     btns: [
       {
         text: '问个问题',
-        type: 'active'
+        type: 'active',
+        forHelpType: 10
       },
       {
         text: '借个东西',
-        type: 'default'
+        type: 'default',
+        forHelpType: 20
       },
       {
         text: '转让了',
-        type: 'default'
+        type: 'default',
+        forHelpType: 30
       },
       {
         text: '我馋了',
-        type: 'default'
+        type: 'default',
+        forHelpType: 40
       },
       {
         text: '捎点东西',
-        type: 'default'
+        type: 'default',
+        forHelpType: 50
       },
       {
         text: '其它求助',
-        type: 'default'
+        type: 'default',
+        forHelpType: 60
       }
     ],
     isShowPayBox: false,
@@ -38,7 +44,7 @@ Page({
       title: '',
       content: null,
       image: '',
-      forHelpType: 1,
+      forHelpType: 10,
       // 酬金
       rewardMoney: 1,
       // 加急费
@@ -63,10 +69,11 @@ Page({
     })
   },
   changeBtn (e) {
-    const { index } = e.currentTarget.dataset
-    console.log('index', index)
-    const btns = this.data.btns.map((item, idx) => Object.assign(item, { type: index == idx ? 'active' : 'default'}))
-    this.setData({ btns, 'formData.forHelpType': index + 1 })
+    // console.log('e.currentTarget.dataset', e.currentTarget.dataset)
+    // const { forhelptype: forHelpType, index } = e.currentTarget.dataset
+    // console.log('index', index)
+    // const btns = this.data.btns.map((item, idx) => Object.assign(item, { type: index == idx ? 'active' : 'default'}))
+    // this.setData({ btns, 'formData.forHelpType': forHelpType })
   },
   cancel () {
     this.setData({
@@ -74,6 +81,8 @@ Page({
     })
   },
   selectChange (e) {
+    console.log('e', e)
+    console.log('this.data.moneybox', this.data.moneybox)
     const { type } = this.data.moneybox
     const { activeMoney } = e.detail
     this.setData({
