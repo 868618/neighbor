@@ -32,6 +32,11 @@
       }
     ]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "给用户要定位授权的一句话，需要产品来定"
+    }
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

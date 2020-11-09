@@ -48,12 +48,16 @@ Component({
   lifetimes: {
     attached() {
       this.makeMenuButton()
+      this.makeType()
     }
   },
   methods: {
     makeType () {
       const [{ is }] = getCurrentPages().reverse()
       console.log('is', is)
+      this.setData({
+        isHome: is == 'pages/index/index'
+      })
     },
     makeMenuButton () {
       const { allHeight, height, left } = globalData.navbarInfo
@@ -75,6 +79,11 @@ Component({
     },
     custom (){
       this.triggerEvent('custom')
+    },
+    toLocation () {
+      wx.navigateTo({
+        url: '/pages/location/index'
+      })
     }
   }
 });

@@ -1,6 +1,7 @@
 /* pages/location/index.wxss */
 page{
     /*background: aqua;*/
+    padding-bottom: 150rpx;
 }
 
 .location{

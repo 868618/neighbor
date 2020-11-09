@@ -6,8 +6,9 @@
   </view>
 
   <view class="navbar_box navbar_location" wx:if="{{ type === 'location' }}" style="height: {{menuButtonHeight}}px">
-    <image src="../../images/back_arrow.png" mode="widthFix" class="icon" />
-    <text class="title">{{ title }}</text>
+    <image src="../../images/back_arrow.png" wx:if="{{ !isHome }}" mode="widthFix" class="icon" catch:tap="goBack" />
+    <image src="../../images/location.png" mode="widthFix" class="icon" bind:tap="toLocation" />
+    <text class="title" bind:tap="toLocation">{{ title }}</text>
   </view>
 
   <view class="navbar_box navbar_home" wx:if="{{ type === 'home' }}">
