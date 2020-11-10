@@ -1,0 +1,52 @@
+.helpother{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 3;
+    padding: 32rpx 34rpx;
+    box-sizing: border-box;
+    background: #FFFFFF;
+}
+
+.title{
+    font-size: 44rpx;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: 1;
+}
+.tip{
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.35);
+    line-height: 1;
+    margin-top: 32rpx;
+}
+
+.item{
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.65);
+    margin-top: 52rpx;
+}
+.input{
+    /*margin-top: 32rpx;*/
+    font-size: 32rpx;
+    height: 148rpx;
+    line-height: 148rpx;
+    border-bottom: 2rpx solid rgba(0, 0, 0, 0.25);
+}
+
+.placeholder{
+    font-size: 32rpx;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.custom-class{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

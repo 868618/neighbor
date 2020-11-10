@@ -1,5 +1,5 @@
 <view class="helpDetail">
-    <Navbar title="北京新天地" />
+    <Navbar />
     <view class="detail_info yibangzhu">
         <Avatar-Time />
 
@@ -54,5 +54,8 @@
         </view>
     </view>
 
-    <Custom-Button custom-class="custom-class" bind:tap="toLocation">接受本次求助</Custom-Button>
+    <HelpOther wx:if="{{ isShowHelpOther }}" bind:save="save" />
+
+    <Custom-Button custom-class="custom-class" bind:tap="accept">接受本次求助</Custom-Button>
+    <Custom-Button custom-class="custom-class" bind:tap="toHelpOther">立即应助</Custom-Button>
 </view>

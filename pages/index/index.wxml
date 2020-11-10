@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <Navbar type="location" title="{{ title }}" />
+  <Navbar class="navbar" type="location" title="{{ title }}" />
   <view class="header">
     <swiper>
       <swiper-item>

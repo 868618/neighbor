@@ -1,4 +1,4 @@
-// pages/helpDetail/index.js
+const { showToast, getNavbarInfo } = getApp()
 Page({
 
   /**
@@ -7,7 +7,8 @@ Page({
   data: {
     tmp: 'http://oss.cogo.club/a34dd613-2323-427b-803d-ccacf498de35.png',
     status: null,
-    type: null
+    type: null,
+    isShowHelpOther: true
   },
 
   /**
@@ -16,8 +17,18 @@ Page({
   onLoad: function (options) {
     const type = 'write'
     const status = 'yibangzhu'
+    const { allHeight } = getNavbarInfo()
+    console.log('allHeight', allHeight)
   },
-  toLocation () {
-    wx.navigateTo({ url: '/pages/location/index' })
+  accept () {
+    showToast('接受本次应助的接口')
+  },
+  toHelpOther () {
+
+  },
+  save () {
+    this.setData({
+      isShowHelpOther: true
+    })
   }
 })

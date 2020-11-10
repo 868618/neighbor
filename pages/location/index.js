@@ -43,7 +43,7 @@ Page({
           if (status == 0) {
             console.log('result', result)
             const { formatted_addresses: { recommend } } = result
-            globalData.currAddress = recommend
+            globalData.currAddress = result
             _this.setData({ recommend }, () => resolve(recommend))
           }
         },

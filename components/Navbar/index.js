@@ -57,8 +57,7 @@ Component({
   pageLifetimes: {
     show() {
       console.log('show',  globalData.currAddress)
-      const { currAddress } = globalData
-      this.setData({ currAddress })
+      this.getNewAddress()
     }
   },
   methods: {
@@ -99,6 +98,10 @@ Component({
       wx.navigateTo({
         url: '/pages/location/index'
       })
+    },
+    getNewAddress () {
+      const { currAddress } = globalData
+      this.setData({ currAddress })
     }
   }
 });

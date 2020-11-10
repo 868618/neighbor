@@ -1,3 +1,5 @@
+
+const QQMapWX = require('../libs/qqmap-wx-jssdk')
 /**
  * 处理数据千分位  4545.56 ==>  ¥4,545.56
  * @param num
@@ -259,6 +261,27 @@ const getNavbarInfo = () => {
 
 const getToken = (key = 'headers') => wx.getStorageSync(key).token;
 const getHeaders = (key = 'headers') => wx.getStorageSync(key);
+
+
+// 定位当前位置
+const getCurrLocation = () => new Promise(async (resolve, reject) => {
+    const { latitude, longitude } = await surface(wx.getLocation, { isHighAccuracy: true })
+    const location = { latitude, longitude }
+    const qqmapsdk = new QQMapWX({
+        key: '2VFBZ-WVLWR-VX7WP-WVDQR-2W263-WFBT5',
+    })
+    qqmapsdk.reverseGeocoder({
+        location,
+        success (res) {
+            const { status, result } = res
+            if (status == 0) {
+                // const { formatted_addresses, location } = result
+                resolve(result)
+            }
+        },
+        fail: reject
+    })
+})
 module.exports = {
     formatThousands,
     getWechatAddress,
@@ -283,5 +306,6 @@ module.exports = {
     getAccountInfo,
     getNavbarInfo,
     getToken,
-    getHeaders
+    getHeaders,
+    getCurrLocation
 };

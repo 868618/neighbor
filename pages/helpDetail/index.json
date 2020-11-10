@@ -2,7 +2,8 @@
   "usingComponents": {
     "Navbar": "/components/Navbar/index",
     "Avatar-Time": "/components/Avatar-Time/index",
-    "Custom-Button": "/components/Custom-Button/index"
+    "Custom-Button": "/components/Custom-Button/index",
+    "HelpOther": "./components/HelpOther/HelpOther"
   },
   "navigationStyle": "custom"
 }
