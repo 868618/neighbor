@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <Navbar type="location" title="康泉小区" />
+  <Navbar type="location" title="{{ title }}" />
   <view class="header">
     <swiper>
       <swiper-item>

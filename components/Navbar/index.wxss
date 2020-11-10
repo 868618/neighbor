@@ -21,6 +21,10 @@
   height: 32rpx;
   margin-right: 6rpx;
 }
+.back_arrow{
+  width: 18rpx !important;
+  height: 34rpx !important;
+}
 
 .navbar_box .title{
   font-size: 32rpx;

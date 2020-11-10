@@ -1,4 +1,5 @@
 const { globalData } = getApp()
+
 Component({
   properties: {
     background: {
@@ -43,7 +44,9 @@ Component({
     sectionStyle: '',
     bastardStyle: '',
     _type: null,
-    menuButtonHeight: null
+    menuButtonHeight: null,
+    isTabbbar: false,
+    currAddress: null
   },
   lifetimes: {
     attached() {
@@ -51,12 +54,24 @@ Component({
       this.makeType()
     }
   },
+  pageLifetimes: {
+    show() {
+      console.log('show',  globalData.currAddress)
+      const { currAddress } = globalData
+      this.setData({ currAddress })
+    }
+  },
   methods: {
     makeType () {
       const [{ is }] = getCurrentPages().reverse()
       console.log('is', is)
+      const tabbar = [
+          'pages/index/index',
+          'pages/mine/mine'
+      ]
       this.setData({
-        isHome: is == 'pages/index/index'
+        isHome: is == 'pages/index/index',
+        isTabbar: tabbar.some(item => item == is)
       })
     },
     makeMenuButton () {

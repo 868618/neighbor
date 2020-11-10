@@ -1,14 +1,14 @@
 <view class="navbar" style="{{ sectionStyle }}">
 
   <view class="navbar_box navbar_goBack" catch:tap="tapHandle" wx:if="{{ type === 'goBack' }}">
-    <image src="../../images/back_arrow.png" mode="widthFix" class="icon" catch:tap="goBack" />
+    <image src="../../images/back_arrow.png" mode="widthFix" class="icon back_arrow" catch:tap="goBack" />
     <text class="title">{{ title }}</text>
   </view>
 
   <view class="navbar_box navbar_location" wx:if="{{ type === 'location' }}" style="height: {{menuButtonHeight}}px">
-    <image src="../../images/back_arrow.png" wx:if="{{ !isHome }}" mode="widthFix" class="icon" catch:tap="goBack" />
+    <image src="../../images/back_arrow.png" wx:if="{{ !isTabbar }}" mode="widthFix" class="icon back_arrow" catch:tap="goBack" />
     <image src="../../images/location.png" mode="widthFix" class="icon" bind:tap="toLocation" />
-    <text class="title" bind:tap="toLocation">{{ title }}</text>
+    <text class="title" bind:tap="toLocation">{{ currAddress }}</text>
   </view>
 
   <view class="navbar_box navbar_home" wx:if="{{ type === 'home' }}">
@@ -17,7 +17,7 @@
   </view>
 
   <view class="navbar_box navbar_home" wx:if="{{ type === 'custom' }}" bind:tap="custom">
-    <image src="../../images/back_arrow.png" mode="widthFix" class="icon" />
+    <image src="../../images/back_arrow.png" mode="widthFix" class="icon back_arrow" />
     <text class="title">{{ title }}</text>
   </view>
 </view>

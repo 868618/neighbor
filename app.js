@@ -61,7 +61,8 @@ App({
   globalData: {
     isConnected: true, //网络状态,
     isX: false,
-    birthPlace: null
+    birthPlace: null,
+    currAddress: ''
   },
   ...utils,
 })

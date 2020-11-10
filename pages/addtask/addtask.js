@@ -1,4 +1,4 @@
-import { addOrder } from '../../api/index'
+import { addOrder, globalData } from '../../api/index'
 Page({
 
   /**
@@ -69,11 +69,11 @@ Page({
     })
   },
   changeBtn (e) {
-    // console.log('e.currentTarget.dataset', e.currentTarget.dataset)
-    // const { forhelptype: forHelpType, index } = e.currentTarget.dataset
-    // console.log('index', index)
-    // const btns = this.data.btns.map((item, idx) => Object.assign(item, { type: index == idx ? 'active' : 'default'}))
-    // this.setData({ btns, 'formData.forHelpType': forHelpType })
+    console.log('e.currentTarget.dataset', e.currentTarget.dataset)
+    const { forhelptype: forHelpType, index } = e.currentTarget.dataset
+    console.log('index', index)
+    const btns = this.data.btns.map((item, idx) => Object.assign(item, { type: index == idx ? 'active' : 'default'}))
+    this.setData({ btns, 'formData.forHelpType': forHelpType })
   },
   cancel () {
     this.setData({

@@ -1,4 +1,4 @@
-const { surface } = getApp()
+const { surface, globalData } = getApp()
 const QQMapWX = require('../../libs/qqmap-wx-jssdk')
 Page({
 
@@ -9,7 +9,8 @@ Page({
     nearby: [],
     recommend: '',
     villageName: '',
-    location: null
+    location: null,
+    title: '请选择附近的小区'
   },
 
   /**
@@ -17,6 +18,7 @@ Page({
    */
   onLoad: async function (options) {
     // this.selectComponent('#mask').show()
+    // 获取小程序的坐标权限
     const { latitude, longitude } = await surface(wx.getLocation, { isHighAccuracy: true })
     // 当前坐标
     const location = { latitude, longitude }
@@ -32,41 +34,29 @@ Page({
   },
   getCurrentLocation (location) {
     const _this = this
-    this.qqmapsdk.reverseGeocoder({
-      location,
-      success (res) {
-        // console.log('getCurrentLocation', res)
-        const { status, result } = res
-        if (status == 0) {
-          console.log('result', result)
-          const { formatted_addresses: { recommend } } = result
-          _this.setData({ recommend })
+    return new Promise((resolve, reject) => {
+      this.qqmapsdk.reverseGeocoder({
+        location,
+        success (res) {
+          // console.log('getCurrentLocation', res)
+          const { status, result } = res
+          if (status == 0) {
+            console.log('result', result)
+            const { formatted_addresses: { recommend } } = result
+            globalData.currAddress = recommend
+            _this.setData({ recommend }, () => resolve(recommend))
+          }
+        },
+        fail (err) {
+          reject(err)
         }
-      },
-      fail (err) {
-        console.log('err', err)
-      }
+      })
     })
   },
-  goAndSearch () {
-    const _this = this
-    const { location, villageName: keyword } = this.data
-    this.qqmapsdk.search({
-      location,
-      address_format: 'short',
-      keyword,
-      success (res) {
-        // console.log('搜索附近的小区', res)
-        const { status, data: nearby } = res
-        if (status == 0) {
-          // const { formatted_addresses: { recommend } } = nearby
-          console.log('recommend', nearby)
-        }
-      },
-      fail (err) {
-        console.log('err', err)
-      }
-    })
+  async goAndSearch () {
+    const { location } = this.data
+    const villageName = await this.getCurrentLocation(location)
+    this.setData({ villageName })
   },
   getNearby (location, keyword = '小区') {
     const _this = this
@@ -78,6 +68,7 @@ Page({
         console.log('搜索附近的小区', res)
         const { status, data: nearby } = res
         if (status == 0) {
+          console.log('nearby---', nearby)
           _this.setData({ nearby })
         }
       }
@@ -93,5 +84,13 @@ Page({
   },
   cancel () {
     this.selectComponent('#mask').hide()
+    this.setData({ villageName: '' })
+  },
+  useNearBy (e) {
+    const { index } = e.target.dataset
+    const { nearby } = this.data
+    const { location, title } = nearby[index]
+    globalData.currAddress = title
+    this.setData({ location, recommend: title, title })
   }
 })

@@ -1,5 +1,5 @@
 <view class="location">
-    <Navbar title="选择附近小区" />
+    <Navbar title="{{ recommend || title }}" />
 
     <view class="location_header">
         <view class="desc">当前定位</view>
@@ -13,7 +13,7 @@
     <view class="locationNear">
         <view class="desc">附近小区</view>
         <view class="tags">
-            <view class="tag" wx:for="{{ nearby }}" wx:key="index">{{ item.title }}</view>
+            <view class="tag" wx:for="{{ nearby }}" wx:key="index" bind:tap="useNearBy" data-index="{{ index }}">{{ item.title }}</view>
         </view>
     </view>
 
