@@ -8,7 +8,7 @@ Page({
     tmp: 'http://oss.cogo.club/a34dd613-2323-427b-803d-ccacf498de35.png',
     status: null,
     type: null,
-    isShowHelpOther: true
+    isShowHelpOther: false
   },
 
   /**
@@ -24,11 +24,14 @@ Page({
     showToast('接受本次应助的接口')
   },
   toHelpOther () {
-
-  },
-  save () {
     this.setData({
       isShowHelpOther: true
+    })
+  },
+  save (e) {
+    console.log('e', e.detail)
+    this.setData({
+      isShowHelpOther: false
     })
   }
 })

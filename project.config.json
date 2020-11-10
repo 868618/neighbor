@@ -37,7 +37,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.11.0",
+  "libVersion": "2.14.0",
   "appid": "wx9461a58b6ae40375",
   "projectname": "linjubang",
   "debugOptions": {

@@ -61,6 +61,21 @@ page {
   margin-top: 20rpx;
 }
 
+.order .list .empty{
+  width: 260rpx;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 290rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #BBBBBB;
+}
+
+.order .list .empty image{
+  width: 100%;
+  margin-top: 24rpx;
+}
+
 
 .order .list .list_item .list_item_top {
   display: flex;

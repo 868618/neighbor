@@ -62,7 +62,7 @@ Component({
         ]
       }
     ],
-    list: null
+    list: []
   },
   observers : {
     type (val) {

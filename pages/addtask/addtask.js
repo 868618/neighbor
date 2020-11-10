@@ -52,7 +52,8 @@ Page({
     },
     moneybox: {
       title: '',
-      defPrice: 0
+      defPrice: 0,
+      type: 1
     }
   },
 
@@ -87,7 +88,7 @@ Page({
     const { activeMoney } = e.detail
     this.setData({
       [type == 1 ? 'formData.rewardMoney': 'formData.urgentMoney']: activeMoney,
-      ['formData.forHelpType']: type,
+      // ['formData.forHelpType']: type,
     }, this.cancel)
   },
   save(e) {

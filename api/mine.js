@@ -13,6 +13,12 @@ class Mine extends Http{
             data
         })
     }
+    getNeedHelpList (data) {
+        return this.request({
+            url: '/order/list/forHelp',
+            data
+        })
+    }
 }
 
 export default new Mine()

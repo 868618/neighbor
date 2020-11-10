@@ -1,13 +1,13 @@
-<Navbar title="康泉小区" />
+<Navbar />
 
 <view class="order">
 
-	<mp-tabs tabs="{{tabs}}" tab-class="header" active-class="active" swiper-class="swiper">
+	<mp-tabs tabs="{{tabs}}" tab-class="header" active-class="active" swiper-class="swiper" bind:change="tabChange">
 
 		<block wx:for="{{tabs}}" wx:key="title">
 			<scroll-view class="tab-content" scroll-y slot="tab-content-{{index}}" id="{{ index === 0 ? 'firstScroll' : null }}" style="{{ scrollViewStyle }}">
 				<view class="list">
-          			<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" wx:for="{{ 8 }}" wx:key="index">
+          			<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" wx:for="{{ currList }}" wx:if="{{ currList.length }}" wx:key="index">
 						<view class="list_item"  bind:tap="toDetail">
 
 							<view class="list_item_top">
@@ -22,6 +22,11 @@
 
 						</view>
 					</mp-slideview>
+
+					<view class="empty" wx:wx:else>
+						<image src="{{ src }}" mode="widthFix"  />
+						<text> 还没有帮助哦</text>
+					</view>
 
 				</view>
 			</scroll-view>

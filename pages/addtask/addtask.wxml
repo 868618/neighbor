@@ -67,6 +67,6 @@
 
   <AddHelpDescription wx:if="{{ isShowAddHelpDescription }}" content="{{ formData.content }}"  bind:save="save" />
 
-  <Paybox wx:if="{{isShowPayBox}}" title="{{ moneybox.title }}" defPrice="{{ moneybox.defPrice }}" bind:ok="selectChange" bind:cancel="cancel" />
+  <Paybox wx:if="{{isShowPayBox}}" type="{{ moneybox.type }}" title="{{ moneybox.title }}" defPrice="{{ moneybox.defPrice }}" bind:ok="selectChange" bind:cancel="cancel" />
 
 </view>
