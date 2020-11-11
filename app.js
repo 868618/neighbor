@@ -55,7 +55,7 @@ App({
     const isX = utils.checkIsX()
     that.globalData.isX = isX
 
-    utils.initLocation()
+    // utils.initLocation()
   },
   globalData: {
     isConnected: true, //网络状态,

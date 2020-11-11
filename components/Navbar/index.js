@@ -1,4 +1,4 @@
-const { globalData } = getApp()
+const { globalData, initLocation } = getApp()
 
 Component({
   properties: {
@@ -50,14 +50,15 @@ Component({
     _mark: null
   },
   lifetimes: {
-    attached() {
+    async attached() {
       this.makeMenuButton()
       this.makeType()
     }
   },
   pageLifetimes: {
     show() {
-      this.getNewAddress()
+      const currAddress = wx.getStorageSync('currAddress')
+      currAddress ? this.getNewAddress() : initLocation().then(() => this.getNewAddress())
     }
   },
   methods: {
@@ -101,13 +102,12 @@ Component({
     },
     getNewAddress () {
       const currAddress = wx.getStorageSync('currAddress')
-      // if (!currAddress) {
-      //   setTimeout(this.getNewAddress, 2000)
-      //   return
-      // }
-      if (this._mark !== JSON.stringify(currAddress)) {
-        this.setData({ currAddress })
-        this._mark = JSON.stringify(currAddress)
+      const _mark = JSON.stringify(currAddress)
+      if (this.data._mark !== _mark) {
+        this.setData({
+          currAddress,
+          _mark
+        })
         const { nearest } = currAddress
         this.triggerEvent('update', nearest)
         console.log('定位更新了')

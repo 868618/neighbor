@@ -270,6 +270,7 @@ const getMapSdk = () => new QQMapWX({
 // 定位当前位置
 const getCurrLocation = () => new Promise(async (resolve, reject) => {
     const { latitude, longitude } = await surface(wx.getLocation, { isHighAccuracy: true })
+    console.log('拿到授权信息')
     const location = { latitude, longitude }
     const qqmapsdk = getMapSdk()
     qqmapsdk.reverseGeocoder({
@@ -289,13 +290,13 @@ const getCurrLocation = () => new Promise(async (resolve, reject) => {
     })
 })
 
-const initLocation = async () => {
-    console.log('initLocation-----------')
+const initLocation = () => new Promise(async (resolve, reject) => {
     const currAddress = await getCurrLocation()
     const [ nearest ] = currAddress.pois
     Object.assign(currAddress, { nearest })
     wx.setStorageSync('currAddress', currAddress)
-}
+    resolve(currAddress)
+})
 module.exports = {
     formatThousands,
     getWechatAddress,

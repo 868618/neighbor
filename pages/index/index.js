@@ -1,6 +1,6 @@
 import { home } from '../../api/index'
 //获取应用实例
-const { globalData, getCurrLocation } = getApp()
+// const { globalData, initLocation } = getApp()
 
 Page({
   data: {
@@ -9,22 +9,15 @@ Page({
     orderList: []
   },
   async onLoad() {
-    this.locationUpdated()
-  },
-  onShow () {
-    this.setData({ title: globalData.currAddress })
+    console.log(888)
   },
   toDetail () {
     wx.navigateTo({
       url: '/pages/helpDetail/index'
     })
   },
-  getList () {
-
-  },
   async locationUpdated () {
     const { nearest } = wx.getStorageSync('currAddress')
-    console.log('nearest', nearest)
     const { id: addressCode, location: { lat: gw_lat, lng: gw_lng } } = nearest
     const params = { addressCode, gw_lat, gw_lng }
     const { code, body } = await home.search(params)
