@@ -1,5 +1,5 @@
 <view class="location">
-    <Navbar title="{{ recommend || title }}" />
+    <Navbar class="navbar" type="location" />
 
     <view class="location_header">
         <view class="desc">当前定位</view>
@@ -19,14 +19,14 @@
 
     <Custom-Button bind:tap="addLocation" custom-class="custom-class">+ 新建小区</Custom-Button>
 
-    <Mask id="mask" bind:ok="ok" bind:cancel="cancel">
+    <Mask id="mask" bind:cancel="cancel" ok="">
         <view class="location_fullname">小区全称</view>
         <view class="desc" style="margin-top: 16rpx">详细的小区名称方便求助者更精确的找到你</view>
 
         <view class="location_name">小区名称</view>
-        <input class="location_input" auto-focus placeholder="请输入小区详细名称"  model:value="{{ villageName }}" placeholder-class="input_placeholder" />
+        <input class="location_input" auto-focus placeholder="请输入小区详细名称"  model:value="{{ keyword }}" placeholder-class="input_placeholder" />
 
-        <Custom-Button custom-class1="custom-class1" bind:tap="goAndSearch">获取当前位置</Custom-Button>
+        <Custom-Button custom-class1="custom-class1" bind:tap="save">保存</Custom-Button>
     </Mask>
 
 </view>

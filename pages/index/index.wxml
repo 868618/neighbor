@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <Navbar class="navbar" type="location" title="{{ title }}" />
+  <Navbar class="navbar" type="location" bind:update="locationUpdated" />
   <view class="header">
     <swiper>
       <swiper-item>
@@ -18,7 +18,7 @@
   </view>
 
   <view class="task">
-    <Task_Item wx:for="{{5}}" wx:key="index" bind:tap="toDetail" />
+    <Task_Item wx:for="{{ orderList }}" wx:key="index" bind:tap="toDetail" />
   </view>
 
   <Tarbars />

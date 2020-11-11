@@ -8,7 +8,7 @@
   <view class="navbar_box navbar_location" wx:if="{{ type === 'location' }}" style="height: {{menuButtonHeight}}px">
     <image src="../../images/back_arrow.png" wx:if="{{ !isTabbar }}" mode="widthFix" class="icon back_arrow" catch:tap="goBack" />
     <image src="../../images/location.png" mode="widthFix" class="icon" bind:tap="toLocation" />
-    <text class="title" bind:tap="toLocation">{{ currAddress.formatted_addresses.recommend }}</text>
+    <text class="title" bind:tap="toLocation">{{ currAddress.nearest.title }}</text>
   </view>
 
   <view class="navbar_box navbar_home" wx:if="{{ type === 'home' }}">

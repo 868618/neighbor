@@ -2,7 +2,7 @@
 import '/utils/polyfill';
 import utils from '/utils/util';
 App({
-  onLaunch: function () {
+  onLaunch: async function () {
     const that = this;
     // 检测新版本
     const updateManager = wx.getUpdateManager();
@@ -38,9 +38,6 @@ App({
     const { platform: gw_platform, system: gw_platVersion } = utils.getSystemInfo()
     const accountInfo = utils.getAccountInfo()
     const { version: gw_version } = accountInfo.miniProgram
-    // console.log('systemInfo', systemInfo)
-    // console.log('accountInfo', accountInfo)
-    // console.info('platform version', gw_platform, gw_version, gw_platVersion)
     that.globalData.systemInfo = { gw_platform, gw_version: gw_version || '1.0.0', gw_platVersion, gw_deviceId: '123456' }
     that.globalData.navbarInfo = utils.getNavbarInfo()
 
@@ -57,6 +54,8 @@ App({
     // 判断是否是刘海机
     const isX = utils.checkIsX()
     that.globalData.isX = isX
+
+    utils.initLocation()
   },
   globalData: {
     isConnected: true, //网络状态,

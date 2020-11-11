@@ -1,4 +1,4 @@
-const { surface, globalData } = getApp()
+const { surface, globalData, getMapSdk } = getApp()
 const QQMapWX = require('../../libs/qqmap-wx-jssdk')
 Page({
 
@@ -8,7 +8,7 @@ Page({
   data: {
     nearby: [],
     recommend: '',
-    villageName: '',
+    keyword: '',
     location: null,
     title: '请选择附近的小区'
   },
@@ -53,11 +53,6 @@ Page({
       })
     })
   },
-  async goAndSearch () {
-    const { location } = this.data
-    const villageName = await this.getCurrentLocation(location)
-    this.setData({ villageName })
-  },
   getNearby (location, keyword = '小区') {
     const _this = this
     this.qqmapsdk.search({
@@ -78,19 +73,39 @@ Page({
     console.log(123456)
     this.selectComponent('#mask').show()
   },
-  ok () {
-    console.log('ok888')
-    this.selectComponent('#mask').hide()
+
+  async save () {
+    wx.showLoading()
+    const { latitude, longitude } = await surface(wx.getLocation, { isHighAccuracy: true })
+    const mapSdk = getMapSdk()
+    const { keyword } = this.data
+    const { status, data } = await new Promise((resolve, reject) => {
+      mapSdk.search({
+        keyword,
+        location: { latitude, longitude },
+        filter: 'category=小区,楼宇',
+        success: resolve,
+        fail: reject
+      })
+    })
+    if (status == 0) {
+      const [ nearest ] = data
+      globalData.currAddress.nearest = nearest
+      wx.setStorageSync('currAddress', globalData.currAddress)
+    }
+    this.selectComponent('.navbar').getNewAddress()
+    wx.hideLoading()
+    this.cancel()
   },
   cancel () {
     this.selectComponent('#mask').hide()
-    this.setData({ villageName: '' })
   },
   useNearBy (e) {
     const { index } = e.target.dataset
     const { nearby } = this.data
-    const { location, title } = nearby[index]
-    globalData.currAddress = title
-    this.setData({ location, recommend: title, title })
+    globalData.currAddress.nearest = nearby[index]
+    wx.setStorageSync('currAddress', globalData.currAddress)
+    this.selectComponent('.navbar').getNewAddress()
+    wx.navigateBack()
   }
 })

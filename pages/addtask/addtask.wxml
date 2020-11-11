@@ -13,8 +13,8 @@
   </view>
 
   <view class="main">
-    <view class="title">您的求助描述</view>
-    <view class="desc">我们会根据您提供的描述，给您推荐合适的服</view>
+    <view class="title">您的{{ keywordMaps.title }}描述</view>
+    <view class="desc">我们会根据您提供的描述，给您推荐合适的服务</view>
 
     <view class="tip">
       标题<text>(不超过10个字）</text>
@@ -24,24 +24,28 @@
       <input auto-focus placeholder="您要问什么" placeholder-class="placeholder" bind:input="input" value="{{ formData.title }}" />
     </view>
 
-    <!-- <view class="tip">
-      问题描述
-    </view> -->
-
-    <view bind:tap="openAddHelpDescription">
-      <view class="helpdesc">
-        <text>求助描述</text>
+    <view>
+      <view class="helpdesc" bind:tap="openAddHelpDescription">
+        <text>{{ keywordMaps.describe }}描述</text>
         <image src="/images/camera.png" />
       </view>
 
-      <view class="input_title">
-        <input placeholder="请尽力描述您的问题吧，有助于..." placeholder-class="placeholder" disabled value="{{ formData.content }}" />
+      <view class="input_title" bind:tap="openAddHelpDescription">
+        <input placeholder="{{ keywordMaps.placeholder }}" placeholder-class="placeholder" disabled value="{{ formData.content }}" />
+      </view>
+
+      <view class="input_title" wx:if="{{ keywordMaps.isShowTimeInput }}">
+        <picker mode="date" model:value="{{ returnTime }}" >
+          <view class="time_picker placeholder" style="color: rgba(0, 0, 0, {{ returnTime.length ? 0.65 : 0.25 }});">
+            <text >{{returnTime ? returnTime: '请输入归还时间:'}} </text>
+          </view>
+        </picker>
       </view>
     </view>
 
     <view class="select">
 
-      <view class="select_item" bind:tap="monetaryReward">
+      <view class="select_item" bind:tap="pricePanel" data-type="1">
         <view class="select_name">酬金
           <text>{{ formData.rewardMoney }}元</text>
         </view>
@@ -49,7 +53,7 @@
       </view>
 
 
-      <view class="select_item" bind:tap="expedited">
+      <view class="select_item" bind:tap="pricePanel" data-type="2">
         <view class="select_name">加急
           <text>{{ formData.urgentMoney }}元</text>
         </view>

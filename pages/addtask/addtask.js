@@ -49,12 +49,21 @@ Page({
       rewardMoney: 1,
       // 加急费
       urgentMoney: 0,
+      returnTime: ''
     },
     moneybox: {
       title: '',
       defPrice: 0,
       type: 1
-    }
+    },
+    keywordMaps: {
+      title: '求助',
+      describe: '问题',
+      isShowCamera: false,
+      placeholder: '请尽力描述你的问题吧，有助于…',
+      isShowTimeInput: false
+    },
+    returnTime: null
   },
 
   /**
@@ -74,7 +83,29 @@ Page({
     const { forhelptype: forHelpType, index } = e.currentTarget.dataset
     console.log('index', index)
     const btns = this.data.btns.map((item, idx) => Object.assign(item, { type: index == idx ? 'active' : 'default'}))
-    this.setData({ btns, 'formData.forHelpType': forHelpType })
+    const title = [ 10 ].includes(forHelpType) ? '求助': '需求'
+    const describe = [ 10 ].includes(forHelpType) ? '问题': '求助'
+    const isShowCamera = [ 20 ].includes(forHelpType)
+    const placeholders = new Map()
+    placeholders.set(10, '请尽力描述你的问题吧，有助于…')
+    placeholders.set(20, '请尽力填写您的描述，有助于…')
+    placeholders.set(30, '请尽力描述您的求转让吧,有助于…')
+    placeholders.set(40, '请尽力填写您的描述，有助于…')
+    placeholders.set(50, '请尽力填写您想捎点什么吧，有助于…')
+    placeholders.set(60, '请尽力描述您想求助什么吧,有助于…')
+    const placeholder = placeholders.get(forHelpType)
+    const isShowTimeInput = [20].includes(forHelpType)
+    this.setData({
+      btns,
+      'formData.forHelpType': forHelpType,
+      keywordMaps: {
+        title,
+        describe,
+        isShowCamera,
+        placeholder,
+        isShowTimeInput
+      }
+    })
   },
   cancel () {
     this.setData({
@@ -82,13 +113,11 @@ Page({
     })
   },
   selectChange (e) {
-    console.log('e', e)
-    console.log('this.data.moneybox', this.data.moneybox)
     const { type } = this.data.moneybox
     const { activeMoney } = e.detail
+    const key = type == 1 ? 'formData.rewardMoney': 'formData.urgentMoney'
     this.setData({
-      [type == 1 ? 'formData.rewardMoney': 'formData.urgentMoney']: activeMoney,
-      // ['formData.forHelpType']: type,
+      [ key ]: activeMoney
     }, this.cancel)
   },
   save(e) {
@@ -110,30 +139,28 @@ Page({
     const { isShowAddHelpDescription } = this.data
     isShowAddHelpDescription ? this.setData({ isShowAddHelpDescription: false }): wx.navigateBack()
   },
-  // 酬金
-  monetaryReward () {
-    this.setData({
-      moneybox: {
-        type: 1,
-        defPrice: 1
-      },
-      isShowPayBox: true
-    })
-  },
-  // 加急
-  expedited () {
-    this.setData({
-      moneybox: {
-        type: 2,
-        defPrice: 0
-      },
-      isShowPayBox: true
-    })
+
+  pricePanel (e) {
+    const { type } = e.currentTarget.dataset
+    const { rewardMoney, urgentMoney } = this.data.formData
+    const defPrice = type == 1 ? rewardMoney : urgentMoney
+    const moneybox = { type, defPrice }
+    this.setData({ moneybox }, () => this.setData({ isShowPayBox: true }))
   },
   // 支付并发布
   async payAndPost () {
-    const { rewardMoney, urgentMoney } = this.data.formData
-    const res = await addOrder.forHelpSubmit({ ...this.data.formData,rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100  })
+    const { formData, returnTime } = this.data
+    const { rewardMoney, urgentMoney, forHelpType } = formData
+    const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100 }
+    const res = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
     console.log('forHelpSubmit', res)
+    if (res.code == 0) {
+      showToast('提交成功')
+    }
+  },
+
+  pickerChange (e) {
+    const { value: returnTime } = e.detail
+    this.setData({ returnTime })
   }
 })

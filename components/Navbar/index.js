@@ -46,7 +46,8 @@ Component({
     _type: null,
     menuButtonHeight: null,
     isTabbbar: false,
-    currAddress: null
+    currAddress: null,
+    _mark: null
   },
   lifetimes: {
     attached() {
@@ -56,7 +57,6 @@ Component({
   },
   pageLifetimes: {
     show() {
-      console.log('show',  globalData.currAddress)
       this.getNewAddress()
     }
   },
@@ -100,8 +100,18 @@ Component({
       })
     },
     getNewAddress () {
-      const { currAddress } = globalData
-      this.setData({ currAddress })
+      const currAddress = wx.getStorageSync('currAddress')
+      // if (!currAddress) {
+      //   setTimeout(this.getNewAddress, 2000)
+      //   return
+      // }
+      if (this._mark !== JSON.stringify(currAddress)) {
+        this.setData({ currAddress })
+        this._mark = JSON.stringify(currAddress)
+        const { nearest } = currAddress
+        this.triggerEvent('update', nearest)
+        console.log('定位更新了')
+      }
     }
   }
 });

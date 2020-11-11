@@ -263,15 +263,21 @@ const getToken = (key = 'headers') => wx.getStorageSync(key).token;
 const getHeaders = (key = 'headers') => wx.getStorageSync(key);
 
 
+// 生成腾讯位置服务实例
+const getMapSdk = () => new QQMapWX({
+    key: '2VFBZ-WVLWR-VX7WP-WVDQR-2W263-WFBT5',
+})
 // 定位当前位置
 const getCurrLocation = () => new Promise(async (resolve, reject) => {
     const { latitude, longitude } = await surface(wx.getLocation, { isHighAccuracy: true })
     const location = { latitude, longitude }
-    const qqmapsdk = new QQMapWX({
-        key: '2VFBZ-WVLWR-VX7WP-WVDQR-2W263-WFBT5',
-    })
+    const qqmapsdk = getMapSdk()
     qqmapsdk.reverseGeocoder({
         location,
+        get_poi: 1,
+        address_format: 'short',
+        category: '小区,建筑,公司',
+        policy: 2,
         success (res) {
             const { status, result } = res
             if (status == 0) {
@@ -282,6 +288,14 @@ const getCurrLocation = () => new Promise(async (resolve, reject) => {
         fail: reject
     })
 })
+
+const initLocation = async () => {
+    console.log('initLocation-----------')
+    const currAddress = await getCurrLocation()
+    const [ nearest ] = currAddress.pois
+    Object.assign(currAddress, { nearest })
+    wx.setStorageSync('currAddress', currAddress)
+}
 module.exports = {
     formatThousands,
     getWechatAddress,
@@ -307,5 +321,7 @@ module.exports = {
     getNavbarInfo,
     getToken,
     getHeaders,
-    getCurrLocation
+    getCurrLocation,
+    getMapSdk,
+    initLocation
 };

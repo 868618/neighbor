@@ -27,9 +27,12 @@ Component({
   lifetimes: {
     attached() {
       const { defPrice: activeNum, type } = this.properties
+      const activeMoney = this.data.grids[activeNum]
+      const title = type == 1 ? '酬金': '加急'
       this.setData({
         activeNum,
-        title: type == 1 ? '酬金': '加急'
+        activeMoney,
+        title
       })
     }
   },
