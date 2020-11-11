@@ -21,7 +21,7 @@
     </view>
 
     <view class="input_title">
-      <input auto-focus placeholder="您要问什么" placeholder-class="placeholder" bind:input="input" value="{{ formData.title }}" />
+      <input auto-focus placeholder="{{ keywordMaps.ask }}" placeholder-class="placeholder" bind:input="input" value="{{ formData.title }}" />
     </view>
 
     <view>

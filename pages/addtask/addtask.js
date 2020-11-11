@@ -61,7 +61,8 @@ Page({
       describe: '问题',
       isShowCamera: false,
       placeholder: '请尽力描述你的问题吧，有助于…',
-      isShowTimeInput: false
+      isShowTimeInput: false,
+      ask: '您要问什么'
     },
     returnTime: null
   },
@@ -93,8 +94,16 @@ Page({
     placeholders.set(40, '请尽力填写您的描述，有助于…')
     placeholders.set(50, '请尽力填写您想捎点什么吧，有助于…')
     placeholders.set(60, '请尽力描述您想求助什么吧,有助于…')
+    const asks = new Map()
+    asks.set(10, '您要问什么')
+    asks.set(20, '您要借什么')
+    asks.set(30, '您要转让什么')
+    asks.set(40, '您要吃什么')
+    asks.set(50, '您要捎什么')
+    asks.set(60, '您要求助什么')
     const placeholder = placeholders.get(forHelpType)
     const isShowTimeInput = [20].includes(forHelpType)
+    const ask = asks.get(forHelpType)
     this.setData({
       btns,
       'formData.forHelpType': forHelpType,
@@ -103,7 +112,8 @@ Page({
         describe,
         isShowCamera,
         placeholder,
-        isShowTimeInput
+        isShowTimeInput,
+        ask
       }
     })
   },
