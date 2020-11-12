@@ -1,9 +1,11 @@
 <view class="helpDetail">
-    <Navbar />
+    <Navbar type="location" />
     <view class="detail_info yibangzhu">
         <Avatar-Time />
 
-        <view class="detail_title">附近哪的牛肉好吃？</view>
+        <view class="detail_title">
+            <text class="urgent">附近哪的牛肉好吃？</text>
+        </view>
 
         <view class="detail_price">￥ <text>1元</text></view>
 
@@ -54,8 +56,32 @@
         </view>
     </view>
 
-    <HelpOther wx:if="{{ isShowHelpOther }}" bind:save="save" />
+    <HelpOther wx:if="{{ masks.isShowHelpOther }}" bind:save="save" />
+
+
+<!--    回答问题的蒙层-->
+    <Mask id="mask" bind:cancel="cancelWriteAnswerMask" bind:ok="writeAnswer" ok="发布">
+        <view class="question">
+            <view class="question_title">
+                附近哪的牛肉好吃？
+            </view>
+            <view class="question_content">
+                我住在新天地，周围有物美超市，万科商城，距离不要太远了，大概4公里左右位置最好。
+            </view>
+        </view>
+
+        <view class="answer" wx:if="{{ masks.isShowTextArea }}">
+            <textarea
+                model:value="{{answer}}"
+                class="textarea"
+                placeholder="填写回答内容"
+                placeholder-style="{{ placeHolderStyle }}"
+                auto-focus
+            />
+        </view>
+    </Mask>
 
 <!--    <Custom-Button custom-class="custom-class" bind:tap="accept">接受本次求助</Custom-Button>-->
-    <Custom-Button custom-class="custom-class" bind:tap="toHelpOther">立即应助</Custom-Button>
+<!--    <Custom-Button custom-class="custom-class" bind:tap="toHelpOther">立即应助</Custom-Button>-->
+    <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask">写回答</Custom-Button>
 </view>

@@ -25,6 +25,9 @@
   width: 18rpx !important;
   height: 34rpx !important;
 }
+.location_icon{
+  margin-left: 20rpx;
+}
 
 .navbar_box .title{
   font-size: 32rpx;

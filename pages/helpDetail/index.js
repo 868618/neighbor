@@ -8,7 +8,13 @@ Page({
     tmp: 'http://oss.cogo.club/a34dd613-2323-427b-803d-ccacf498de35.png',
     status: null,
     type: null,
-    isShowHelpOther: false
+    masks: {
+      isShowHelpOther: false,
+      isShowWriteAnswer: false,
+      isShowTextArea: false
+    },
+    placeHolderStyle: 'font-size: 32rpx;font-weight: 400;color: rgba(0, 0, 0, 0.25);',
+    answer: ''
   },
 
   /**
@@ -25,13 +31,37 @@ Page({
   },
   toHelpOther () {
     this.setData({
-      isShowHelpOther: true
+      'masks.isShowHelpOther': true
     })
+  },
+
+  openWriteAnswerMask () {
+    this.selectComponent('#mask').show(this.setData.bind(this, { 'masks.isShowTextArea': true }))
+  },
+
+  // 写回答
+  writeAnswer () {
+    let { answer } = this.data
+    answer = answer.trim()
+    if (answer == ''){
+      showToast('请输入回答内容')
+      this.setData({ answer })
+      return
+    }
+    wx.showToast({
+      title: '应助成功',
+      icon: 'success',
+      duration: 2000
+    })
+    this.cancelWriteAnswerMask()
+  },
+  cancelWriteAnswerMask () {
+    this.selectComponent('#mask').hide(this.setData.bind(this, { 'masks.isShowTextArea': false }))
   },
   save (e) {
     console.log('e', e.detail)
     this.setData({
-      isShowHelpOther: false
+      'masks.isShowHelpOther': false
     })
   }
 })

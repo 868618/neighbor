@@ -42,23 +42,17 @@ Component({
       // this.hide()
       this.triggerEvent('cancel')
     },
-    show () {
+    show (fn) {
+      const animation = wx.createAnimation().translateY(0).step({ duration: 200 }).export()
       this.setData({
         isShow: true
       }, () => {
-        const animation = wx.createAnimation()
-        animation.translateY(0).step({
-          duration: 200
-        })
-        this.setData({ animation: animation.export() })
+        this.setData({ animation }, fn || null)
       })
     },
-    hide () {
-      const animation = wx.createAnimation()
-      animation.translateY('100%').step({
-        duration: 200
-      })
-      this.setData({ animation: animation.export() })
+    hide (fn) {
+      const animation = wx.createAnimation().translateY('100%').step({ duration: 200 }).export()
+      this.setData({ animation }, fn || null)
     },
     transitionend () {
       console.log('transitionend')

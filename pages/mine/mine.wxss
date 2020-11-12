@@ -83,6 +83,9 @@ page {
   flex-direction: column;
   align-items: center;
   color: #575757;
+  min-width: 72rpx;
+  font-size: 24rpx;
+  font-weight: 400;
 }
 
 .mine .menu .box .item image{
