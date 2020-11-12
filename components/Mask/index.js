@@ -32,8 +32,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    ok() {
-      console.log('ok')
+    save() {
+      console.log('save')
       // this.hide()
       this.triggerEvent('ok')
     },

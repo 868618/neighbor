@@ -4,7 +4,7 @@
         <view class="mask_header">
             <view class="mask_nav">
                 <text class="cancel" catch:tap="cancel">{{ cancel }}</text>
-                <text class="save" catch:tap="ok">{{ ok }}</text>
+                <text class="save" catch:tap="save">{{ ok }}</text>
             </view>
         </view>
         <slot></slot>
