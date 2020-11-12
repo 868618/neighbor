@@ -3,10 +3,16 @@
     <view class="tip">详细的地址方便求助者更精确的找到你</view>
 
     <view class="item">地址</view>
-    <input class="input" placeholder-class="placeholder" model:value="{{ _address }}" placeholder="请填写具体取/送物品地址" />
+    <input class="input" placeholder-class="placeholder" model:value="{{ address }}" placeholder="请填写具体取/送物品地址" />
 
     <view class="item">时间</view>
-    <input class="input" placeholder-class="placeholder"  model:value="{{ _time }}" placeholder="请填写取/送物品的时间" />
+    <view class="input">
+        <picker mode="date" model:value="{{ time }}" >
+            <view class="{{ time ? null : 'placeholder' }}" style="color: rgba(0, 0, 0, {{ time ? 0.65 : 0.25 }});">
+                {{time ? time : '请填写取/送物品的时间'}}
+            </view>
+        </picker>
+    </view>
 
 
     <Custom-Button custom-class="custom-class" bind:tap="save">保存</Custom-Button>

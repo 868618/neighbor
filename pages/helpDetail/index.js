@@ -11,10 +11,13 @@ Page({
     masks: {
       isShowHelpOther: false,
       isShowWriteAnswer: false,
-      isShowTextArea: false
+      isShowTextArea: false,
+      navBarType: 'location'
     },
     placeHolderStyle: 'font-size: 32rpx;font-weight: 400;color: rgba(0, 0, 0, 0.25);',
-    answer: ''
+    answer: '',
+    time: null,
+    address: ''
   },
 
   /**
@@ -24,14 +27,22 @@ Page({
     const type = 'write'
     const status = 'yibangzhu'
     const { allHeight } = getNavbarInfo()
-    console.log('allHeight', allHeight)
   },
   accept () {
     showToast('接受本次应助的接口')
   },
+
+  hideHelpOtherMask () {
+    this.setData({
+      'masks.isShowHelpOther': false,
+      'masks.navBarType': 'location',
+    })
+  },
+
   toHelpOther () {
     this.setData({
-      'masks.isShowHelpOther': true
+      'masks.isShowHelpOther': true,
+      'masks.navBarType': 'custom',
     })
   },
 
@@ -59,7 +70,7 @@ Page({
     this.selectComponent('#mask').hide(this.setData.bind(this, { 'masks.isShowTextArea': false }))
   },
   save (e) {
-    console.log('e', e.detail)
+    console.log('--------------', this.data)
     this.setData({
       'masks.isShowHelpOther': false
     })

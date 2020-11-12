@@ -14,16 +14,19 @@
   align-items: center;
   width: 100%;
 }
+.navbar .navbar_custom{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .navbar_box .icon{
-  /*width: 48rpx;*/
-  /*height: 48rpx;*/
   width: 26rpx;
   height: 32rpx;
   margin-right: 6rpx;
 }
 .back_arrow{
   width: 18rpx !important;
-  height: 34rpx !important;
+  /*height: 34rpx !important;*/
 }
 .location_icon{
   margin-left: 20rpx;

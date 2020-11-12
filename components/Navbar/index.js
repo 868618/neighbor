@@ -47,7 +47,8 @@ Component({
     menuButtonHeight: null,
     isTabbbar: false,
     currAddress: null,
-    _mark: null
+    _mark: null,
+    menuHeightstyle: ""
   },
   lifetimes: {
     async attached() {
@@ -75,6 +76,7 @@ Component({
       })
     },
     makeMenuButton () {
+      console.log('globalData.navbarInfo', globalData.navbarInfo)
       const { allHeight, height, left } = globalData.navbarInfo
       const menuButtonHeight = height
 
@@ -84,7 +86,8 @@ Component({
       const bastardStyle = `width: 100vw;height: ${allHeight}px;`
 
       const sectionStyle = `height: ${allHeight}px;padding-left: ${left}px; background: ${background};`
-      this.setData({ bastardStyle, sectionStyle, menuButtonHeight })
+      const menuHeightstyle = `height: ${ menuButtonHeight }px;`
+      this.setData({ bastardStyle, sectionStyle, menuButtonHeight, menuHeightstyle })
     },
     tapHandle () {
       this.triggerEvent('tapHandle')

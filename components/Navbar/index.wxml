@@ -1,22 +1,22 @@
 <view class="navbar" style="{{ sectionStyle }}">
 
-  <view class="navbar_box navbar_goBack" catch:tap="tapHandle" wx:if="{{ type === 'goBack' }}">
+  <view class="navbar_box navbar_goBack" catch:tap="tapHandle" wx:if="{{ type === 'goBack' }}" style="{{menuHeightstyle}}">
     <image src="../../images/back_arrow.png" mode="widthFix" class="icon back_arrow" catch:tap="goBack" />
     <text class="title">{{ title || currAddress.formatted_addresses.recommend }}</text>
   </view>
 
-  <view class="navbar_box navbar_location" wx:if="{{ type === 'location' }}" style="height: {{menuButtonHeight}}px">
+  <view class="navbar_box navbar_location" wx:if="{{ type === 'location' }}" style="{{menuHeightstyle}}">
     <image src="../../images/back_arrow.png" wx:if="{{ !isTabbar }}" mode="widthFix" class="icon back_arrow" catch:tap="goBack" />
     <image src="../../images/location.png" mode="widthFix" class="icon location_icon" bind:tap="toLocation" />
     <text class="title" bind:tap="toLocation">{{ currAddress.nearest.title }}</text>
   </view>
 
-  <view class="navbar_box navbar_home" wx:if="{{ type === 'home' }}">
+  <view class="navbar_box navbar_home" wx:if="{{ type === 'home' }}" style="{{menuHeightstyle}}">
     <image src="../../images/home_icon@2x.png" mode="widthFix" class="icon" />
     <text class="title">{{ title }}</text>
   </view>
 
-  <view class="navbar_box navbar_home" wx:if="{{ type === 'custom' }}" bind:tap="custom">
+  <view class="navbar_box navbar_custom" wx:if="{{ type === 'custom' }}" bind:tap="custom" style="{{menuHeightstyle}}">
     <image src="../../images/back_arrow.png" mode="widthFix" class="icon back_arrow" />
     <text class="title">{{ title }}</text>
   </view>
