@@ -3,7 +3,10 @@ page {
 }
 
 .mine {
+  width: 100vw;
+  overflow: hidden;
   padding: 32rpx;
+  box-sizing: border-box;
 }
 
 .mine .header {

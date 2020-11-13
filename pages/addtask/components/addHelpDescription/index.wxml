@@ -10,7 +10,7 @@
             <view>2.有什么要求</view>
             <view> 3.需不需要上传图片</view>
         </view>
-        <textarea class="textarea" bind:input="input" focus="{{focus}}" auto-height value="{{ _content }}" />
+        <textarea class="textarea" bind:input="input" auto-focus focus="{{focus}}" auto-height value="{{ _content }}" />
     </view>
 
     <view class="images">

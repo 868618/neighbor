@@ -1,4 +1,5 @@
-import { addOrder, globalData } from '../../api/index'
+import { addOrder } from '../../api/index'
+const { showToast } = getApp()
 Page({
 
   /**
@@ -162,10 +163,14 @@ Page({
     const { formData, returnTime } = this.data
     const { rewardMoney, urgentMoney, forHelpType } = formData
     const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100 }
+    wx.showLoading()
     const res = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
+    wx.hideLoading()
     console.log('forHelpSubmit', res)
     if (res.code == 0) {
       showToast('提交成功')
+    } else {
+      showToast('提交失败')
     }
   },
 

@@ -5,3 +5,4 @@
         <cover-view class="text {{ ( index != 1 && activeNum == index  )? 'active' : null }}">{{ item.text }}</cover-view>
     </cover-view>
 </cover-view>
+<cover-view class="bg" />
