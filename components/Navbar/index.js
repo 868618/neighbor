@@ -76,7 +76,6 @@ Component({
       })
     },
     makeMenuButton () {
-      console.log('globalData.navbarInfo', globalData.navbarInfo)
       const { allHeight, height, left } = globalData.navbarInfo
       const menuButtonHeight = height
 

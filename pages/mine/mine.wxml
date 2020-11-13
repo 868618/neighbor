@@ -64,7 +64,4 @@
     <view class="title">邻居帮 帮邻居</view>
     <view class="sub">联系我们 微信:qq363731991</view>
   </view>
-
-  <Tarbars />
-
 </view>

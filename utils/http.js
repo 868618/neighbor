@@ -27,7 +27,7 @@ class Http {
                         }
                     }
                 })
-                return
+                return res
             }
             return statusCode == 200 ? data : res
         })

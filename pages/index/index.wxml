@@ -20,6 +20,4 @@
   <view class="task">
     <Task_Item wx:for="{{ orderList }}" wx:key="index" bind:tap="toDetail" />
   </view>
-
-  <Tarbars />
 </view>

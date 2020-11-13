@@ -32,17 +32,12 @@ Page({
           wx.setStorageSync('headers', result.body)
 
           const { body } = await mine.getAccountInfo()
-          console.log('个人信息', body)
           const { avatarUrl: avatar, nickName: nick, gender: sex } = userInfo
           if (body.headerUrl === '') {
-            const updateAccountInfo = await mine.updateAccountInfo({
-              avatar,
-              nick,
-              sex
-            })
+            await mine.updateAccountInfo({ avatar, nick, sex })
           }
           wx.setStorageSync('userInfo', { avatar, nick, sex })
-          // 预加载图片
+          // 预加载头像图片
           wx.getImageInfo({ src: body.headerUrl })
           const eventChannel = this.getOpenerEventChannel()
           eventChannel.emit('onSucc', result)

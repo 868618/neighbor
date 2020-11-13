@@ -70,7 +70,6 @@ Page({
     })
   },
   addLocation () {
-    console.log(123456)
     this.selectComponent('#mask').show()
   },
 
@@ -95,7 +94,7 @@ Page({
     }
     this.selectComponent('.navbar').getNewAddress()
     wx.hideLoading()
-    this.cancel()
+    this.selectComponent('#mask').hide(wx.navigateBack)
   },
   cancel () {
     this.selectComponent('#mask').hide()
