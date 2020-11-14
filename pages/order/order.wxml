@@ -2,7 +2,7 @@
 
 <view class="order">
 
-	<mp-tabs tabs="{{tabs}}" tab-class="header" active-class="active" swiper-class="swiper" bind:change="tabChange">
+	<mp-tabs tabs="{{tabs}}" tab-class="header" active-class="active" swiper-class="swiper" activeTab="{{type - 1}}"  bind:change="tabChange">
 
 		<block wx:for="{{tabs}}" wx:key="title">
 			<scroll-view class="tab-content" scroll-y slot="tab-content-{{index}}" id="{{ index === 0 ? 'firstScroll' : null }}" style="{{ scrollViewStyle }}">

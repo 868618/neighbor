@@ -10,10 +10,10 @@
     </view>
 
 
-    <view class="auth">
-      <image src="/images/mine/auth.png" mode="widthFix" lazy-load />
-      去认证
-    </view>
+<!--    <view class="auth">-->
+<!--      <image src="/images/mine/auth.png" mode="widthFix" lazy-load />-->
+<!--      去认证-->
+<!--    </view>-->
   </view>
 
 

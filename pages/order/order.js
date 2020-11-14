@@ -16,7 +16,8 @@ Page({
     type: 1,
     target: '',
     currList: [],
-    src: 'http://oss.cogo.club/71766970-92a0-4182-ba59-971f2f41d0c7.png'
+    src: 'http://oss.cogo.club/71766970-92a0-4182-ba59-971f2f41d0c7.png',
+    // activeTab: 0
   },
 
   /**

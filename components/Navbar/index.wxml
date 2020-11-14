@@ -18,7 +18,7 @@
 
   <view class="navbar_box navbar_custom" wx:if="{{ type === 'custom' }}" bind:tap="custom" style="{{menuHeightstyle}}">
     <image src="../../images/back_arrow.png" mode="widthFix" class="icon back_arrow" />
-    <text class="title">{{ title || currAddress.address }}</text>
+    <text class="title">{{ name || currAddress.address }}</text>
   </view>
 </view>
 

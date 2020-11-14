@@ -185,6 +185,12 @@ Page({
 
     if (!this.checkFormData()) return
 
+
+    const currAddress = wx.getStorageSync('currAddress')
+
+    console.log('currAddress', currAddress)
+    return
+
     const { nearest: { id: addressCode } } = wx.getStorageSync('currAddress')
 
     const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
