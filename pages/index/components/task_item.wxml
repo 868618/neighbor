@@ -1,11 +1,11 @@
 <view class="task_item">
     <view class="task_header">
-        <view class="task_title jiaji">求打扫一下卫生</view>
-        <view class="task_price">15元</view>
+        <view class="task_title {{ Number(detail.price) ? 'jiaji' : null }}">{{ detail.title }}</view>
+        <view class="task_price">{{ detail.price }}元</view>
     </view>
 
     <view class="task_body">
-        无所谓只要能看就行
+        {{ detail.content }}
     </view>
 
     <view class="task_tag">
@@ -15,7 +15,7 @@
 
     <view class="task_footer">
         <view class="task_footer_box">
-            <Avatar-Time />
+            <Avatar-Time avatar="{{ detail.avatar }}" nickName="{{ detail.nickName }}" timeMark="{{detail.timeMark}}" />
         </view>
     </view>
 </view>

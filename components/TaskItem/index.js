@@ -7,7 +7,8 @@ Component({
     index: {
       type: Number
     },
-    type: Boolean
+    type: Boolean,
+    detail: Object
   },
   externalClasses: ['custom-class'],
 

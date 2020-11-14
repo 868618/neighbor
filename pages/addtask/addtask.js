@@ -158,17 +158,58 @@ Page({
     const moneybox = { type, defPrice }
     this.setData({ moneybox }, () => this.setData({ isShowPayBox: true }))
   },
+
+  checkFormData () {
+    const { formData, returnTime } = this.data
+    const { forHelpType, title, content } = formData
+    if (!title) {
+      showToast('请输入标题')
+      return false
+    }
+
+    if (!content) {
+      showToast('请输入描述内容')
+      return false
+    }
+
+    if (forHelpType == 20 && !returnTime) {
+      showToast('请输入归还时间')
+      return false
+    }
+    return true
+  },
   // 支付并发布
   async payAndPost () {
     const { formData, returnTime } = this.data
     const { rewardMoney, urgentMoney, forHelpType } = formData
-    const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100 }
+
+    if (!this.checkFormData()) return
+
+    const { nearest: { id: addressCode } } = wx.getStorageSync('currAddress')
+
+    const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
     wx.showLoading()
     const res = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
     wx.hideLoading()
     console.log('forHelpSubmit', res)
     if (res.code == 0) {
-      showToast('提交成功')
+      console.log(res.body)
+      const { payMoney } = res.body
+      if (!payMoney) {
+        showToast('提交成功')
+        wx.navigateBack()
+      } else {
+        res.body.package = `prepay_id=${res.body.prepay_id}`
+        wx.requestPayment({
+          ...res.body,
+          success(res) {
+            console.log(res)
+          },
+          fail(err) {
+            console.log('err', err)
+          }
+        })
+      }
     } else {
       showToast('提交失败')
     }

@@ -2,13 +2,13 @@
 
   <view class="navbar_box navbar_goBack" catch:tap="tapHandle" wx:if="{{ type === 'goBack' }}" style="{{menuHeightstyle}}">
     <image src="../../images/back_arrow.png" mode="widthFix" class="icon back_arrow" catch:tap="goBack" />
-    <text class="title">{{ title || currAddress.formatted_addresses.recommend }}</text>
+    <text class="title">{{ title || currAddress.address }}</text>
   </view>
 
   <view class="navbar_box navbar_location" wx:if="{{ type === 'location' }}" style="{{menuHeightstyle}}">
     <image src="../../images/back_arrow.png" wx:if="{{ !isTabbar }}" mode="widthFix" class="icon back_arrow" catch:tap="goBack" />
     <image src="../../images/location.png" mode="widthFix" class="icon location_icon" bind:tap="toLocation" />
-    <text class="title" bind:tap="toLocation">{{ currAddress.nearest.title }}</text>
+    <text class="title" bind:tap="toLocation">{{ name || currAddress.address }}</text>
   </view>
 
   <view class="navbar_box navbar_home" wx:if="{{ type === 'home' }}" style="{{menuHeightstyle}}">
@@ -18,7 +18,7 @@
 
   <view class="navbar_box navbar_custom" wx:if="{{ type === 'custom' }}" bind:tap="custom" style="{{menuHeightstyle}}">
     <image src="../../images/back_arrow.png" mode="widthFix" class="icon back_arrow" />
-    <text class="title">{{ title }}</text>
+    <text class="title">{{ title || currAddress.address }}</text>
   </view>
 </view>
 

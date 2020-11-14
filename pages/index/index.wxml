@@ -18,6 +18,6 @@
   </view>
 
   <view class="task">
-    <Task_Item wx:for="{{ orderList }}" wx:key="index" bind:tap="toDetail" />
+    <Task_Item wx:for="{{ orderList }}" wx:key="index" bind:tap="toDetail" detail="{{ item }}" />
   </view>
 </view>

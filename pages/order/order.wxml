@@ -11,19 +11,19 @@
 						<view class="list_item"  bind:tap="toDetail">
 
 							<view class="list_item_top">
-								<view class="name">借一年级语文书</view>
-								<view class="status">进行中</view>
+								<view class="name">{{ item.title }}</view>
+								<view class="status">{{ item.status == 20 ? '进行中': '别的状态' }}</view>
 							</view>
 
 							<view class="list_item_bottom">
-								<view class="desc">求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。求借一年级下册人教版语文书，借 用2天。</view>
-								<view class="price">￥6</view>
+								<view class="desc">{{ item.content }}</view>
+								<view class="price">￥{{ item.price }}</view>
 							</view>
 
 						</view>
 					</mp-slideview>
 
-					<view class="empty" wx:wx:else>
+					<view class="empty" wx:if="{{ !currList.length }}">
 						<image src="{{ src }}" mode="widthFix"  />
 						<text> 还没有帮助哦</text>
 					</view>

@@ -1,8 +1,8 @@
 <!--components/Tabbar/Tabbar.wxml-->
-<cover-view class="tabbar">
-    <cover-view class="tabbar_item" wx:for="{{ list }}" wx:key="index" bind:tap="change" data-index="{{ index }}" data-pagepath="{{ item.pagePath }}">
-        <cover-image src="{{ (activeNum == index && index != 1) ? item.selectedIconPath : item.iconPath }}" />
-        <cover-view class="text {{ ( index != 1 && activeNum == index  )? 'active' : null }}">{{ item.text }}</cover-view>
-    </cover-view>
-</cover-view>
-<cover-view class="bg" />
+<view class="tabbar">
+    <view class="tabbar_item" wx:for="{{ list }}" wx:key="index" bind:tap="change" data-index="{{ index }}" data-pagepath="{{ item.pagePath }}">
+        <image src="{{ (activeNum == index && index != 1) ? item.selectedIconPath : item.iconPath }}" mode="widthFix" />
+        <view class="text {{ ( index != 1 && activeNum == index  )? 'active' : null }}">{{ item.text }}</view>
+    </view>
+</view>
+<view class="bg" />

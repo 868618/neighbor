@@ -20,19 +20,9 @@
   <view class="menu">
     <view class="tip">我的帮助</view>
     <view class="box">
-      <view class="item" bind:tap="toTaskList">
-        <image src="/images/mine/ing.png" mode="widthFix" lazy-load />
-        进行中
-      </view>
 
-      <view class="item" bind:tap="toTaskList">
-        <image src="/images/mine/over.png" mode="widthFix" lazy-load />
-        已完成
-      </view>
-
-      <view class="item" bind:tap="toTaskList">
-        <image src="/images/mine/all.png" mode="widthFix" lazy-load />
-        全部
+      <view class="item"  bind:tap="toIHelpOtherList" data-type="{{ index + 1 }}" wx:for="{{icons}}" wx:key="index">
+        <image src="{{ item.src }}" mode="widthFix" lazy-load />{{item.title}}
       </view>
 
     </view>
@@ -41,19 +31,9 @@
   <view class="menu">
     <view class="tip">我的求助</view>
     <view class="box">
-      <view class="item" bind:tap="toTaskList">
-        <image src="/images/mine/ing.png" mode="widthFix" lazy-load />
-        进行中
-      </view>
 
-      <view class="item" bind:tap="toTaskList">
-        <image src="/images/mine/over.png" mode="widthFix" lazy-load />
-        已完成
-      </view>
-
-      <view class="item" bind:tap="toTaskList">
-        <image src="/images/mine/all.png" mode="widthFix" lazy-load />
-        全部
+      <view class="item" bind:tap="toTaskList" data-type="{{ index + 1 }}" wx:for="{{icons}}" wx:key="index">
+        <image src="{{ item.src }}" mode="widthFix" lazy-load />{{item.title}}
       </view>
 
     </view>

@@ -268,10 +268,14 @@ const getMapSdk = () => new QQMapWX({
     key: '2VFBZ-WVLWR-VX7WP-WVDQR-2W263-WFBT5',
 })
 // 定位当前位置
-const getCurrLocation = () => new Promise(async (resolve, reject) => {
-    const { latitude, longitude } = await surface(wx.getLocation, { isHighAccuracy: true })
-    console.log('拿到授权信息')
-    const location = { latitude, longitude }
+const getCurrLocation = locationInfo => new Promise(async (resolve, reject) => {
+    let location
+    if (locationInfo) {
+        location = locationInfo
+    } else {
+        const { latitude, longitude } = await surface(wx.getLocation, { isHighAccuracy: true })
+        location = { latitude, longitude }
+    }
     const qqmapsdk = getMapSdk()
     qqmapsdk.reverseGeocoder({
         location,
@@ -280,6 +284,7 @@ const getCurrLocation = () => new Promise(async (resolve, reject) => {
         category: '小区,建筑,公司',
         policy: 2,
         success (res) {
+            console.log('reverseGeocoder拿到的', res)
             const { status, result } = res
             if (status == 0) {
                 // const { formatted_addresses, location } = result
@@ -290,10 +295,8 @@ const getCurrLocation = () => new Promise(async (resolve, reject) => {
     })
 })
 
-const initLocation = () => new Promise(async (resolve, reject) => {
-    const currAddress = await getCurrLocation()
-    const [ nearest ] = currAddress.pois
-    Object.assign(currAddress, { nearest })
+const initLocation = (locationInfo) => new Promise(async (resolve, reject) => {
+    const currAddress = await getCurrLocation(locationInfo)
     wx.setStorageSync('currAddress', currAddress)
     resolve(currAddress)
 })

@@ -1,3 +1,5 @@
+
+import config from "../../../../config.js"
 const { globalData, surface, getToken, showToast } = getApp()
 Component({
   /**
@@ -66,8 +68,9 @@ Component({
     },
     async upLoadFile (filePath) {
       const _token = getToken()
+      const url = `${ config.baseUrl }file/upload`
       const upLoadRes = await surface(wx.uploadFile, {
-        url: 'http://118.89.109.203/file/upload',
+        url,
         filePath,
         name: 'file',
         header: {

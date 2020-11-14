@@ -1,5 +1,5 @@
 
-<Navbar title="康泉小区" type="location" bind:custom="customHandle" />
+<Navbar type="custom" bind:custom="customHandle" />
 
 <view class="addtask">
   <view class="header">

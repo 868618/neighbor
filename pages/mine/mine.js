@@ -7,7 +7,21 @@ Page({
    */
   data: {
     src: 'http://oss.cogo.club/6d0c11dd-64c0-40bb-9851-409efa21f982.jpg',
-    userInfo: {}
+    userInfo: {},
+    icons: [
+      {
+        src: '/images/mine/ing.png',
+        title: '进行中'
+      },
+      {
+        src: '/images/mine/over.png',
+        title: '已完成'
+      },
+      {
+        src: '/images/mine/all.png',
+        title: '全部'
+      }
+    ]
   },
   onShow () {
     typeof this.getTabBar === 'function' && this.getTabBar().setData({ activeNum: 2 })
@@ -22,7 +36,13 @@ Page({
       userInfo
     })
   },
-  toTaskList () {
-    wx.navigateTo({ url: '/pages/order/order' })
+  toTaskList (e) {
+    const { type } = e.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/order/order?type=${type}&target=iHelpOther` })
+  },
+
+  toIHelpOtherList(e) {
+    const { type } = e.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/order/order?type=${type}&target=toIHelpOtherList` })
   }
 })
