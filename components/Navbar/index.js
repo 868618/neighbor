@@ -1,5 +1,7 @@
 const { globalData, initLocation } = getApp()
 const chooseLocation = requirePlugin('chooseLocation')
+import { tool } from '../../api/index'
+
 Component({
   properties: {
     background: {
@@ -61,14 +63,22 @@ Component({
     async show() {
       const selectedLocationInfo = chooseLocation.getLocation()
       if (selectedLocationInfo) {
+        console.log(123)
         const { latitude, longitude, name } = selectedLocationInfo
         const location = { latitude, longitude }
         const currAddress = await initLocation(location)
         wx.setStorageSync('name', name)
-        this.setData({ currAddress, name }, this.getNewAddress)
+        await this.upDateId()
+        this.setData({ currAddress, name }, () => {
+          this.getNewAddress()
+        })
       } else {
+        console.log(456)
         const currAddress = wx.getStorageSync('currAddress')
-        currAddress ? this.getNewAddress() : initLocation().then(() => this.getNewAddress())
+        currAddress ? this.getNewAddress() : initLocation().then(async () => {
+          await this.upDateId()
+          this.getNewAddress()
+        })
       }
 
 
@@ -131,14 +141,48 @@ Component({
     },
     getNewAddress () {
       const currAddress = wx.getStorageSync('currAddress')
+      const name = wx.getStorageSync('name')
       const _mark = JSON.stringify(currAddress)
       if (this.data._mark !== _mark) {
         this.setData({
           currAddress,
-          _mark
+          _mark,
+          name
         })
-        const { nearest } = currAddress
-        this.triggerEvent('update', nearest)
+        this.triggerEvent('update')
+      }
+    },
+    makeGetIdParams (currAddress) {
+      const name = wx.getStorageSync('name') || currAddress.address
+      const { lat: latitude, lng: longitude } = currAddress.location
+      const { province: provinceName, city: cityName, district: districtName } = currAddress.address_component
+
+      const systemInfo = globalData.systemInfo
+      const nearbyAddressList = currAddress.pois.map(item => {
+        // console.log('item', item)
+        const { province, city, district } = item.ad_info
+        const { lat, lng } = item.location
+        return { provinceName: province, cityName: city, districtName: district, latitude: lat, longitude: lng, name: item.title, ...systemInfo }
+      })
+
+      return {
+        provinceName,
+        cityName,
+        districtName,
+        latitude,
+        longitude,
+        name,
+        nearbyAddressList
+      }
+    },
+    async upDateId () {
+      console.log('upDateId')
+      const currAddress = wx.getStorageSync('currAddress')
+      const options = this.makeGetIdParams(currAddress)
+      const res = await tool.getIdByCurrAddress(options)
+      console.log('getIdByCurrAddress---', res)
+      if (res.code == 0) {
+        wx.setStorageSync('id', res.body.id)
       }
     }
   }

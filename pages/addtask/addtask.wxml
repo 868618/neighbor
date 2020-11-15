@@ -1,5 +1,5 @@
 
-<Navbar type="custom" bind:custom="customHandle" />
+<Navbar type="custom" bind:custom="customHandle" id="navbar" />
 
 <view class="addtask">
   <view class="header">

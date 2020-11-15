@@ -35,17 +35,21 @@ Page({
   },
   async locationUpdated () {
     console.log('更新一把首页接口')
+    const addressCode = wx.getStorageSync('id')
+    const params = { addressCode }
+
+
     // const { nearest } = wx.getStorageSync('currAddress')
     // const { id: addressCode, location: { lat: gw_lat, lng: gw_lng } } = nearest
     // const params = { addressCode, gw_lat, gw_lng }
     // wx.showLoading()
-    // const { code, body } = await home.search(params)
-    // wx.hideLoading()
-    // if (code == 0) {
-    //   wx.showLoading()
-    //   const orderList = body.orderList || []
-    //   this.setData({ orderList })
-    //   wx.hideLoading()
-    // }
+    const { code, body } = await home.search(params)
+    wx.hideLoading()
+    if (code == 0) {
+      wx.showLoading()
+      const orderList = body.orderList || []
+      this.setData({ orderList })
+      wx.hideLoading()
+    }
   }
 })

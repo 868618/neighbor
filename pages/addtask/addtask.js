@@ -161,7 +161,7 @@ Page({
 
   checkFormData () {
     const { formData, returnTime } = this.data
-    const { forHelpType, title, content } = formData
+    const { forHelpType, title, content, image } = formData
     if (!title) {
       showToast('请输入标题')
       return false
@@ -169,6 +169,11 @@ Page({
 
     if (!content) {
       showToast('请输入描述内容')
+      return false
+    }
+
+    if (!image) {
+      showToast('请先上传图片')
       return false
     }
 
@@ -186,12 +191,7 @@ Page({
     if (!this.checkFormData()) return
 
 
-    const currAddress = wx.getStorageSync('currAddress')
-
-    console.log('currAddress', currAddress)
-    return
-
-    const { nearest: { id: addressCode } } = wx.getStorageSync('currAddress')
+    const addressCode = wx.getStorageSync('id')
 
     const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
     wx.showLoading()
@@ -203,11 +203,15 @@ Page({
       const { payMoney } = res.body
       if (!payMoney) {
         showToast('提交成功')
+        // this.selectComponent('#navbar').getNewAddress()
+        console.log('getCurrentPages()', getCurrentPages())
+        getCurrentPages()[0].locationUpdated()
         wx.navigateBack()
       } else {
         res.body.package = `prepay_id=${res.body.prepay_id}`
         wx.requestPayment({
           ...res.body,
+          timestamp: res.body.timeStamp,
           success(res) {
             console.log(res)
           },

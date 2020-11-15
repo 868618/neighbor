@@ -284,7 +284,6 @@ const getCurrLocation = locationInfo => new Promise(async (resolve, reject) => {
         category: '小区,建筑,公司',
         policy: 2,
         success (res) {
-            console.log('reverseGeocoder拿到的', res)
             const { status, result } = res
             if (status == 0) {
                 // const { formatted_addresses, location } = result

@@ -7,6 +7,12 @@ class Tool extends Http{
             data
         })
     }
+    getIdByCurrAddress (data) {
+        return this.request({
+            url: '/address/position',
+            data
+        })
+    }
 }
 
 export default new Tool()
