@@ -5,6 +5,7 @@
     padding: 22rpx 30rpx;
     background: #fff;
     margin-bottom: 20rpx;
+    position: relative;
 }
 
 .task_item:last-of-type {
@@ -70,7 +71,21 @@
     font-size:32rpx;
     font-weight:300;
     color:rgba(0,0,0,0.75);
-    line-height:44rpx
+    line-height:44rpx;
+    max-width: 468rpx;
+}
+
+.task_item .task_image{
+    position: absolute;
+    right: 32rpx;
+    bottom: 42rpx;
+    max-width: 189rpx;
+    max-height: 132rpx;
+    overflow: hidden;
+}
+
+.task_item .task_image image{
+    width: 189rpx;
 }
 
 

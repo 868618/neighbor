@@ -8,7 +8,7 @@
 			<scroll-view class="tab-content" scroll-y slot="tab-content-{{index}}" id="{{ index === 0 ? 'firstScroll' : null }}" style="{{ scrollViewStyle }}">
 				<view class="list">
           			<mp-slideview ext-class="custom" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" wx:for="{{ currList }}" wx:if="{{ currList.length }}" wx:key="index">
-						<view class="list_item"  bind:tap="toDetail">
+						<view class="list_item"  bind:tap="toDetail" data-orderid="{{ item.orderId }}">
 
 							<view class="list_item_top">
 								<view class="name">{{ item.title }}</view>

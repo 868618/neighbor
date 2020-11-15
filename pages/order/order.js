@@ -39,8 +39,10 @@ Page({
   slideButtonTap () {
     console.log(123456)
   },
-  toDetail () {
-    wx.navigateTo({ url: '/pages/helpDetail/index' })
+  toDetail (e) {
+    console.log(e.currentTarget)
+    const { orderid: orderId } = e.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/helpDetail/index?orderId=${ orderId }` })
   },
   makeScrollViewStyle () {
     const sysInfo = wx.getSystemInfoSync()

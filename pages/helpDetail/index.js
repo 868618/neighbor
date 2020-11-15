@@ -1,4 +1,6 @@
 const { showToast, getNavbarInfo } = getApp()
+import { helpDetail } from '../../api/index'
+
 Page({
 
   /**
@@ -24,9 +26,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const type = 'write'
-    const status = 'yibangzhu'
-    const { allHeight } = getNavbarInfo()
+    console.log('options', options)
+    const { orderId } = options
+    this.getDetailInfo({ orderId })
   },
   accept () {
     showToast('接受本次应助的接口')
@@ -46,8 +48,17 @@ Page({
     })
   },
 
+  async getDetailInfo (data) {
+    const res = await helpDetail.getDetail(data)
+    if (res.code == 0) {
+      console.log(res)
+    }
+  },
+
   openWriteAnswerMask () {
-    this.selectComponent('#mask').show(this.setData.bind(this, { 'masks.isShowTextArea': true }))
+    this.selectComponent('#mask').show(() => {
+      this.setData({ 'masks.isShowTextArea': true })
+    })
   },
 
   // 写回答
@@ -60,7 +71,7 @@ Page({
       return
     }
     wx.showToast({
-      title: '应助成功',
+      title: '帮助成功',
       icon: 'success',
       duration: 2000
     })

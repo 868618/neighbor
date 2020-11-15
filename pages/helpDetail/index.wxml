@@ -35,7 +35,7 @@
 
         <view class="detail_time">
             <text>2020年5月10日 下午13:02</text>
-            <text class="del">删除</text>
+<!--            <text class="del">删除</text>-->
         </view>
     </view>
 
@@ -83,6 +83,6 @@
     </Mask>
 
 <!--    <Custom-Button custom-class="custom-class" bind:tap="accept">接受本次求助</Custom-Button>-->
-    <Custom-Button custom-class="custom-class" bind:tap="toHelpOther">立即应助</Custom-Button>
+    <Custom-Button custom-class="custom-class" bind:tap="toHelpOther">立即帮助</Custom-Button>
 <!--    <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask">写回答</Custom-Button>-->
 </view>

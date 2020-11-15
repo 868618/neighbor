@@ -8,6 +8,10 @@
         {{ detail.content }}
     </view>
 
+    <view class="task_image">
+        <image src="{{ detail.imageList[0] }}" mode="widthFix" />
+    </view>
+
     <view class="task_tag">
         <text class="tag">上门取</text>
         <text class="tag">归还</text>
