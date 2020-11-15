@@ -5,12 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    slideButtons: [{
-      type: 'warn',
-      text: '删除',
-      extClass: 'test',
-        src: '/page/weui/cell/icon_del.svg', // icon的路径
-    }],
+    slideButtons: [
+      // {
+      //   type: 'warn',
+      //   text: '删除',
+      //   extClass: 'test',
+      //   src: '/page/weui/cell/icon_del.svg', // icon的路径
+      // }
+    ],
     tabs: ['进行中', '已完成', '全部'].map(item => ({title: item})),
     scrollViewStyle: null,
     type: 1,

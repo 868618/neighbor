@@ -140,17 +140,23 @@ Component({
       })
     },
     getNewAddress () {
-      const currAddress = wx.getStorageSync('currAddress')
       const name = wx.getStorageSync('name')
-      const _mark = JSON.stringify(currAddress)
-      if (this.data._mark !== _mark) {
-        this.setData({
-          currAddress,
-          _mark,
-          name
-        })
-        this.triggerEvent('update')
-      }
+      this.setData({ name })
+      this.triggerEvent('update')
+
+      // 缓存的数据
+      // const currAddress = wx.getStorageSync('currAddress')
+      // // 本地的数据
+      // const _mark = JSON.stringify(currAddress)
+      // const name = wx.getStorageSync('name')
+      // if (this.data._mark !== _mark) {
+      //   this.setData({
+      //     currAddress,
+      //     _mark,
+      //     name
+      //   })
+      //   this.triggerEvent('update')
+      // }
     },
     makeGetIdParams (currAddress) {
       const name = wx.getStorageSync('name') || currAddress.address
@@ -183,7 +189,9 @@ Component({
       console.log('getIdByCurrAddress---', res)
       if (res.code == 0) {
         wx.setStorageSync('id', res.body.id)
+        return res.body.id
       }
+      return null
     }
   }
 });
