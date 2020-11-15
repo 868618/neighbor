@@ -50,42 +50,48 @@ Component({
     isTabbbar: false,
     currAddress: null,
     _mark: null,
-    menuHeightstyle: ""
+    menuHeightstyle: "",
+    isInitialized: false
   },
   lifetimes: {
     async attached() {
       this.makeMenuButton()
-      this.makeType()
+      this.makeMenuType()
+      // 初始化坐标位置及更新一下id
+      this.initAndGetId(null, false).then(() => {
+        const id = wx.getStorageSync('id')
+        id ? this.triggerEvent('update') : this.upDateId()
+      })
     }
   },
 
   pageLifetimes: {
-    async show() {
+    async show () {
       const selectedLocationInfo = chooseLocation.getLocation()
+      // 有新的地址变动
       if (selectedLocationInfo) {
-        console.log(123)
         const { latitude, longitude, name } = selectedLocationInfo
         const location = { latitude, longitude }
-        const currAddress = await initLocation(location)
         wx.setStorageSync('name', name)
-        await this.upDateId()
-        this.setData({ currAddress, name }, () => {
-          this.getNewAddress()
-        })
-      } else {
-        console.log(456)
-        const currAddress = wx.getStorageSync('currAddress')
-        currAddress ? this.getNewAddress() : initLocation().then(async () => {
-          await this.upDateId()
-          this.getNewAddress()
-        })
+        await this.initAndGetId(location)
       }
-
-
     }
   },
   methods: {
-    makeType () {
+    initAndGetId (location, isUpDateId = true) {
+      return new Promise(async (resolve, reject) => {
+        const currAddress = await initLocation(location)
+        const name = wx.getStorageSync('name')
+        this.setData({ currAddress, name },async () => {
+          // 去更新一下地理标识
+          isUpDateId && await this.upDateId()
+          // 触发一下顶部显示
+          this.getNewAddress()
+          this.setData({ isInitialized: true }, () => resolve(currAddress))
+        })
+      })
+    },
+    makeMenuType () {
       const [{ is }] = getCurrentPages().reverse()
       console.log('is', is)
       const tabbar = [
@@ -142,21 +148,6 @@ Component({
     getNewAddress () {
       const name = wx.getStorageSync('name')
       this.setData({ name })
-      this.triggerEvent('update')
-
-      // 缓存的数据
-      // const currAddress = wx.getStorageSync('currAddress')
-      // // 本地的数据
-      // const _mark = JSON.stringify(currAddress)
-      // const name = wx.getStorageSync('name')
-      // if (this.data._mark !== _mark) {
-      //   this.setData({
-      //     currAddress,
-      //     _mark,
-      //     name
-      //   })
-      //   this.triggerEvent('update')
-      // }
     },
     makeGetIdParams (currAddress) {
       const name = wx.getStorageSync('name') || currAddress.address
@@ -186,12 +177,11 @@ Component({
       const currAddress = wx.getStorageSync('currAddress')
       const options = this.makeGetIdParams(currAddress)
       const res = await tool.getIdByCurrAddress(options)
-      console.log('getIdByCurrAddress---', res)
       if (res.code == 0) {
         wx.setStorageSync('id', res.body.id)
-        return res.body.id
+        // 触发一下外部更新
+        this.triggerEvent('update')
       }
-      return null
     }
   }
 });

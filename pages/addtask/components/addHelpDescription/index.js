@@ -68,7 +68,7 @@ Component({
     },
     async upLoadFile (filePath) {
       const _token = getToken()
-      const url = `${ config.baseUrl }file/upload`
+      const url = `${ config.baseUrl }/file/upload`
       wx.showLoading()
       const upLoadRes = await surface(wx.uploadFile, {
         url,

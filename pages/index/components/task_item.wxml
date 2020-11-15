@@ -9,7 +9,7 @@
     </view>
 
     <view class="task_image">
-        <image src="{{ detail.imageList[0] }}" mode="widthFix" />
+        <image src="{{ detail.imageList[0] }}" wx:if="{{ detail.imageList.length }}" mode="widthFix" />
     </view>
 
     <view class="task_tag">

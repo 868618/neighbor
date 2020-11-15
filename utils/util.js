@@ -269,10 +269,13 @@ const getMapSdk = () => new QQMapWX({
 })
 // 定位当前位置
 const getCurrLocation = locationInfo => new Promise(async (resolve, reject) => {
+    console.log('locationInfo-----------------------', locationInfo)
     let location
     if (locationInfo) {
         location = locationInfo
     } else {
+        // 去拿微信当前的定位
+        console.log('去拿微信当前的定位')
         const { latitude, longitude } = await surface(wx.getLocation, { isHighAccuracy: true })
         location = { latitude, longitude }
     }
@@ -286,7 +289,6 @@ const getCurrLocation = locationInfo => new Promise(async (resolve, reject) => {
         success (res) {
             const { status, result } = res
             if (status == 0) {
-                // const { formatted_addresses, location } = result
                 resolve(result)
             }
         },
@@ -295,7 +297,8 @@ const getCurrLocation = locationInfo => new Promise(async (resolve, reject) => {
 })
 
 const initLocation = (locationInfo) => new Promise(async (resolve, reject) => {
-    const currAddress = await getCurrLocation(locationInfo)
+    console.log('尝试去初始化一下')
+    const currAddress = wx.getStorageSync('currAddress') || await getCurrLocation(locationInfo)
     wx.setStorageSync('currAddress', currAddress)
     resolve(currAddress)
 })

@@ -5,7 +5,6 @@ import config from "../config.js"
 class Http {
     async request ({ url, data = {  }, method = "POST" } = {}) {
         const _token = getToken()
-        // const headers = getHeaders()
         const options = {
             timeout: 10000,
             url: config.baseUrl + url,
@@ -13,7 +12,7 @@ class Http {
             method,
             header: {
                 "content-type": "application/json",
-                _token
+                _token: _token || ''
             }
         }
         return surface(wx.request, options).then(res => {
