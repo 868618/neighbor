@@ -17,9 +17,7 @@ Page({
     typeof this.getTabBar === 'function' && this.getTabBar().setData({ activeNum: 0 })
   },
   toDetail (e) {
-    console.log('e', e)
     const { orderid: orderId } = e.currentTarget.dataset
-    // console.log('orderId', orderId)
     const url = `/pages/helpDetail/index?orderId=${orderId}`
     if (isLogin()) {
       wx.navigateTo({

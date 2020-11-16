@@ -1,3 +1,6 @@
+
+<Navbar title=" " />
+
 <view class="login">
     <view class="box">
         <image src="{{src}}" mode="widthFix" class="logo" />

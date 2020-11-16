@@ -93,7 +93,6 @@ Component({
     },
     makeMenuType () {
       const [{ is }] = getCurrentPages().reverse()
-      console.log('is', is)
       const tabbar = [
           'pages/index/index',
           'pages/mine/mine'
