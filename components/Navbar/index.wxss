@@ -26,10 +26,13 @@
 }
 .back_arrow{
   width: 18rpx !important;
-  /*height: 34rpx !important;*/
+  display: inline-block;
+  /*padding: 0rpx 20rpx;*/
+  /*padding-left: 0;*/
+  padding-right: 20rpx;
 }
 .location_icon{
-  margin-left: 20rpx;
+  margin-left: 10rpx;
 }
 
 .navbar_box .title{

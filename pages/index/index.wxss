@@ -32,56 +32,22 @@
   right:0;
 }
 
-.test_item{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 98rpx;
-  background: rgba(250, 250, 250, 0.9);
-  box-shadow: 0px 1rpx 0px 0px rgba(0,0,0,0.25);
-  filter: blur(1rpx);
+.empty{
+  width: 100vw;
+  background: #FFF;
 }
 
-.test_item .weui-tabbar__item .weui-tabbar__label{
-  font-size: 20rpx;
-  margin-top: 10rpx;
+.empty .empty_image{
+  margin: 0 auto;
+  width: 50%;
+  padding-top: 50%;
+}
+.empty .empty_image image{
+  width: 100%;
 }
 
-.test_item .weui-tabbar__item:nth-of-type(odd) .weui-tabbar__label{
-  color: rgba(0, 0, 0, 0.45);
-}
-
-.test_item .weui-tabbar__item:nth-of-type(odd) image{
-  width: 40rpx;
-  height: 40rpx;
-}
-
-.test_item .weui-tabbar__item:nth-of-type(even) .weui-tabbar__label{
-  /*background: green;*/
-}
-
-.test_item .weui-tabbar__item:nth-of-type(even) {
-  width: 111rpx;
-  height: 111rpx;
-  background: #FE990C;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  padding: 0 !important;
-  box-sizing: border-box;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.test_item .weui-tabbar__item:nth-of-type(even) image {
-  width: 37rpx;
-  height: 49rpx;
-}
-
-.test_item .weui-tabbar__item:nth-of-type(even) .weui-tabbar__label{
-  color: #FFFFFF;
+.empty .text{
+  text-align: center;
+  font-size: 28rpx;
+  color: rgba(0,0,0, .5);
 }

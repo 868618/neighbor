@@ -1,23 +1,35 @@
 <!--index.wxml-->
-<view class="container">
-  <Navbar class="navbar" type="location" bind:update="locationUpdated" />
-  <view class="header">
-    <swiper>
-      <swiper-item>
-        <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
-      </swiper-item>
+<Navbar class="navbar" type="location" bind:update="locationUpdated" />
+<view class="container" wx:if="{{ isLoaded }}">
+  <block wx:if="{{ orderList.length }}">
+    <view class="header">
+      <swiper>
+        <swiper-item>
+          <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
+        </swiper-item>
 
-      <swiper-item>
-        <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
-      </swiper-item>
+        <swiper-item>
+          <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
+        </swiper-item>
 
-      <swiper-item>
-        <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
-      </swiper-item>
-    </swiper>
+        <swiper-item>
+          <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view class="task">
+      <Task_Item wx:for="{{ orderList }}" wx:key="index" bind:tap="toDetail" data-orderid="{{ item.orderId }}" detail="{{ item }}" />
+    </view>
+  </block>
+
+  <view class="empty" wx:else style="height: calc( 80vh )">
+    <view class="empty_image">
+      <image src="/images/index_empty.png" mode="widthFix" />
+    </view>
+    <view class="text">这个小区还没有求助</view>
+    <view class="text">快去发求助吧</view>
   </view>
 
-  <view class="task">
-    <Task_Item wx:for="{{ orderList }}" wx:key="index" bind:tap="toDetail" data-orderid="{{ item.orderId }}" detail="{{ item }}" />
-  </view>
+
 </view>

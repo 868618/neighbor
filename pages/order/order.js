@@ -56,8 +56,9 @@ Page({
 
   async getList () {
     const { type, target } = this.data
-    // const method = target == 'toIHelpOtherList' ? mine.getOtherHelpMe : mine.getNeedHelpList
+    wx.showLoading()
     const res = target == 'toIHelpOtherList' ? await mine.getOtherHelpMe({ type }) : await mine.getNeedHelpList({ type })
+    wx.hideLoading()
     const { body, code } = res
     if (code == 0) {
       this.setData({ currList: body })

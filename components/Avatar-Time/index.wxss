@@ -25,8 +25,7 @@
 .avatar-time .line {
     width: 2rpx;
     height: 22rpx;
-    background: rgba(0,0,0,0.45);
-    display: inline-block;
+    background: rgba(0,0,0, .1);
     margin: 0 20rpx;
 }
 

@@ -1,51 +1,43 @@
-<view class="helpDetail">
+<view class="helpDetail" wx:if="{{ detail }}">
     <Navbar type="{{ masks.navBarType }}" bind:custom="hideHelpOtherMask" />
 <!--    <Navbar type="custom" wx:else bind:custom="hideHelpOtherMask" />-->
     <view class="detail_info yibangzhu">
-        <Avatar-Time />
+        <Avatar-Time avatar="{{ detail.avatar }}" nickName="{{ detail.nickName }}" timeMark="{{detail.timeMark}}" />
 
         <view class="detail_title">
-            <text class="urgent">附近哪的牛肉好吃？</text>
+            <text class="{{ Number(detail.price) ? 'urgent' : null }}">{{ detail.title }}</text>
         </view>
 
-        <view class="detail_price">￥ <text>1元</text></view>
+        <view class="detail_price">￥ <text>{{ detail.price }}元</text></view>
 
-        <view class="detail_tag">
+        <view class="detail_tag" wx:if="{{ false }}">
             <text>提问</text>
             <text>限前5名</text>
         </view>
 
         <view class="detail_text">
-            我住在新天地，周围有物美超市，万科商城，距离不要太远了，大概4公里左右位置最好。
+            {{ detail.content }}
         </view>
 
-        <view class="detail_images" wx:if="{{ false }}">
-            <view class="detail_images_item">
-                <image src="{{tmp}}" mode="widthFix" />
-            </view>
-
-            <view class="detail_images_item">
-                <image src="{{tmp}}" mode="widthFix" />
-            </view>
-
-            <view class="detail_images_item">
-                <image src="{{tmp}}" mode="widthFix" />
+        <view class="detail_images" wx:if="{{ detail.imageList.length }}">
+            <view class="detail_images_item" wx:for="{{ detail.imageList }}" wx:key="index">
+                <image src="{{item}}" mode="widthFix" bind:tap="previewImage" data-image="{{ item }}" />
             </view>
         </view>
 
         <view class="detail_time">
-            <text>2020年5月10日 下午13:02</text>
+            <text>{{ detail.createTime }}</text>
 <!--            <text class="del">删除</text>-->
         </view>
     </view>
 
-    <view class="answerList">
+    <view class="answerList" wx:if="{{ detail.answerList }}">
         <view class="answer_header">
             <text class="answer_title">回答</text>
-            <text class="answer_desc">4个回答</text>
+            <text class="answer_desc">{{ detail.answerList.length }}个回答</text>
         </view>
 
-        <view class="answer_item" wx:for="{{4}}" wx:key="index">
+        <view class="answer_item" wx:for="{{ detail.answerList }}" wx:key="index">
             <Avatar-Time />
             <view class="answer_text">长樱天街B座那就有一家</view>
             <view class="answer_effect">
@@ -64,10 +56,10 @@
     <Mask id="mask" bind:cancel="cancelWriteAnswerMask" bind:ok="writeAnswer" ok="发布">
         <view class="question">
             <view class="question_title">
-                附近哪的牛肉好吃？
+                {{ detail.title }}
             </view>
             <view class="question_content">
-                我住在新天地，周围有物美超市，万科商城，距离不要太远了，大概4公里左右位置最好。
+                {{ detail.content }}
             </view>
         </view>
 
@@ -77,12 +69,11 @@
                 class="textarea"
                 placeholder="填写回答内容"
                 placeholder-style="{{ placeHolderStyle }}"
-                auto-focus
             />
         </view>
     </Mask>
 
 <!--    <Custom-Button custom-class="custom-class" bind:tap="accept">接受本次求助</Custom-Button>-->
-    <Custom-Button custom-class="custom-class" bind:tap="toHelpOther">立即帮助</Custom-Button>
-<!--    <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask">写回答</Custom-Button>-->
+<!--    <Custom-Button custom-class="custom-class" bind:tap="toHelpOther">立即帮助</Custom-Button>-->
+    <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask" wx:if="{{ detail.orderType }}">写回答</Custom-Button>
 </view>

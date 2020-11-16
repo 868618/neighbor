@@ -19,7 +19,8 @@ Page({
     placeHolderStyle: 'font-size: 32rpx;font-weight: 400;color: rgba(0, 0, 0, 0.25);',
     answer: '',
     time: null,
-    address: ''
+    address: '',
+    detail: null
   },
 
   /**
@@ -27,6 +28,7 @@ Page({
    */
   onLoad: function (options) {
     const { orderId } = options
+    this.setData({ orderId })
     this.getDetailInfo({ orderId })
   },
   accept () {
@@ -48,9 +50,11 @@ Page({
   },
 
   async getDetailInfo (data) {
-    const res = await helpDetail.getDetail(data)
-    if (res.code == 0) {
-      console.log(res)
+    wx.showLoading()
+    const { code, body: detail } = await helpDetail.getDetail(data)
+    wx.hideLoading()
+    if (code == 0) {
+      this.setData({ detail })
     }
   },
 
@@ -61,7 +65,7 @@ Page({
   },
 
   // 写回答
-  writeAnswer () {
+  async writeAnswer () {
     let { answer } = this.data
     answer = answer.trim()
     if (answer == ''){
@@ -69,15 +73,28 @@ Page({
       this.setData({ answer })
       return
     }
-    wx.showToast({
-      title: '帮助成功',
-      icon: 'success',
-      duration: 2000
-    })
-    this.cancelWriteAnswerMask()
+    const { orderId } = this.data
+    const params = { answer, orderId: Number(orderId) }
+    const { code } = await helpDetail.answer(params)
+    if (code == 0) {
+      wx.showToast({
+        title: '帮助成功',
+        icon: 'success',
+        duration: 2000
+      })
+      this.cancelWriteAnswerMask()
+    }
   },
   cancelWriteAnswerMask () {
     this.selectComponent('#mask').hide(this.setData.bind(this, { 'masks.isShowTextArea': false }))
+  },
+
+
+  previewImage (e) {
+    console.log(e)
+    const { image } = e.currentTarget.dataset
+    const urls = [image]
+    wx.previewImage({ urls })
   },
   save (e) {
     console.log('--------------', this.data)

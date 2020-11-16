@@ -108,12 +108,13 @@ page{
 .detail_info .detail_images{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding-top: 20rpx;
 }
 .detail_info .detail_images .detail_images_item{
     width: 219rpx;
     height: 219rpx;
+    overflow: hidden;
 }
 
 .detail_info .detail_images .detail_images_item image{

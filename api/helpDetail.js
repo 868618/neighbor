@@ -7,6 +7,12 @@ class HelpDetail extends Http{
             data
         })
     }
+    answer (data) {
+        return this.request({
+            url: '/order/answer',
+            data
+        })
+    }
 }
 
 export default new HelpDetail()
