@@ -50,8 +50,9 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '标题，转发的图片可以自定义，默认展示的是当前页面的截图，需要后端返回或者前端写死',
+      title: '远亲不如近邻，伸出你的小手帮邻居一个小忙吧~',
       path: '/pages/index/index',
+      imageUrl: this.data.orderList.length ? null : '/images/login/logo.png'
     }
   }
 })
