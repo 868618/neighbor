@@ -55,7 +55,6 @@ Component({
       this.setData({ animation }, fn || null)
     },
     transitionend () {
-      console.log('transitionend')
       const { isHiddenBg } = this.data
       this.setData({ isHiddenBg: !isHiddenBg }, () => {
         !isHiddenBg && this.setData({ isShow: false })

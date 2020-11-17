@@ -1,4 +1,4 @@
-const { showToast, getNavbarInfo } = getApp()
+const { showToast, globalData } = getApp()
 import { helpDetail } from '../../api/index'
 
 Page({
@@ -20,7 +20,39 @@ Page({
     answer: '',
     time: null,
     address: '',
-    detail: null
+    detail: null,
+    btns: [
+      {
+        text: '问个问题',
+        type: 'active',
+        forHelpType: 10
+      },
+      {
+        text: '借个东西',
+        type: 'default',
+        forHelpType: 20
+      },
+      {
+        text: '求转让',
+        type: 'default',
+        forHelpType: 30
+      },
+      {
+        text: '我馋了',
+        type: 'default',
+        forHelpType: 40
+      },
+      {
+        text: '捎点东西',
+        type: 'default',
+        forHelpType: 50
+      },
+      {
+        text: '其它求助',
+        type: 'default',
+        forHelpType: 60
+      }
+    ],
   },
 
   /**
@@ -28,8 +60,7 @@ Page({
    */
   onLoad: function (options) {
     const { orderId } = options
-    this.setData({ orderId })
-    this.getDetailInfo({ orderId })
+    this.setData({ orderId }, this.getDetailInfo)
   },
   accept () {
     showToast('接受本次应助的接口')
@@ -49,9 +80,10 @@ Page({
     })
   },
 
-  async getDetailInfo (data) {
+  async getDetailInfo () {
+    const { orderId } = this.data
     wx.showLoading()
-    const { code, body: detail } = await helpDetail.getDetail(data)
+    const { code, body: detail } = await helpDetail.getDetail({ orderId })
     wx.hideLoading()
     if (code == 0) {
       this.setData({ detail })
@@ -75,14 +107,19 @@ Page({
     }
     const { orderId } = this.data
     const params = { answer, orderId: Number(orderId) }
+    wx.showLoading()
     const { code } = await helpDetail.answer(params)
+    wx.hideLoading()
+    this.cancelWriteAnswerMask()
     if (code == 0) {
       wx.showToast({
         title: '帮助成功',
         icon: 'success',
         duration: 2000
       })
-      this.cancelWriteAnswerMask()
+      this.getDetailInfo()
+    } else {
+      showToast("回答失败")
     }
   },
   cancelWriteAnswerMask () {
@@ -101,5 +138,12 @@ Page({
     this.setData({
       'masks.isShowHelpOther': false
     })
+  },
+  onShareAppMessage () {
+    const { title } = this.data.detail
+    return {
+      title,
+      path: '/pages/helpDetail/index',
+    }
   }
 })

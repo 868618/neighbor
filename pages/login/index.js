@@ -1,5 +1,5 @@
 // pages/login/index.js
-const { surface, globalData, isLogin } = getApp()
+const { surface, globalData, getNavbarInfo } = getApp()
 import { login } from '../../api/index'
 import { mine } from '../../api/index'
 Page({
@@ -8,7 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src: '/images/login/logo.png'
+    src: '/images/login/logo.png',
+    styleHeight: ''
+  },
+
+  onLoad () {
+    const { allHeight } = getNavbarInfo()
+    const styleHeight = `height: calc( 100vh - ${allHeight}px )`
+    this.setData({ styleHeight })
   },
 
   async goLogin (e) {

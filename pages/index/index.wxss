@@ -5,7 +5,10 @@
   background: #fafafa;
   padding-top: 22rpx;
   box-sizing: border-box;
-  padding-bottom: 130rpx;
+  /*border-bottom: 130rpx solid #FFF;*/
+  /*padding-bottom: 130rpx;*/
+  /*background-color: green;*/
+  min-height: 90vh;
 }
 
 .header {
@@ -17,6 +20,16 @@
 .header swiper {
   width: 100%;
   height: 100%;
+}
+
+.swiper_image{
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+.swiper_image image{
+  opacity: 1;
 }
 
 .task {

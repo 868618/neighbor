@@ -1,8 +1,8 @@
 <!--components/Tabbar/Tabbar.wxml-->
-<view class="tabbar">
+<view class="tabbar" style="{{ xStyle }}">
     <view class="tabbar_item" wx:for="{{ list }}" wx:key="index" bind:tap="change" data-index="{{ index }}" data-pagepath="{{ item.pagePath }}">
         <image src="{{ (activeNum == index && index != 1) ? item.selectedIconPath : item.iconPath }}" mode="widthFix" />
         <view class="text {{ ( index != 1 && activeNum == index  )? 'active' : null }}">{{ item.text }}</view>
     </view>
 </view>
-<view class="bg" />
+<view class="bg" style="{{ xStyle }}" />

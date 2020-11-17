@@ -2,21 +2,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  flex-direction: column;
 }
 
 .login .box{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 59vh;
+  justify-content: center;
   align-items: center;
+  height: 59vh;
 }
 
 .login .box .logo{
   width: 210rpx;
   height: 208rpx;
 }
+
+.login .box .tip{
+  font-size: 44rpx;
+  font-weight: 400;
+  color: #575757;
+  margin-top: 48rpx;
+}
+.login .box .tip text:last-of-type{
+  margin-left: 20rpx;
+}
+
 
 .btn{
   width: 590rpx;
@@ -29,6 +40,7 @@
   color: #FFF;
   font-size: 32rpx;
   position: relative;
+  margin-top: 366rpx;
 }
 
 .btn button{

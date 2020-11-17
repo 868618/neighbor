@@ -5,15 +5,9 @@
     <view class="header">
       <swiper>
         <swiper-item>
-          <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
-        </swiper-item>
-
-        <swiper-item>
-          <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
-        </swiper-item>
-
-        <swiper-item>
-          <image mode="heightFix" src="http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg" />
+          <view class="swiper_image">
+            <image mode="heightFix" src="{{tmp}}" />
+          </view>
         </swiper-item>
       </swiper>
     </view>

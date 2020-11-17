@@ -65,6 +65,7 @@ page {
   margin-top: 62rpx;
   background-color: #FFFFFF;
   padding-bottom: 30rpx;
+  border-radius: 12rpx;
 }
 
 .mine .menu .tip {
@@ -99,7 +100,7 @@ page {
 
 .mine .watermark{
   text-align: center;
-  margin-top: 150rpx;
+  margin-top: 180rpx;
 }
 
 .mine .watermark .title{

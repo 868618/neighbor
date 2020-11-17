@@ -6,7 +6,7 @@ Component({
   properties: {
     background: {
       type: String,
-      value: 'rgba(255, 255, 255, 1)',
+      value: '#F9F9F9',
     },
     // 是否沉浸式
     isImmersive: {
@@ -106,8 +106,9 @@ Component({
       const { allHeight, height, left } = globalData.navbarInfo
       const menuButtonHeight = height
 
-      const { isImmersive } = this.properties
-      const background = !isImmersive ? '#FFF' : 'rgba(0, 0, 0, 0)'
+      const { isImmersive, background: bg } = this.properties
+      // const background = !isImmersive ? '#FFF' : 'rgba(0, 0, 0, 0)'
+      const background = isImmersive ? 'rgba(0, 0, 0, 0)' : bg
 
       const bastardStyle = `width: 100vw;height: ${allHeight}px;`
 

@@ -67,11 +67,17 @@
 
 .task_item .task_body{
     margin-top: 8rpx;
-    font-size:32rpx;
+    font-size:28rpx;
     font-weight:300;
-    color:rgba(0,0,0,0.75);
+    color: #575757;
     line-height:44rpx;
     max-width: 468rpx;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
 }
 
 .task_item .task_image{
@@ -80,6 +86,7 @@
     bottom: 42rpx;
     max-width: 189rpx;
     max-height: 132rpx;
+    border-radius: 12rpx;
     overflow: hidden;
 }
 

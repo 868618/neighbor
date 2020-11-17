@@ -19,7 +19,7 @@
 
     <view class="task_footer">
         <view class="task_footer_box">
-            <Avatar-Time avatar="{{ detail.avatar }}" nickName="{{ detail.nickName }}" timeMark="{{detail.timeMark}}" />
+            <Avatar-Time avatar="{{ detail.avatar }}" nickName="{{ detail.nickname }}" timeMark="{{detail.timeMark}}" />
         </view>
     </view>
 </view>

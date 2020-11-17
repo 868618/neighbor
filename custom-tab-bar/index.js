@@ -1,13 +1,7 @@
-// components/Tabbar/Tabbar.js
-const { surface, getHeaders } = getApp()
+const bangs = require('../behavior/bangs')
+const { surface, getHeaders, globalData } = getApp()
 Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
-
+  behaviors: [bangs],
   /**
    * 组件的初始数据
    */
@@ -32,7 +26,7 @@ Component({
         selectedIconPath: "/images/tabbar/mine_active.png",
         pagePath: '/pages/mine/mine'
       }
-    ]
+    ],
   },
   /**
    * 组件的方法列表

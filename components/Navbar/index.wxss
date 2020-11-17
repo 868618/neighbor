@@ -13,7 +13,28 @@
   display: flex;
   align-items: center;
   width: 100%;
+  box-sizing: border-box;
+  /*background-color: green;*/
 }
+
+.navbar_location .title{
+  position: relative;
+}
+
+.navbar_location .title::after{
+  content: '';
+  position: absolute;
+  right: -30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20rpx;
+  height: 10rpx;
+  background: url("https://www.juelie.net/nb/image/2020/11/17/ffdb1326712d4ed3bb326049f2d21f3e.png") no-repeat center;
+  background-size: 100%;
+}
+
+
+
 .navbar .navbar_custom{
   display: flex;
   align-items: center;

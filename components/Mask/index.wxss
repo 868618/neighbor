@@ -51,6 +51,20 @@
     color: #575757;
 }
 
+.mask_nav text:first-of-type{
+    display: inline-block;
+    padding: 5rpx 50rpx;
+    padding-left: 0;
+}
+
+.mask_nav text:last-of-type{
+    display: inline-block;
+    padding: 5rpx 50rpx;
+    padding-right: 0;
+}
+
+
+
 .mask_nav .save{
     color: #E9792C;
 }

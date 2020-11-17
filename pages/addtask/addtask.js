@@ -1,7 +1,8 @@
 import { addOrder } from '../../api/index'
-const { showToast } = getApp()
+const { showToast, globalData } = getApp()
+const bangs = require('../../behavior/bangs')
 Page({
-
+  behaviors: [bangs],
   /**
    * 页面的初始数据
    */
@@ -18,7 +19,7 @@ Page({
         forHelpType: 20
       },
       {
-        text: '转让了',
+        text: '求转让',
         type: 'default',
         forHelpType: 30
       },
@@ -65,14 +66,8 @@ Page({
       isShowTimeInput: false,
       ask: '您要问什么'
     },
-    returnTime: null
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+    returnTime: null,
+    tempFilePaths: []
   },
   input (e) {
     const { value: title } = e.detail
@@ -89,19 +84,21 @@ Page({
     const describe = [ 10 ].includes(forHelpType) ? '问题': '求助'
     const isShowCamera = [ 20 ].includes(forHelpType)
     const placeholders = new Map()
-    placeholders.set(10, '请尽力描述你的问题吧，有助于…')
-    placeholders.set(20, '请尽力填写您的描述，有助于…')
-    placeholders.set(30, '请尽力描述您的求转让吧,有助于…')
-    placeholders.set(40, '请尽力填写您的描述，有助于…')
-    placeholders.set(50, '请尽力填写您想捎点什么吧，有助于…')
-    placeholders.set(60, '请尽力描述您想求助什么吧,有助于…')
+    placeholders
+      .set(10, '请将问题进行详细的描述，有助于正确理解您的意思')
+      .set(20, '要借什么东西，具体的描述，最好传一张图片')
+      .set(30, '求转让什么东西，具体的要求，最好传一张图片')
+      .set(40, '可以说明这是哪个地区的饭菜')
+      .set(50, '需要邻居捎什么给你，希望从哪里买，具体的要求')
+      .set(60, '请将您的求助描述清楚，有助于正确理解您的意思')
     const asks = new Map()
-    asks.set(10, '您要问什么')
-    asks.set(20, '您要借什么')
-    asks.set(30, '您要转让什么')
-    asks.set(40, '您要吃什么')
-    asks.set(50, '您要捎什么')
-    asks.set(60, '您要求助什么')
+    asks
+        .set(10, '您要问什么')
+        .set(20, '您要借什么')
+        .set(30, '希望转让什么给您')
+        .set(40, '您要吃什么')
+        .set(50, '您要捎什么')
+        .set(60, '您要求助什么')
     const placeholder = placeholders.get(forHelpType)
     const isShowTimeInput = [20].includes(forHelpType)
     const ask = asks.get(forHelpType)
@@ -138,7 +135,8 @@ Page({
     this.setData({
       isShowAddHelpDescription: false,
       'formData.content': content,
-      'formData.image': image
+      'formData.image': image,
+      tempFilePaths
     })
   },
   openAddHelpDescription () {

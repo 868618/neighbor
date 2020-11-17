@@ -39,7 +39,7 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": "给用户要定位授权的一句话，需要产品来定"
+      "desc": "能自动显示你所在的位置或小区"
     }
   },
   "style": "v2",

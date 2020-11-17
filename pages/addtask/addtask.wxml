@@ -65,11 +65,11 @@
 
   <Statement type="{{ formData.forHelpType }}" />
 
-  <view class="fixdbtn" bind:tap="payAndPost">
+  <view class="fixdbtn" bind:tap="payAndPost" style="{{ xStyle }}">
     <view>支付并发布</view>
   </view>
 
-  <AddHelpDescription wx:if="{{ isShowAddHelpDescription }}" content="{{ formData.content }}"  bind:save="save" />
+  <AddHelpDescription wx:if="{{ isShowAddHelpDescription }}" tempFilePaths="{{ tempFilePaths }}" placeholder="{{ keywordMaps.placeholder }}" content="{{ formData.content }}"  bind:save="save" />
 
   <Paybox wx:if="{{isShowPayBox}}" type="{{ moneybox.type }}" title="{{ moneybox.title }}" defPrice="{{ moneybox.defPrice }}" bind:ok="selectChange" bind:cancel="cancel" />
 

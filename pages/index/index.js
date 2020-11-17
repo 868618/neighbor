@@ -7,7 +7,8 @@ Page({
   data: {
     orderList: [],
     allHeight: 0,
-    isLoaded: false
+    isLoaded: false,
+    tmp: 'http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg'
   },
   onLoad () {
     const { allHeight } = getNavbarInfo()
@@ -47,4 +48,10 @@ Page({
       this.setData({ orderList })
     }
   },
+  onShareAppMessage () {
+    return {
+      title: '标题，转发的图片可以自定义，默认展示的是当前页面的截图，需要后端返回或者前端写死',
+      path: '/pages/index/index',
+    }
+  }
 })

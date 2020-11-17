@@ -1,9 +1,14 @@
 
 <Navbar title=" " />
 
-<view class="login">
+<view class="login" style="{{ styleHeight }}">
     <view class="box">
         <image src="{{src}}" mode="widthFix" class="logo" />
+
+        <view class="tip">
+            <text>邻居帮</text>
+            <text>帮邻居</text>
+        </view>
 
         <view class="btn">
             微信一键登录

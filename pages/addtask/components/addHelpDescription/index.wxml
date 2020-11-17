@@ -1,22 +1,19 @@
 <view class="addHelpDescription" style="top: {{top}}px">
     <view class="title">
         <text>求助描述</text>
-        <image src="/images/camera.png" mode="widthFix" bind:tap="chooseImage"/>
+        <image src="/images/camera.png" mode="widthFix" bind:tap="chooseAndUpDateImage"/>
     </view>
-    <view class="tip">详细清晰的描述，有助于应助者正确理解你的意思，还可以上传图片告诉人家你借什么</view>
+    <view class="tip">{{ placeholder }}</view>
     <view class="placeholder">
-        <view class="tips" style="opacity: {{ isShowPlaceHolder ? 1 : 0 }}" bind:tap="getFocus">
-            <view>1.借什么东西</view>
-            <view>2.有什么要求</view>
-            <view> 3.需不需要上传图片</view>
-        </view>
-        <textarea class="textarea" bind:input="input" auto-focus focus="{{focus}}" auto-height value="{{ _content }}" />
+        <textarea class="textarea" placeholder="输入文字" bind:input="input" focus="{{ true }}" value="{{ _content }}" />
     </view>
 
     <view class="images">
-        <view class="item" wx:for="{{ tempFilePaths }}" wx:key="index">
+        <view class="item" wx:for="{{ _tempFilePaths }}" wx:key="index">
             <image src="{{item}}" mode="widthFix" />
         </view>
+
+        <view class="item addImageBtn" bind:tap="chooseAndUpDateImage" />
     </view>
 
     <Custom-Button custom-class="custom-class" bind:tap="save">保存</Custom-Button>

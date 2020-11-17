@@ -55,7 +55,7 @@
 }
 
 .main .title {
-  font-size:44rpx;
+  font-size:36rpx;
   font-weight:500;
   color:rgba(0,0,0,0.75);
 }
@@ -95,16 +95,14 @@
 
 .main .input_title{
   margin-top: 32rpx;
-  border-bottom: 1rpx solid rgba(0,0,0,0.35);
+  border-bottom: 1rpx solid rgb(236,236,236);
 }
 .main .input_title input {
-  font-size: 44rpx;
-  /*padding-bottom: 30rpx;*/
+  font-size: 36rpx;
   height: 106rpx;
   line-height: 106rpx;
   box-sizing: border-box;
   position: relative;
-  /*background: royalblue;*/
 }
 
 .main .input_title input::after{
@@ -114,7 +112,8 @@
   right: 6rpx;
   width: 9rpx;
   height: 16rpx;
-  background: red;
+  background: url("https://www.juelie.net/nb/image/2020/11/17/e905b3f5bcca4b4e8b36bc146e29d362.png") no-repeat center;
+  background-size: 100%;
   transform: translateY(-50%);
 }
 
@@ -159,7 +158,7 @@
 
 .main .select .select_item .select_name{
   font-size:32rpx;
-  color:rgba(0,0,0,0.85);
+  color:rgba(0,0,0,0.75);
   font-weight: bold;
 }
 
