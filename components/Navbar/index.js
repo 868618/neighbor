@@ -1,4 +1,4 @@
-const { globalData, initLocation } = getApp()
+const { globalData, initLocation, getCurrLocation } = getApp()
 const chooseLocation = requirePlugin('chooseLocation')
 import { tool } from '../../api/index'
 
@@ -72,6 +72,8 @@ Component({
       if (selectedLocationInfo) {
         const { latitude, longitude, name } = selectedLocationInfo
         const location = { latitude, longitude }
+        const currAddress = await getCurrLocation(location)
+        wx.setStorageSync('currAddress', currAddress)
         wx.setStorageSync('name', name)
         await this.initAndGetId(location)
       }

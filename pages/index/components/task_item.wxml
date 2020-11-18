@@ -13,8 +13,9 @@
     </view>
 
     <view class="task_tag">
-        <text class="tag">上门取</text>
-        <text class="tag">归还</text>
+<!--        <text class="tag">上门取</text>-->
+<!--        <text class="tag">归还</text>-->
+        <text class="tag">{{ detail.orderTypeName }}</text>
     </view>
 
     <view class="task_footer">

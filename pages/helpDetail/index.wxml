@@ -1,7 +1,7 @@
 <view class="helpDetail" wx:if="{{ detail }}">
     <Navbar type="{{ masks.navBarType }}" bind:custom="hideHelpOtherMask" />
 <!--    <Navbar type="custom" wx:else bind:custom="hideHelpOtherMask" />-->
-    <view class="detail_info yibangzhu">
+    <view class="detail_info {{ status }}">
         <Avatar-Time avatar="{{ detail.avatar }}" nickName="{{ detail.nickname }}" timeMark="{{detail.timeMark}}" />
 
         <view class="detail_title">
@@ -40,10 +40,11 @@
         </view>
 
         <view class="answer_item" wx:for="{{ detail.answerList }}" wx:key="index">
-            <Avatar-Time />
-            <view class="answer_text">长樱天街B座那就有一家</view>
+<!--            <Avatar-Time />-->
+            <Avatar-Time avatar="{{ item.avatar }}" nickName="{{ item.nickname }}" />
+            <view class="answer_text">{{ item.answer }}</view>
             <view class="answer_effect">
-                <text class="answer_time">2020年5月10日 下午13:02</text>
+                <text class="answer_time">{{ item.answerTime }}</text>
                 <view class="answer_like">
                     <text>1</text> <image src="{{tmp}}" mode="widthFix" />
                 </view>
@@ -76,7 +77,9 @@
         </view>
     </Mask>
 
-<!--    <Custom-Button custom-class="custom-class" bind:tap="accept">接受本次求助</Custom-Button>-->
-<!--    <Custom-Button custom-class="custom-class" bind:tap="toHelpOther">立即帮助</Custom-Button>-->
-    <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask" wx:if="{{ detail.orderType == 10 }}">写回答</Custom-Button>
+    <block wx:if="{{ detail.buttonList && detail.buttonList.length }}" wx:for="{{ detail.buttonList }}" wx:key="index">
+        <Custom-Button custom-class="custom-class" bind:tap="accept" wx:if="{{ item.code == 20 }}">接受本次求助</Custom-Button>
+        <Custom-Button custom-class="custom-class" bind:tap="toHelpOther" wx:if="{{ detail.orderType != 10 && item.code == 10 }}">立即帮助</Custom-Button>
+        <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask" wx:if="{{ detail.orderType == 10 && item.code == 10 }}">写回答</Custom-Button>
+    </block>
 </view>

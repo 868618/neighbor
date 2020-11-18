@@ -3,6 +3,8 @@
         <image src="{{avatar}}" mode="widthFix" />
     </view>
     <text class="name">{{ nickName }}</text>
-    <text class="line" />
-    <text class="time">{{ timeMark }}</text>
+    <block wx:if="{{ timeMark }}">
+        <text class="line" />
+        <text class="time">{{ timeMark }}</text>
+    </block>
 </view>
