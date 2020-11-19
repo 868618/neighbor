@@ -170,10 +170,10 @@ Page({
       return false
     }
 
-    if (!image) {
-      showToast('请先上传图片')
-      return false
-    }
+    // if (!image) {
+    //   showToast('请先上传图片')
+    //   return false
+    // }
 
     if (forHelpType == 20 && !returnTime) {
       showToast('请输入归还时间')
@@ -191,14 +191,15 @@ Page({
 
     const addressCode = wx.getStorageSync('id')
 
-    const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
+    // const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
+    const params = { ...formData, rewardMoney: rewardMoney, urgentMoney: urgentMoney, addressCode }
     wx.showLoading()
     const res = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
     wx.hideLoading()
     console.log('forHelpSubmit', res)
     if (res.code == 0) {
       console.log(res.body)
-      const { payMoney } = res.body
+      const { payMoney, orderId } = res.body
       if (!payMoney) {
         showToast('提交成功')
         // this.selectComponent('#navbar').getNewAddress()
@@ -207,11 +208,13 @@ Page({
         wx.navigateBack()
       } else {
         res.body.package = `prepay_id=${res.body.prepay_id}`
+        const _this = this
         wx.requestPayment({
           ...res.body,
           timestamp: res.body.timeStamp,
           success(res) {
             console.log(res)
+            _this.toDetail(orderId)
           },
           fail(err) {
             console.log('err', err)
@@ -226,5 +229,9 @@ Page({
   pickerChange (e) {
     const { value: returnTime } = e.detail
     this.setData({ returnTime })
-  }
+  },
+  toDetail (orderId) {
+    const url = `/pages/helpDetail/index?orderId=${orderId}`
+    wx.navigateTo({ url })
+  },
 })

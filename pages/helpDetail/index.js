@@ -8,7 +8,7 @@ Page({
    */
   data: {
     tmp: 'http://oss.cogo.club/a34dd613-2323-427b-803d-ccacf498de35.png',
-    status: null,
+    status: '',
     type: null,
     masks: {
       isShowHelpOther: false,
@@ -86,7 +86,16 @@ Page({
     const { code, body: detail } = await helpDetail.getDetail({ orderId })
     wx.hideLoading()
     if (code == 0) {
-      this.setData({ detail })
+      console.log('detail-----', detail)
+      const statusMaps = new Map()
+      statusMaps.set(20, 'daiyingzhu')
+          .set(30, 'daiyingzhu')
+          .set(40, 'yiyingzhu')
+          .set(60, 'yiyingzhu')
+      const status = statusMaps.get(detail.status)
+      console.log('detail.status&&&&&&&&', detail.status)
+      console.log('status------', status)
+      this.setData({ detail, status })
     }
   },
 
@@ -140,10 +149,10 @@ Page({
     })
   },
   onShareAppMessage () {
-    const { title } = this.data.detail
+    const { title, orderId } = this.data.detail
     return {
       title,
-      path: '/pages/helpDetail/index',
+      path: `/pages/helpDetail/index?orderId=${orderId}`,
     }
   }
 })
