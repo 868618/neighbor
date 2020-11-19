@@ -5,10 +5,7 @@
   background: #F9F9F9;
   padding-top: 22rpx;
   box-sizing: border-box;
-  border-bottom: 130rpx solid #F9F9F9;
-  /*padding-bottom: 130rpx;*/
-  /*background-color: green;*/
-  border-bottom: 80rpx solid #FFF;
+  border-bottom: 180rpx solid #F9F9F9;
   min-height: 90vh;
 }
 

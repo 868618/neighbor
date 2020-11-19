@@ -26,6 +26,7 @@ page{
     position: absolute;
     right: 38rpx;
     top: 28rpx;
+    z-index: 9;
 }
 .yiyingzhu::after{
     background: url("http://oss.cogo.club/a10cc81a-0dc5-44bc-9b66-eae7e5fa7785.png") no-repeat center;

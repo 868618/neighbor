@@ -60,7 +60,10 @@ Page({
    */
   onLoad: function (options) {
     const { orderId } = options
-    this.setData({ orderId }, this.getDetailInfo)
+    this.setData({ orderId })
+  },
+  onShow () {
+    wx.nextTick(this.getDetailInfo)
   },
   accept () {
     showToast('接受本次应助的接口')
