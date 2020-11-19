@@ -4,7 +4,10 @@ page {
   overflow: hidden;
 }
 
-.order {}
+.order {
+  /*padding-top: 20rpx;*/
+  margin-top: 20rpx;
+}
 
 .order .header{
   height: 88rpx;

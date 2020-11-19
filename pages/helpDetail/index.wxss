@@ -1,10 +1,11 @@
 /* pages/helpDetail/index.wxss */
 page{
-    background: rgba(0, 0, 0, 0.1);
+    background: #F9F9F9;
 }
 .helpDetail{
     /*padding-top: 100rpx;*/
     padding-bottom: 150rpx;
+    padding-top: 20rpx;
 }
 .helpDetail .detail_info{
     border-top: 1rpx solid rgba(0, 0, 0, 0.1);

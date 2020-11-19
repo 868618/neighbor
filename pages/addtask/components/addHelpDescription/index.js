@@ -43,14 +43,19 @@ Component({
       this.setData({ isShow: false })
     },
     async chooseAndUpDateImage () {
-      const { tempFilePaths } = await surface(wx.chooseImage)
-      const [ filePath ] = tempFilePaths
-      const upLoadRes = await this.upLoadFile(filePath)
-      const { body, code } = upLoadRes
-      if (code == 0) {
-        const _tempFilePaths = this.data._tempFilePaths.concat([body])
-        this.setData({ _tempFilePaths })
+      try {
+        const { tempFilePaths } = await surface(wx.chooseImage)
+        const [ filePath ] = tempFilePaths
+        const upLoadRes = await this.upLoadFile(filePath)
+        const { body, code } = upLoadRes
+        if (code == 0) {
+          const _tempFilePaths = this.data._tempFilePaths.concat([body])
+          this.setData({ _tempFilePaths })
+        }
+      } catch (e) {
+        console.log(e)
       }
+
     },
     input (e){
       const { value: _content } = e.detail

@@ -10,7 +10,10 @@
 
     <view class="images">
         <view class="item" wx:for="{{ _tempFilePaths }}" wx:key="index">
-            <image src="{{item}}" mode="widthFix" />
+            <view class="image_box">
+                <image src="{{item}}" mode="widthFix" />
+            </view>
+            <view class="del"></view>
         </view>
 
         <view class="item addImageBtn" bind:tap="chooseAndUpDateImage" />

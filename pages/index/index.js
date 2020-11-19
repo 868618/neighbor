@@ -20,10 +20,9 @@ Page({
   toDetail (e) {
     const { orderid: orderId } = e.currentTarget.dataset
     const url = `/pages/helpDetail/index?orderId=${orderId}`
+    // wx.navigateTo({ url })
     if (isLogin()) {
-      wx.navigateTo({
-        url
-      })
+      wx.navigateTo({ url })
     } else {
       surface(wx.navigateTo, {
         url: '/pages/login/index',

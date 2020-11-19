@@ -8,6 +8,7 @@
   /*border-bottom: 130rpx solid #FFF;*/
   /*padding-bottom: 130rpx;*/
   /*background-color: green;*/
+  border-bottom: 80rpx solid #FFF;
   min-height: 90vh;
 }
 
