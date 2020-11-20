@@ -58,12 +58,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    const { orderId } = options
-    this.setData({ orderId })
-  },
+  // onLoad: function (options) {
+  //   const { orderId } = options
+  //   this.setData({ orderId })
+  // },
   onShow () {
-    wx.nextTick(this.getDetailInfo)
+    // wx.nextTick(this.getDetailInfo)
+    this.getDetailInfo()
   },
   accept () {
     showToast('接受本次应助的接口')
@@ -84,7 +85,8 @@ Page({
   },
 
   async getDetailInfo () {
-    const { orderId } = this.data
+    // const { orderId } = this.data
+    const { orderId } = this.options
     wx.showLoading()
     const { code, body: detail } = await helpDetail.getDetail({ orderId })
     wx.hideLoading()

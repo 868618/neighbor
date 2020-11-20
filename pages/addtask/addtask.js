@@ -1,6 +1,51 @@
 import { addOrder } from '../../api/index'
-const { showToast, globalData } = getApp()
+const { showToast } = getApp()
 const bangs = require('../../behavior/bangs')
+
+const maps = new Map([
+  [
+    10,
+    {
+      placeholder: '请将问题进行详细的描述，有助于正确理解您的意思',
+      ask: '您要问什么'
+    }
+  ],
+  [
+    20,
+    {
+      placeholder: '要借什么东西，具体的描述，最好传一张图片',
+      ask: '您要借什么'
+    }
+  ],
+  [
+    30,
+    {
+      placeholder: '求转让什么东西，具体的要求，最好传一张图片',
+      ask: '希望转让什么给您'
+    }
+  ],
+  [
+    40,
+    {
+      placeholder: '想吃什么，具体的要求，可以说明这是哪个地区的饭菜',
+      ask: '您要吃什么'
+    }
+  ],
+  [
+    50,
+    {
+      placeholder: '需要邻居捎什么给你，希望从哪里买，具体的要求',
+      ask: '您要捎什么'
+    }
+  ],
+  [
+    60,
+    {
+      placeholder: '请将您的求助描述清楚，有助于正确理解您的意思',
+      ask: '您要求助什么'
+    }
+  ]
+])
 Page({
   behaviors: [bangs],
   /**
@@ -67,52 +112,30 @@ Page({
       ask: '您要问什么'
     },
     returnTime: null,
-    tempFilePaths: []
+    tempFilePaths: [],
+    maxlength: 20,
   },
   input (e) {
     const { value: title } = e.detail
-    this.setData({
-      'formData.title': title
-    })
+    const { maxlength } = this.data
+    if (title.length == maxlength) showToast(`标题不超过${maxlength}个字`)
+    this.setData({ 'formData.title': title })
   },
   changeBtn (e) {
-    console.log('e.currentTarget.dataset', e.currentTarget.dataset)
     const { forhelptype: forHelpType, index } = e.currentTarget.dataset
-    console.log('index', index)
-    const btns = this.data.btns.map((item, idx) => Object.assign(item, { type: index == idx ? 'active' : 'default'}))
+    const btns = this.data.btns.map((item, idx) => ({ ...item, type: index == idx ? 'active' : 'default' }) )
     const title = [ 10 ].includes(forHelpType) ? '求助': '需求'
     const describe = [ 10 ].includes(forHelpType) ? '问题': '求助'
     const isShowCamera = [ 20 ].includes(forHelpType)
-    const placeholders = new Map()
-    placeholders
-      .set(10, '请将问题进行详细的描述，有助于正确理解您的意思')
-      .set(20, '要借什么东西，具体的描述，最好传一张图片')
-      .set(30, '求转让什么东西，具体的要求，最好传一张图片')
-      .set(40, '想吃什么，具体的要求，可以说明这是哪个地区的饭菜')
-      .set(50, '需要邻居捎什么给你，希望从哪里买，具体的要求')
-      .set(60, '请将您的求助描述清楚，有助于正确理解您的意思')
-    const asks = new Map()
-    asks
-        .set(10, '您要问什么')
-        .set(20, '您要借什么')
-        .set(30, '希望转让什么给您')
-        .set(40, '您要吃什么')
-        .set(50, '您要捎什么')
-        .set(60, '您要求助什么')
-    const placeholder = placeholders.get(forHelpType)
+
+    const { placeholder } = maps.get(forHelpType)
     const isShowTimeInput = [20].includes(forHelpType)
-    const ask = asks.get(forHelpType)
+    const { ask } = maps.get(forHelpType)
+    const keywordMaps = { title, describe, isShowCamera, placeholder, isShowTimeInput, ask }
     this.setData({
       btns,
       'formData.forHelpType': forHelpType,
-      keywordMaps: {
-        title,
-        describe,
-        isShowCamera,
-        placeholder,
-        isShowTimeInput,
-        ask
-      }
+      keywordMaps
     })
   },
   cancel () {
@@ -194,36 +217,38 @@ Page({
     // const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
     const params = { ...formData, rewardMoney: rewardMoney, urgentMoney: urgentMoney, addressCode }
     wx.showLoading()
-    const res = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
+    const { body: options, body: { payMoney, orderId }, code } = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
     wx.hideLoading()
-    console.log('forHelpSubmit', res)
-    if (res.code == 0) {
-      console.log(res.body)
-      const { payMoney, orderId } = res.body
-      if (!payMoney) {
-        showToast('提交成功')
-        // this.selectComponent('#navbar').getNewAddress()
-        console.log('getCurrentPages()', getCurrentPages())
-        getCurrentPages()[0].locationUpdated()
-        wx.navigateBack()
-      } else {
-        res.body.package = `prepay_id=${res.body.prepay_id}`
-        const _this = this
-        wx.requestPayment({
-          ...res.body,
-          timestamp: res.body.timeStamp,
-          success(res) {
-            console.log(res)
-            _this.toDetail(orderId)
-          },
-          fail(err) {
-            console.log('err', err)
-          }
-        })
-      }
-    } else {
+
+    if (code != 0) {
       showToast('提交失败')
+      return
     }
+    if (!payMoney) {
+      showToast('提交成功')
+      this.refreshIndex()
+      wx.navigateBack()
+      return
+    }
+    const _this = this
+    options.package = `prepay_id=${ options.prepay_id }`
+    options.timestamp = options.timeStamp
+    wx.requestPayment({
+      ...options,
+      success() {
+        _this.refreshIndex()
+        _this.toDetail(orderId)
+      },
+      fail(err) {
+        console.log('err', err)
+        showToast('支付失败，请重新支付')
+      }
+    })
+  },
+
+  refreshIndex () {
+    const [ indexPage ] = getCurrentPages()
+    indexPage.locationUpdated && indexPage.locationUpdated()
   },
 
   pickerChange (e) {
@@ -232,6 +257,6 @@ Page({
   },
   toDetail (orderId) {
     const url = `/pages/helpDetail/index?orderId=${orderId}`
-    wx.navigateTo({ url })
+    wx.redirectTo({ url })
   },
 })

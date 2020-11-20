@@ -17,11 +17,11 @@
     <view class="desc">我们会根据您提供的描述，给您推荐合适的服务</view>
 
     <view class="tip">
-      标题<text>(不超过10个字）</text>
+      标题<text>(不超过{{ maxlength }}个字）</text>
     </view>
 
     <view class="input_title">
-      <input maxlength="{{ 20 }}" auto-focus placeholder="{{ keywordMaps.ask }}" placeholder-class="placeholder" bind:input="input" value="{{ formData.title }}" />
+      <input maxlength="{{ maxlength }}" auto-focus placeholder="{{ keywordMaps.ask }}" placeholder-class="placeholder" bind:input="input" value="{{ formData.title }}" />
     </view>
 
     <view>
