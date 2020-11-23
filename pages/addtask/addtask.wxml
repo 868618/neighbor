@@ -43,7 +43,7 @@
       </view>
     </view>
 
-    <view class="select">
+    <view class="select" wx:if="{{ formData.forHelpType != 10 }}">
 
       <view class="select_item" bind:tap="pricePanel" data-type="1">
         <view class="select_name">酬金

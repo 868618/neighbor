@@ -13,6 +13,18 @@ class HelpDetail extends Http{
             data
         })
     }
+    again (data) {
+        return this.request({
+            url: '/order/againForHelp',
+            data
+        })
+    }
+    acceptHelp (data) {
+        return this.request({
+            url: '/order/acceptHelp',
+            data
+        })
+    }
 }
 
 export default new HelpDetail()

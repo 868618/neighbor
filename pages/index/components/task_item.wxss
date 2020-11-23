@@ -53,17 +53,17 @@
     position: relative;
 }
 
-.task_item .task_header .task_price::before {
-    content: '￥';
-    position: absolute;
-    width: 10rpx;
-    height: 20rpx;
-    left: -34rpx;
-    top: 15rpx;
-    transform: translateY(-70%);
-    color: #f50;
-    z-index: 1;
-}
+/*.task_item .task_header .task_price::before {*/
+/*    content: '￥';*/
+/*    position: absolute;*/
+/*    width: 10rpx;*/
+/*    height: 20rpx;*/
+/*    left: -34rpx;*/
+/*    top: 15rpx;*/
+/*    transform: translateY(-70%);*/
+/*    color: #f50;*/
+/*    z-index: 1;*/
+/*}*/
 
 .task_item .task_body{
     margin-top: 8rpx;

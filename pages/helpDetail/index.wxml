@@ -77,6 +77,17 @@
         </view>
     </Mask>
 
+    <Dialog content="你确定帮助者无法履行帮助了吗？" style="color: #FE990C;font-weight: 500;" wx:if="{{ isShowDialog }}" bind:onTap="onTap" />
+
+    <view class="restart" wx:if="{{ detail.buttonList && detail.buttonList.length && detail.buttonList[0].code == 40 }}" >
+        <view class="text">无法继续履行帮助时，需要重新求助吗？</view>
+        <view class="well" bind:tap="again">
+            <text>好的</text>
+        </view>
+    </view>
+
+    <view class="toHome" wx:if="{{isShared}}">返回首页 看其他求助</view>
+
     <block wx:if="{{ detail.buttonList && detail.buttonList.length }}" wx:for="{{ detail.buttonList }}" wx:key="index">
         <Custom-Button custom-class="custom-class" bind:tap="accept" wx:if="{{ item.code == 20 }}">接受本次求助</Custom-Button>
         <Custom-Button custom-class="custom-class" bind:tap="toHelpOther" wx:if="{{ detail.orderType != 10 && item.code == 10 }}">立即帮助</Custom-Button>

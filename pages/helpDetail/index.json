@@ -3,7 +3,8 @@
     "Navbar": "/components/Navbar/index",
     "Avatar-Time": "/components/Avatar-Time/index",
     "Custom-Button": "/components/Custom-Button/index",
-    "HelpOther": "./components/HelpOther/HelpOther"
+    "HelpOther": "./components/HelpOther/HelpOther",
+    "Dialog": "/components/dialog/dialog"
   },
   "navigationStyle": "custom"
 }

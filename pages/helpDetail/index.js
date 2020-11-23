@@ -1,5 +1,6 @@
-const { showToast, globalData } = getApp()
+const { showToast, getCurrLocation } = getApp()
 import { helpDetail } from '../../api/index'
+const qs = require('qs')
 
 Page({
 
@@ -53,21 +54,43 @@ Page({
         forHelpType: 60
       }
     ],
+    isShowDialog: false,
+    isShared: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  // onLoad: function (options) {
-  //   const { orderId } = options
-  //   this.setData({ orderId })
-  // },
+  onLoad: async function (options) {
+    const { location, name } = options
+    if (location) {
+      const currAddress = await getCurrLocation(qs.parse(location))
+      wx.setStorageSync('currAddress', currAddress)
+      wx.setStorageSync('name', name)
+      this.setData({ isShared: true })
+    }
+    // const { orderId } = options
+    // this.setData({ orderId })
+  },
   onShow () {
     // wx.nextTick(this.getDetailInfo)
     this.getDetailInfo()
   },
   accept () {
     showToast('接受本次应助的接口')
+    const { orderId } = this.options
+    const { answerList: [{ answerId }] } = this.detail
+    wx.showLoading()
+    helpDetail.acceptHelp({
+      orderId,
+      answerId
+    }).then(res => {
+      if (res.code == 0) {
+        this.getDetailInfo()
+      }
+    }).finally(() => {
+      wx.hideLoading()
+    })
   },
 
   hideHelpOtherMask () {
@@ -119,7 +142,7 @@ Page({
       this.setData({ answer })
       return
     }
-    const { orderId } = this.data
+    const { orderId } = this.options
     const params = { answer, orderId: Number(orderId) }
     wx.showLoading()
     const { code } = await helpDetail.answer(params)
@@ -154,10 +177,32 @@ Page({
     })
   },
   onShareAppMessage () {
+    const currAddress = wx.getStorageSync('currAddress')
+    const name = wx.getStorageSync('name')
     const { title, orderId } = this.data.detail
     return {
       title,
-      path: `/pages/helpDetail/index?orderId=${orderId}`,
+      path: `/pages/helpDetail/index?orderId=${orderId}&currAddress=${qs.stringify(currAddress)}&name=${name}`,
     }
+  },
+
+  again () {
+    this.setData({
+      isShowDialog: true
+    })
+  },
+
+  async onTap (e) {
+    console.log('e', e.detail)
+    if (e.detail) {
+      const { orderId } = this.options
+      const res = await helpDetail.again({ orderId })
+      console.log('res', res)
+      this.getDetailInfo()
+    }
+
+    this.setData({
+      isShowDialog: false
+    })
   }
 })
