@@ -113,3 +113,13 @@ page {
   font-size: 20rpx;
   margin-top: 6rpx;
 }
+
+.mine .bottomMark{
+  margin: 0 auto;
+  width: 340rpx;
+  margin-top: 100rpx;
+}
+
+.mine .bottomMark image{
+  width: 100%;
+}

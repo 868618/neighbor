@@ -5,9 +5,12 @@
     <view class="box">
         <image src="{{src}}" mode="widthFix" class="logo" />
 
+<!--        <view class="tip">-->
+<!--            <text>邻居帮</text>-->
+<!--            <text>帮邻居</text>-->
+<!--        </view>-->
         <view class="tip">
-            <text>邻居帮</text>
-            <text>帮邻居</text>
+            <image src="/images/login/tip.png" mode="widthFix" />
         </view>
 
         <view class="btn">
