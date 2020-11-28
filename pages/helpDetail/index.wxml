@@ -35,8 +35,8 @@
 <!--    回答列表-->
     <view class="answerList" wx:if="{{ detail.answerList }}">
         <view class="answer_header">
-            <text class="answer_title">回答</text>
-            <text class="answer_desc">{{ detail.answerList.length }}个回答</text>
+            <text class="answer_title">{{ detail.answerAreaTitle }}</text>
+            <text class="answer_desc">{{ detail.answerAreaSubtitle }}个回答</text>
         </view>
 
         <view class="answer_item" wx:for="{{ detail.answerList }}" wx:key="index">
@@ -53,7 +53,7 @@
     </view>
 
 <!--    我要应助组件-->
-    <HelpOther wx:if="{{ masks.isShowHelpOther }}" bind:save="save" model:address="{{address}}" model:time="{{time}}" />
+    <HelpOther wx:if="{{ masks.isShowHelpOther }}" bind:save="save" model:address="{{address}}" model:phone="{{phone}}" model:time="{{time}}" />
 
 
 <!--    回答问题的蒙层-->

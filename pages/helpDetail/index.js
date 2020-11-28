@@ -56,7 +56,8 @@ Page({
       }
     ],
     isShowDialog: false,
-    isShared: false
+    isShared: false,
+    phone: null
   },
 
   /**
@@ -175,10 +176,10 @@ Page({
   async save (e) {
     const { id: gw_addressId } = e.detail
       this.setData({ 'masks.isShowHelpOther': false })
-      const { time: expectHelpTime } = this.data
+      const { time: expectHelpTime, phone } = this.data
       if (gw_addressId && expectHelpTime) {
         const { orderId } = this.options
-        const params = { gw_addressId, expectHelpTime, orderId }
+        const params = { gw_addressId, expectHelpTime, orderId, phone }
         wx.showLoading()
         const res = await helpDetail.answer(params)
         wx.hideLoading()

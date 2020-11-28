@@ -13,7 +13,12 @@ Component({
     time: {
       type: String,
       value: ''
+    },
+    phone: {
+      type: String,
+      value: ''
     }
+
   },
 
   /**
@@ -60,9 +65,12 @@ Component({
    */
   methods: {
     save () {
-      const { address, time } = this.properties
+      const { address, time, phone } = this.properties
       const { id } = this.data
-      // console.log('_address', _address)
+      if (phone == '') {
+        showToast('请输入手机号')
+        return
+      }
       if (address == '') {
         showToast('请输入地址')
         return
