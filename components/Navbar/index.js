@@ -67,6 +67,7 @@ Component({
 
   pageLifetimes: {
     async show () {
+      if (globalData.isChooseAnswerAddress) return
       const selectedLocationInfo = chooseLocation.getLocation()
       // 有新的地址变动
       if (selectedLocationInfo) {

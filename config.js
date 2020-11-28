@@ -4,9 +4,9 @@ const { miniProgram: { envVersion } } = wx.getAccountInfoSync();
 console.log('envVersion', envVersion)
 
 const maps = new Map()
-maps.set('develop', 'http://www.juelie.net:8082')
-maps.set('trial', 'http://www.juelie.net:8082')
-maps.set('release', 'http://www.juelie.net:8082')
+maps.set('develop', 'https://linjubang.imrookie.cn')
+maps.set('trial', 'https://linjubang.imrookie.cn')
+maps.set('release', 'https://linjubang.imrookie.cn')
 
 const config = {
     baseUrl: maps.get(envVersion)

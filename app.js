@@ -74,7 +74,8 @@ App({
     isConnected: true, //网络状态,
     isX: false,
     birthPlace: null,
-    currAddress: ''
+    currAddress: '',
+    isChooseAnswerAddress: false
   },
   ...utils,
 })

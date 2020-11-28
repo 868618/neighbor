@@ -3,7 +3,7 @@
     <view class="tip">详细的地址方便求助者更精确的找到你</view>
 
     <view class="item">地址</view>
-    <input class="input" placeholder-class="placeholder" model:value="{{ address }}" placeholder="请填写具体取/送物品地址" />
+    <input class="input" placeholder-class="placeholder" model:value="{{ address }}" placeholder="请填写具体取/送物品地址" disabled bind:tap="chooseAddress" />
 
     <view class="item">时间</view>
     <view class="input">

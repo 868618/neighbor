@@ -1,4 +1,5 @@
-const { showToast, getCurrLocation } = getApp()
+const { showToast, getCurrLocation, globalData } = getApp()
+const chooseLocation = requirePlugin('chooseLocation')
 import { helpDetail } from '../../api/index'
 const qs = require('qs')
 
@@ -170,11 +171,19 @@ Page({
     const urls = [image]
     wx.previewImage({ urls })
   },
-  save (e) {
-    console.log('--------------', this.data)
-    this.setData({
-      'masks.isShowHelpOther': false
-    })
+
+  async save (e) {
+    console.log('出发发发发发生', e)
+    const { id: gw_addressId } = e.detail
+      this.setData({ 'masks.isShowHelpOther': false })
+      const { time: expectHelpTime } = this.data
+      if (gw_addressId && expectHelpTime) {
+        const params = { gw_addressId, expectHelpTime, answer: ''}
+        wx.showLoading()
+        const res = await helpDetail.answer(params)
+        wx.hideLoading()
+        console.log('res-------------------------------', res)
+      }
   },
   onShareAppMessage () {
     const currAddress = wx.getStorageSync('currAddress')
