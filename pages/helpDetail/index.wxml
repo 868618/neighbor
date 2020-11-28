@@ -1,5 +1,5 @@
 <view class="helpDetail" wx:if="{{ detail }}">
-    <Navbar type="{{ masks.navBarType }}" bind:custom="hideHelpOtherMask" />
+    <Navbar type="{{ masks.navBarType }}" bind:custom="hideHelpOtherMask" isShared="{{ isShared }}" />
 <!--    <Navbar type="custom" wx:else bind:custom="hideHelpOtherMask" />-->
     <view class="detail_info {{ status }}">
         <Avatar-Time avatar="{{ detail.avatar }}" nickName="{{ detail.nickname }}" timeMark="{{detail.timeMark}}" />
@@ -86,7 +86,7 @@
         </view>
     </view>
 
-    <view class="toHome" wx:if="{{isShared}}">返回首页 看其他求助</view>
+    <view class="toHome" wx:if="{{isShared  || Number(detail.status) >= 30}}" bind:tap="toIndexPage">返回首页 看其他求助</view>
 
     <block wx:if="{{ detail.buttonList && detail.buttonList.length }}" wx:for="{{ detail.buttonList }}" wx:key="index">
         <Custom-Button custom-class="custom-class" bind:tap="accept" wx:if="{{ item.code == 20 }}">接受本次求助</Custom-Button>

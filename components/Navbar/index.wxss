@@ -29,7 +29,7 @@
   transform: translateY(-50%);
   width: 20rpx;
   height: 10rpx;
-  background: url("https://www.juelie.net/nb/image/2020/11/17/ffdb1326712d4ed3bb326049f2d21f3e.png") no-repeat center;
+  background: url("https://linjubang.imrookie.cn/nb/image/2020/11/17/ffdb1326712d4ed3bb326049f2d21f3e.png") no-repeat center;
   background-size: 100%;
 }
 

@@ -32,7 +32,7 @@
     left: 0;
     top: 14rpx;
     transform: translate(-30rpx, -50%);
-    background: url("https://www.juelie.net/nb/image/2020/11/17/48b53b9e7a184eb5abf4b715c8b8cf7a.png") no-repeat center;
+    background: url("https://linjubang.imrookie.cn/nb/image/2020/11/17/48b53b9e7a184eb5abf4b715c8b8cf7a.png") no-repeat center;
     background-size: 100%;
     border-radius: 50%;
 }

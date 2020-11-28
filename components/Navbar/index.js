@@ -36,6 +36,10 @@ Component({
     type: {
       type: String,
       value: 'goBack'
+    },
+    isShared: {
+      type: Boolean,
+      value: false
     }
   },
   data: {

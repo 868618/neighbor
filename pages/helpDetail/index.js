@@ -63,35 +63,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    const { location, name } = options
-    if (location) {
-      const currAddress = await getCurrLocation(qs.parse(location))
-      wx.setStorageSync('currAddress', currAddress)
+    this.makeTargetLocation()
+  },
+  onShow () {
+    this.getDetailInfo()
+    // this.makeTargetLocation()
+  },
+
+  async makeTargetLocation () {
+    const { currAddress, name } = this.options
+    if (currAddress) {
+      console.log('分享过来的地址')
+      wx.setStorageSync('currAddress', JSON.parse(this.options.currAddress))
       wx.setStorageSync('name', name)
       this.setData({ isShared: true })
     }
-    // const { orderId } = options
-    // this.setData({ orderId })
   },
-  onShow () {
-    // wx.nextTick(this.getDetailInfo)
-    this.getDetailInfo()
-  },
-  accept () {
+  async accept () {
     showToast('接受本次应助的接口')
     const { orderId } = this.options
     const { answerList: [{ answerId }] } = this.detail
     wx.showLoading()
-    helpDetail.acceptHelp({
-      orderId,
-      answerId
-    }).then(res => {
-      if (res.code == 0) {
-        this.getDetailInfo()
-      }
-    }).finally(() => {
-      wx.hideLoading()
-    })
+    const res = await helpDetail.acceptHelp({ orderId, answerId })
+    if (res.code == 0) {
+      this.getDetailInfo()
+    }
+    wx.hideLoading()
   },
 
   hideHelpOtherMask () {
@@ -118,7 +115,7 @@ Page({
       console.log('detail-----', detail)
       const statusMaps = new Map()
       statusMaps.set(20, 'daiyingzhu')
-          .set(30, 'daiyingzhu')
+          .set(30, 'yingzhuzhong')
           .set(40, 'yiyingzhu')
           .set(60, 'yiyingzhu')
       const status = statusMaps.get(detail.status)
@@ -160,11 +157,13 @@ Page({
       showToast("回答失败")
     }
   },
+
+  // 取消写回答
   cancelWriteAnswerMask () {
     this.selectComponent('#mask').hide(this.setData.bind(this, { 'masks.isShowTextArea': false }))
   },
 
-
+  // 图片预览
   previewImage (e) {
     console.log(e)
     const { image } = e.currentTarget.dataset
@@ -172,26 +171,31 @@ Page({
     wx.previewImage({ urls })
   },
 
+  // 提交
   async save (e) {
-    console.log('出发发发发发生', e)
     const { id: gw_addressId } = e.detail
       this.setData({ 'masks.isShowHelpOther': false })
       const { time: expectHelpTime } = this.data
       if (gw_addressId && expectHelpTime) {
-        const params = { gw_addressId, expectHelpTime, answer: ''}
+        const { orderId } = this.options
+        const params = { gw_addressId, expectHelpTime, orderId }
         wx.showLoading()
         const res = await helpDetail.answer(params)
         wx.hideLoading()
-        console.log('res-------------------------------', res)
+        if (res.code == 0) {
+          this.getDetailInfo()
+        }
       }
   },
   onShareAppMessage () {
     const currAddress = wx.getStorageSync('currAddress')
     const name = wx.getStorageSync('name')
     const { title, orderId } = this.data.detail
+    const path = `/pages/helpDetail/index?orderId=${orderId}&currAddress=${JSON.stringify(currAddress)}&name=${name}`
+    console.log('path', path)
     return {
       title,
-      path: `/pages/helpDetail/index?orderId=${orderId}&currAddress=${qs.stringify(currAddress)}&name=${name}`,
+      path,
     }
   },
 
@@ -202,7 +206,6 @@ Page({
   },
 
   async onTap (e) {
-    console.log('e', e.detail)
     if (e.detail) {
       const { orderId } = this.options
       const res = await helpDetail.again({ orderId })
@@ -213,5 +216,9 @@ Page({
     this.setData({
       isShowDialog: false
     })
+  },
+
+  toIndexPage () {
+    wx.switchTab({ url: '/pages/index/index' })
   }
 })

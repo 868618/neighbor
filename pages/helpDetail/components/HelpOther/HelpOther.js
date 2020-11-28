@@ -28,15 +28,16 @@ Component({
     attached() {
       const { allHeight: navbarHeight } = getNavbarInfo()
       this.setData({ navbarHeight})
-    }
+    },
   },
 
   pageLifetimes: {
     async show() {
-      if (globalData.isChooseAnswerAddress) {
+      const selectedLocationInfo = chooseLocation.getLocation()
+      if (globalData.isChooseAnswerAddress && selectedLocationInfo) {
         globalData.isChooseAnswerAddress = false
         wx.showLoading()
-        const { latitude, longitude, city: cityName, district:districtName, name,  } = chooseLocation.getLocation()
+        const { latitude, longitude, city: cityName, district:districtName, name,  } = selectedLocationInfo
         const result = await this.reverseGeocoder({ latitude, longitude })
         const params = this.makeGetIdParams(result, name)
         const { code, body } = await tool.getIdByCurrAddress(params)
@@ -47,10 +48,11 @@ Component({
             address: name
           })
         }
-        globalData.isChooseAnswerAddress = false
         wx.hideLoading()
+        globalData.isChooseAnswerAddress = false
+        chooseLocation.setLocation(null)
       }
-    }
+    },
   },
 
   /**

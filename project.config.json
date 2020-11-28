@@ -47,17 +47,10 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
     "game": {
-      "currentL": -1,
       "list": []
     },
     "gamePlugin": {
@@ -125,7 +118,14 @@
           "id": -1,
           "name": "pages/helpDetail/index",
           "pathName": "pages/helpDetail/index",
+          "query": "",
           "scene": null
+        },
+        {
+          "name": "群聊分享进入详情",
+          "pathName": "pages/helpDetail/index",
+          "query": "orderId=2011281953498011&currAddress={\"location\":{\"lat\":39.838804,\"lng\":116.427059},\"address\":\"北京市丰台区双庙村125号院2号\",\"formatted_addresses\":{\"recommend\":\"丰台区顶秀欣园(双欣路东)\",\"rough\":\"丰台区顶秀欣园(双欣路东)\"},\"address_component\":{\"nation\":\"中国\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\",\"street\":\"双庙村\",\"street_number\":\"双庙村125号院2号\"},\"ad_info\":{\"nation_code\":\"156\",\"adcode\":\"110106\",\"city_code\":\"156110000\",\"name\":\"中国,北京市,北京市,丰台区\",\"location\":{\"lat\":39.76289,\"lng\":116.125},\"nation\":\"中国\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"address_reference\":{\"crossroad\":{\"id\":\"645441\",\"title\":\"宋庄路/南顶路(路口)\",\"location\":{\"lat\":39.839741,\"lng\":116.428093},\"_distance\":131.1,\"_dir_desc\":\"西南\"},\"town\":{\"id\":\"110106004\",\"title\":\"大红门街道\",\"location\":{\"lat\":39.84597,\"lng\":116.379814},\"_distance\":0,\"_dir_desc\":\"内\"},\"street_number\":{\"id\":\"5956636202915680718120\",\"title\":\"双庙村125号院2号\",\"location\":{\"lat\":39.837841,\"lng\":116.428596},\"_distance\":42.4,\"_dir_desc\":\"\"},\"street\":{\"id\":\"1089484717804946243\",\"title\":\"双欣路\",\"location\":{\"lat\":39.838661,\"lng\":116.426567},\"_distance\":36,\"_dir_desc\":\"东\"},\"landmark_l2\":{\"id\":\"17935735545728194860\",\"title\":\"顶秀欣园\",\"location\":{\"lat\":39.838203,\"lng\":116.428749},\"_distance\":0,\"_dir_desc\":\"内\"}},\"poi_count\":10,\"pois\":[{\"id\":\"17935735545728194860\",\"title\":\"顶秀欣园\",\"address\":\"北京市丰台区宋庄路\",\"category\":\"房产小区:住宅区:住宅小区\",\"location\":{\"lat\":39.838203,\"lng\":116.428749},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":0,\"_dir_desc\":\"内\"},{\"id\":\"13990460052405773511\",\"title\":\"顶秀欣园西苑\",\"address\":\"北京市丰台区石榴庄南里1号院\",\"category\":\"房产小区:住宅区:住宅小区\",\"location\":{\"lat\":39.838802,\"lng\":116.427063},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":0,\"_dir_desc\":\"内\"},{\"id\":\"9098784974314625321\",\"title\":\"龙健都商务酒店\",\"address\":\"北京市丰台区石榴庄南里1号院2号楼\",\"category\":\"酒店宾馆:星级酒店\",\"location\":{\"lat\":39.838615,\"lng\":116.427864},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":54.5,\"_dir_desc\":\"西\"},{\"id\":\"574555216470492307\",\"title\":\"怡和世家\",\"address\":\"北京市丰台区金桥西街\",\"category\":\"房产小区:住宅区:其它住宅区\",\"location\":{\"lat\":39.837505,\"lng\":116.424179},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":85.7,\"_dir_desc\":\"东北\"},{\"id\":\"14171961184483315396\",\"title\":\"北京金茂府小区\",\"address\":\"北京市丰台区金桥东街与宋庄路交叉口西北\",\"category\":\"房产小区:住宅区:住宅小区\",\"location\":{\"lat\":39.840054,\"lng\":116.428986},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":83.2,\"_dir_desc\":\"西南\"},{\"id\":\"12040541808090233433\",\"title\":\"日新家园\",\"address\":\"北京市丰台区石榴庄南里8号院\",\"category\":\"房产小区:住宅区:住宅小区\",\"location\":{\"lat\":39.839676,\"lng\":116.425079},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":76.2,\"_dir_desc\":\"东南\"},{\"id\":\"11417480648385238975\",\"title\":\"龙健都商务酒店-茶咖啡厅\",\"address\":\"北京市丰台区石榴庄南里1号院2号楼\",\"category\":\"娱乐休闲:咖啡厅\",\"location\":{\"lat\":39.838581,\"lng\":116.427864},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":72.8,\"_dir_desc\":\"西\"},{\"id\":\"7957077607868882601\",\"title\":\"顶秀欣园一期\",\"address\":\"北京市丰台区石榴庄南里1号院\",\"category\":\"房产小区:住宅区:住宅小区\",\"location\":{\"lat\":39.838734,\"lng\":116.426971},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":10.9,\"_dir_desc\":\"\"},{\"id\":\"5915365664058384564\",\"title\":\"东方剑桥幼儿园\",\"address\":\"北京市丰台区石榴庄南里1号院4号楼\",\"category\":\"教育学校:幼儿园\",\"location\":{\"lat\":39.838058,\"lng\":116.427208},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":63.3,\"_dir_desc\":\"北\"},{\"id\":\"1924050313736749962\",\"title\":\"百信安康大药房\",\"address\":\"北京市丰台区石榴庄南里1号院3号楼109室\",\"category\":\"医疗保健:药房药店\",\"location\":{\"lat\":39.839172,\"lng\":116.427658},\"ad_info\":{\"adcode\":\"110106\",\"province\":\"北京市\",\"city\":\"北京市\",\"district\":\"丰台区\"},\"_distance\":65.5,\"_dir_desc\":\"西南\"}]}&name=顶秀欣园西苑",
+          "scene": 1008
         }
       ]
     }
