@@ -174,12 +174,12 @@ Page({
 
   // 提交
   async save (e) {
-    const { id: gw_addressId } = e.detail
-      this.setData({ 'masks.isShowHelpOther': false })
+    const { id: gw_addressId, address } = e.detail
+      this.hideHelpOtherMask()
       const { time: expectHelpTime, phone } = this.data
       if (gw_addressId && expectHelpTime) {
         const { orderId } = this.options
-        const params = { gw_addressId, expectHelpTime, orderId, phone }
+        const params = { gw_addressId, expectHelpTime, orderId, phone, answer: address }
         wx.showLoading()
         const res = await helpDetail.answer(params)
         wx.hideLoading()

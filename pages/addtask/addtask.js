@@ -237,7 +237,18 @@ Page({
       ...options,
       success() {
         _this.refreshIndex()
-        _this.toDetail(orderId)
+        wx.requestSubscribeMessage({
+          tmplIds: ['txJftY7jelJ0aY2KqVcQSiyJxoqqKjnJ8dVGRmKcQ2Q'],
+          success() {
+            console.log('订阅成功')
+          },
+          fail () {
+            console.log('订阅失败')
+          },
+          complete () {
+            _this.toDetail(orderId)
+          }
+        })
       },
       fail(err) {
         console.log('err', err)

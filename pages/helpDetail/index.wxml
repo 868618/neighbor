@@ -45,9 +45,9 @@
             <view class="answer_text">{{ item.answer }}</view>
             <view class="answer_effect">
                 <text class="answer_time">{{ item.answerTime }}</text>
-                <view class="answer_like">
-                    <text>1</text> <image src="{{tmp}}" mode="widthFix" />
-                </view>
+<!--                <view class="answer_like">-->
+<!--                    <text>1</text> <image src="{{tmp}}" mode="widthFix" />-->
+<!--                </view>-->
             </view>
         </view>
     </view>

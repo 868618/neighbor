@@ -80,7 +80,7 @@ Component({
         showToast('请输入时间')
         return
       }
-      this.triggerEvent('save', { id })
+      this.triggerEvent('save', { id, address })
     },
 
     chooseAddress () {
