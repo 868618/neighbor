@@ -52,13 +52,13 @@
     line-height: 50rpx;
     font-weight: bold;
     position: relative;
-    margin-right: 95rpx;
+    margin-right: 110rpx;
 }
 
 .task_item .task_header_tag{
     position: absolute;
     right: 32rpx;
-    top: 0;
+    top: 10rpx;
     min-width: 70rpx;
 }
 

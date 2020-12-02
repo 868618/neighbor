@@ -27,7 +27,10 @@ Page({
    */
   onLoad(options) {
     const { target, type } = options
-    this.setData({target, type}, this.getList)
+    this.setData({target, type})
+  },
+  onShow () {
+    this.getList()
   },
 
   /**
