@@ -4,6 +4,8 @@
         <view class="task_price">{{ _price }}</view>
     </view>
 
+    <view class="task_header_tag" data-after="{{ _price ? '悬赏' : '爱心帮' }}" />
+
     <view class="task_body">
         {{ detail.content }}
     </view>

@@ -115,13 +115,12 @@ Page({
     if (code == 0) {
       console.log('detail-----', detail)
       const statusMaps = new Map()
-      statusMaps.set(20, 'daiyingzhu')
-          .set(30, 'yingzhuzhong')
-          .set(40, 'yiyingzhu')
+      statusMaps.set(20, '待帮助')
+          .set(30, '帮助中')
+          .set(40, '已完成')
           .set(60, 'yiyingzhu')
       const status = statusMaps.get(detail.status)
-      console.log('detail.status&&&&&&&&', detail.status)
-      console.log('status------', status)
+      console.log('detail------', detail)
       this.setData({ detail, status })
     }
   },
@@ -221,5 +220,17 @@ Page({
 
   toIndexPage () {
     wx.switchTab({ url: '/pages/index/index' })
+  },
+
+  async completeOrder () {
+    const { orderId } = this.options
+    wx.showLoading()
+    const res = helpDetail.completeOrder({ orderId })
+    if (res.code == 0) {
+      this.getDetailInfo()
+    } else {
+      showToast(res.info)
+    }
+    wx.hideLoading()
   }
 })

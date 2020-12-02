@@ -65,10 +65,13 @@
 .addHelpDescription .images .del{
     position: absolute;
     right: 0;
-    top: -20rpx;
+    top: -40rpx;
     width: 16rpx;
     height: 16rpx;
-    background-color: green;
+}
+
+.addHelpDescription .images .del image{
+    width: 100%;
 }
 
 .addHelpDescription .images .item .image_box {

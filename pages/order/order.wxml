@@ -12,12 +12,12 @@
 
 							<view class="list_item_top">
 								<view class="name">{{ item.title }}</view>
-								<view class="status">{{ item.status == 20 ? '进行中': '别的状态' }}</view>
+								<view class="status">{{ item.answerStatusName || item.mark }}</view>
 							</view>
 
 							<view class="list_item_bottom">
 								<view class="desc">{{ item.content }}</view>
-								<view class="price">￥{{ item.price }}</view>
+								<view class="price" wx:if="{{ item.price }}">￥{{ item.price }}</view>
 							</view>
 
 						</view>

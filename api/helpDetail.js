@@ -25,6 +25,12 @@ class HelpDetail extends Http{
             data
         })
     }
+    completeOrder (data) {
+        return this.request({
+            data,
+            url: '/order/completeOrder'
+        })
+    }
 }
 
 export default new HelpDetail()

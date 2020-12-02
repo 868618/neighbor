@@ -13,7 +13,9 @@
             <view class="image_box">
                 <image src="{{item}}" mode="widthFix" />
             </view>
-            <view class="del"></view>
+            <view class="del" bind:tap="del" data-index="{{ index }}">
+                <image src="/images/close.png" mode="widthFix" />
+            </view>
         </view>
 
         <view class="item addImageBtn" bind:tap="chooseAndUpDateImage" />

@@ -1,6 +1,7 @@
 //app.js
 import '/utils/polyfill';
 import utils from '/utils/util';
+import lodash from '/utils/lodash';
 // import 'umtrack-wx';
 App({
   // umengConfig: {
@@ -78,4 +79,5 @@ App({
     isChooseAnswerAddress: false
   },
   ...utils,
+  ...lodash
 })

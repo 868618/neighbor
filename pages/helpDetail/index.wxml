@@ -1,11 +1,13 @@
 <view class="helpDetail" wx:if="{{ detail }}">
     <Navbar type="{{ masks.navBarType }}" bind:custom="hideHelpOtherMask" isShared="{{ isShared }}" />
 <!--    <Navbar type="custom" wx:else bind:custom="hideHelpOtherMask" />-->
-    <view class="detail_info {{ status }}">
+<!--    <view class="detail_info {{ status }}">-->
+    <view class="detail_info">
         <Avatar-Time avatar="{{ detail.avatar }}" nickName="{{ detail.nickname }}" timeMark="{{detail.timeMark}}" />
 
         <view class="detail_title">
             <text class="{{ Number(detail.price) ? 'urgent' : null }}">{{ detail.title }}</text>
+            <view class="detail_title_tag">{{ status }}</view>
         </view>
 
         <view class="detail_price">￥ <text>{{ detail.price }}元</text></view>
@@ -36,19 +38,28 @@
     <view class="answerList" wx:if="{{ detail.answerList }}">
         <view class="answer_header">
             <text class="answer_title">{{ detail.answerAreaTitle }}</text>
-            <text class="answer_desc">{{ detail.answerAreaSubtitle }}个回答</text>
+            <text class="answer_desc" wx:if="{{ detail.answerAreaSubtitle }}">{{ detail.answerAreaSubtitle }}个回答</text>
         </view>
 
         <view class="answer_item" wx:for="{{ detail.answerList }}" wx:key="index">
 <!--            <Avatar-Time />-->
             <Avatar-Time avatar="{{ item.avatar }}" nickName="{{ item.nickname }}" />
-            <view class="answer_text">{{ item.answer }}</view>
-            <view class="answer_effect">
-                <text class="answer_time">{{ item.answerTime }}</text>
-<!--                <view class="answer_like">-->
-<!--                    <text>1</text> <image src="{{tmp}}" mode="widthFix" />-->
-<!--                </view>-->
-            </view>
+
+            <block wx:if="{{ detail.orderType != 10 }}">
+                <view class="answer_text">地址：{{ item.answer }}</view>
+                <view class="answer_text">时间：{{ item.expectHelpTime }}</view>
+                <view class="answer_text">手机号：{{ item.phone }}</view>
+            </block>
+
+            <block wx:else>
+                <view class="answer_text">{{ item.answer }}</view>
+                <view class="answer_effect">
+                    <text class="answer_time">{{ item.answerTime }}</text>
+                    <!--                <view class="answer_like">-->
+                    <!--                    <text>1</text> <image src="{{tmp}}" mode="widthFix" />-->
+                    <!--                </view>-->
+                </view>
+            </block>
         </view>
     </view>
 
@@ -79,18 +90,22 @@
 
     <Dialog content="你确定帮助者无法履行帮助了吗？" style="color: #FE990C;font-weight: 500;" wx:if="{{ isShowDialog }}" bind:onTap="onTap" />
 
-    <view class="restart" wx:if="{{ detail.buttonList && detail.buttonList.length && detail.buttonList[0].code == 40 }}" >
-        <view class="text">无法继续履行帮助时，需要重新求助吗？</view>
-        <view class="well" bind:tap="again">
-            <text>好的</text>
-        </view>
-    </view>
-
     <view class="toHome" wx:if="{{isShared  || Number(detail.status) >= 30}}" bind:tap="toIndexPage">返回首页 看其他求助</view>
 
     <block wx:if="{{ detail.buttonList && detail.buttonList.length }}" wx:for="{{ detail.buttonList }}" wx:key="index">
         <Custom-Button custom-class="custom-class" bind:tap="accept" wx:if="{{ item.code == 20 }}">接受本次求助</Custom-Button>
+
+<!--        帮助已完成-->
+        <Custom-Button custom-class="custom-class" bind:tap="completeOrder" wx:if="{{ item.code == 30 }}">{{ item.text }}</Custom-Button>
+
         <Custom-Button custom-class="custom-class" bind:tap="toHelpOther" wx:if="{{ detail.orderType != 10 && item.code == 10 }}">立即帮助</Custom-Button>
         <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask" wx:if="{{ detail.orderType == 10 && item.code == 10 }}">写回答</Custom-Button>
+
+        <view class="restart" wx:if="{{ item.code == 40 }}" >
+            <view class="text">无法继续履行帮助时，需要重新求助吗？</view>
+            <view class="well" bind:tap="again">
+                <text>好的</text>
+            </view>
+        </view>
     </block>
 </view>

@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .task_item .task_header .task_title {
@@ -51,6 +52,31 @@
     line-height: 50rpx;
     font-weight: bold;
     position: relative;
+    margin-right: 95rpx;
+}
+
+.task_item .task_header_tag{
+    position: absolute;
+    right: 32rpx;
+    top: 0;
+    min-width: 70rpx;
+}
+
+.task_item .task_header_tag::after{
+    content: attr(data-after);
+    height:34rpx;
+    line-height:34rpx;
+    width: 80rpx;
+    font-size:24rpx;
+    font-weight:400;
+    color:rgba(254,149,0,1);
+    background:#FFF6ED;
+    border-radius:16rpx;
+    padding: 4rpx 10rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
 }
 
 /*.task_item .task_header .task_price::before {*/

@@ -1,5 +1,5 @@
 import { addOrder } from '../../api/index'
-const { showToast } = getApp()
+const { showToast, throttle } = getApp()
 const bangs = require('../../behavior/bangs')
 
 const maps = new Map([
@@ -113,7 +113,7 @@ Page({
     },
     returnTime: null,
     tempFilePaths: [],
-    maxlength: 20,
+    maxlength: 10,
   },
   input (e) {
     const { value: title } = e.detail
@@ -205,20 +205,19 @@ Page({
     return true
   },
   // 支付并发布
-  async payAndPost () {
+  payAndPost: throttle(async function () {
     const { formData, returnTime } = this.data
     const { rewardMoney, urgentMoney, forHelpType } = formData
-
     if (!this.checkFormData()) return
-
 
     const addressCode = wx.getStorageSync('id')
 
     // const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
     const params = { ...formData, rewardMoney: forHelpType == 10 ? 0 : rewardMoney, urgentMoney: urgentMoney, addressCode }
     wx.showLoading()
-    const { body: options, body: { payMoney, orderId }, code } = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
+    const res = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
     wx.hideLoading()
+    const { body: options, body: { payMoney, orderId }, code } = res
 
     if (code != 0) {
       showToast('提交失败')
@@ -255,7 +254,7 @@ Page({
         showToast('支付失败，请重新支付')
       }
     })
-  },
+  }, 2000),
 
   refreshIndex () {
     const [ indexPage ] = getCurrentPages()

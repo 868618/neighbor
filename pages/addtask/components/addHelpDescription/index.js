@@ -100,6 +100,12 @@ Component({
         return
       }
       this.triggerEvent('save' , { tempFilePaths: _tempFilePaths, content: _content })
+    },
+    del (e) {
+      const { index } = e.currentTarget.dataset
+      const { _tempFilePaths } = this.data
+      _tempFilePaths.splice(index, 1)
+      this.setData({ _tempFilePaths })
     }
   }
 })
