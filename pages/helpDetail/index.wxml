@@ -10,7 +10,7 @@
             <view class="detail_title_tag">{{ status }}</view>
         </view>
 
-        <view class="detail_price">￥ <text>{{ detail.price }}元</text></view>
+        <view class="detail_price" wx:if="{{ Number(detail.price) > 0 }}">￥ <text>{{ detail.price }}元</text></view>
 
         <view class="detail_tag">
 <!--            <text>提问</text>-->
@@ -38,7 +38,7 @@
     <view class="answerList" wx:if="{{ detail.answerList }}">
         <view class="answer_header">
             <text class="answer_title">{{ detail.answerAreaTitle }}</text>
-            <text class="answer_desc" wx:if="{{ detail.answerAreaSubtitle }}">{{ detail.answerAreaSubtitle }}个回答</text>
+            <text class="answer_desc" wx:if="{{ detail.answerAreaSubtitle }}">{{ detail.answerAreaSubtitle }}</text>
         </view>
 
         <view class="answer_item" wx:for="{{ detail.answerList }}" wx:key="index">

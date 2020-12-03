@@ -48,6 +48,14 @@ Page({
       this.setData({ orderList })
     }
   },
+  // 下拉刷新
+
+  async onPullDownRefresh () {
+    // wx.startPullDownRefresh()
+    await this.locationUpdated()
+    wx.stopPullDownRefresh()
+  },
+
   onShareAppMessage () {
     return {
       title: '远亲不如近邻，伸出你的小手帮邻居一个小忙吧~',

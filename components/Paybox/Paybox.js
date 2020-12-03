@@ -10,7 +10,7 @@ Component({
     },
     defPrice: {
       type:Number,
-      value: 0
+      value: 1
     }
   },
 
@@ -18,8 +18,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    grids: [0, 1, 2, 3, 4, 5],
-    activeNum: 0,
+    grids: [1, 5, 10, 15, 25, '其它'],
+    activeNum: 1,
     activeMoney: null,
     title: null
   },
@@ -49,7 +49,9 @@ Component({
       this.triggerEvent('cancel')
     },
     selectChange (e) {
+      console.log('e-----', e)
       const { index:activeNum, item: activeMoney } = e.currentTarget.dataset
+      console.log('activeNum', activeNum)
       this.setData({ activeNum, activeMoney })
     },
     selectOther () {

@@ -14,7 +14,7 @@
 
   <view class="main">
     <view class="title">您的{{ keywordMaps.title }}描述</view>
-    <view class="desc">我们会根据您提供的描述，给您推荐合适的服务</view>
+    <view class="desc">描述越清晰，越快得到帮助</view>
 
     <view class="tip">
       标题<text>(不超过{{ maxlength }}个字）</text>
@@ -46,10 +46,10 @@
     <view class="select" wx:if="{{ formData.forHelpType != 10 }}">
 
       <view class="select_item" bind:tap="pricePanel" data-type="1">
-        <view class="select_name">酬金
+        <view class="select_name">帮忙费
           <text>{{ formData.rewardMoney }}元</text>
         </view>
-        <view class="select_tip">请选择</view>
+        <view class="select_tip"><text>></text></view>
       </view>
 
 
@@ -57,7 +57,7 @@
         <view class="select_name">加急
           <text>{{ formData.urgentMoney }}元</text>
         </view>
-        <view class="select_tip">请选择</view>
+        <view class="select_tip"><text>></text></view>
       </view>
     </view>
 
@@ -66,7 +66,7 @@
   <Statement type="{{ formData.forHelpType }}" />
 
   <view class="fixdbtn" bind:tap="payAndPost" style="{{ xStyle }}">
-    <view>支付并发布</view>
+    <view>{{ btnText }}</view>
   </view>
 
   <AddHelpDescription wx:if="{{ isShowAddHelpDescription }}" tempFilePaths="{{ tempFilePaths }}" placeholder="{{ keywordMaps.placeholder }}" content="{{ formData.content }}"  bind:save="save" />

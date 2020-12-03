@@ -114,6 +114,7 @@ Page({
     returnTime: null,
     tempFilePaths: [],
     maxlength: 10,
+    btnText: '马上发布'
   },
   input (e) {
     const { value: title } = e.detail
@@ -134,6 +135,7 @@ Page({
     const keywordMaps = { title, describe, isShowCamera, placeholder, isShowTimeInput, ask }
     this.setData({
       btns,
+      btnText: forHelpType == 10 ? '马上发布' : '支付并发布',
       'formData.forHelpType': forHelpType,
       keywordMaps
     })

@@ -11,14 +11,14 @@
 
   <view class="panel">
     <view
-      class="panel_item {{ activeNum == item ? 'panel_item_active': '' }}"
+      class="panel_item {{ activeNum == index ? 'panel_item_active': '' }}"
       wx:for="{{ grids }}"
       wx:key="index"
       data-index="{{ index }}"
       data-item="{{ item }}"
       bind:tap="selectChange"
     >
-      <text wx:if="{{item !== 0}}">￥{{item}}</text>
+      <text wx:if="{{ item !== '其它'}}">￥{{item}}</text>
       <text wx:else>不加了</text>
     </view>
 

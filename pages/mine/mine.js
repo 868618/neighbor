@@ -35,6 +35,7 @@ Page({
     this.setData({
       userInfo
     })
+    console.log('wx.getSystemInfo()', wx.getSystemInfoSync())
   },
   toTaskList (e) {
     const { type } = e.currentTarget.dataset

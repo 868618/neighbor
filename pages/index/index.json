@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "Task_Item": "./components/task_item"
-  }
+  },
+  "enablePullDownRefresh": true
 }
