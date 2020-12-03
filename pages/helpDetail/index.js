@@ -225,7 +225,8 @@ Page({
   async completeOrder () {
     const { orderId } = this.options
     wx.showLoading()
-    const res = helpDetail.completeOrder({ orderId })
+    const res = await helpDetail.completeOrder({ orderId })
+    console.log('res', res)
     if (res.code == 0) {
       this.getDetailInfo()
     } else {

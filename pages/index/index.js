@@ -16,6 +16,7 @@ Page({
   },
   onShow () {
     typeof this.getTabBar === 'function' && this.getTabBar().setData({ activeNum: 0 })
+    this.locationUpdated()
   },
   toDetail (e) {
     const { orderid: orderId } = e.currentTarget.dataset
