@@ -36,7 +36,7 @@
 
 <!--    回答列表-->
     <view class="answerList" wx:if="{{ detail.answerList }}">
-        <view class="answer_header  {{ detial.orderType == 10 ? 'image_tip' : null }}">
+        <view class="answer_header  {{ detail.status == 30 && detail.forHelpUserFlag ? 'image_tip' : null }}">
             <text class="answer_title">{{ detail.answerAreaTitle }}</text>
             <text class="answer_desc" wx:if="{{ detail.answerAreaSubtitle }}">{{ detail.answerAreaSubtitle }}</text>
         </view>
