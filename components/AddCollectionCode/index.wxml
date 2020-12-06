@@ -1,0 +1,8 @@
+<view class="addCollectionCode">
+    <view class="addBtn" bind:tap="addImage">
+        <text class="add">+</text>
+        <text>收款码</text>
+    </view>
+
+    <view class="tip">请上传您的首款二维码，48小时内酬金将发到您的钱包</view>
+</view>

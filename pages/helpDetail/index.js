@@ -57,7 +57,8 @@ Page({
     ],
     isShowDialog: false,
     isShared: false,
-    phone: null
+    phone: null,
+    paymentCodeUrl: null
   },
 
   /**
@@ -222,6 +223,12 @@ Page({
     wx.switchTab({ url: '/pages/index/index' })
   },
 
+  upLoaded (e) {
+    const { image:paymentCodeUrl } = e.detail
+    // console.log('image', paymentCodeUrl)
+    this.setData({ paymentCodeUrl })
+  },
+
   async completeOrder () {
     const { orderId } = this.options
     wx.showLoading()
@@ -233,5 +240,10 @@ Page({
       showToast(res.info)
     }
     wx.hideLoading()
+  },
+  preview () {
+    wx.previewImage({
+      urls: [this.data.paymentCodeUrl || this.data.detail.paymentCodeUrl]
+    })
   }
 })

@@ -1,6 +1,6 @@
 <!--components/Paybox/Paybox.wxml-->
 
-<view class="bg" catch:touchstart></view>
+<view class="bg" catch:tap="closeBg" />
 
 <view class="paybox">
   <view class="paybox_head">
@@ -18,11 +18,16 @@
       data-item="{{ item }}"
       bind:tap="selectChange"
     >
-      <text wx:if="{{ item !== '其它'}}">￥{{item}}</text>
-      <text wx:else>不加了</text>
+<!--      <text wx:if="{{ item !== 0}}">￥{{item}}</text>-->
+<!--      <text wx:else>其它</text>-->
+      <text>{{ item > 0 ? '￥' : '' }}{{item == 0 ? '不加了': item}}</text>
     </view>
 
-    <view class="panel_item panel_btn {{ activeNum == -1 && 'panel_item_active' }}" bind:tap="selectOther">其它金额</view>
+<!--    <view class="panel_item panel_btn {{ activeNum == -1 && 'panel_item_active' }}" bind:tap="selectOther">其它金额</view>-->
   </view>
+
+  <Dialog title="输入金额" mark:key="mobile" bind:onTap="onDialogTap" wx:if="{{ isShowDialog }}" >
+    <input placeholder="请输入金额" model:value="{{ inputNum }}" auto-focus="{{true}}" class="input" maxlength="11" type="number"></input>
+  </Dialog>
 
 </view>

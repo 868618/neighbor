@@ -31,6 +31,12 @@ class HelpDetail extends Http{
             url: '/order/completeOrder'
         })
     }
+    savePaymentCode (data) {
+        return this.request({
+            data,
+            url: '/mine/savePaymentCode'
+        })
+    }
 }
 
 export default new HelpDetail()

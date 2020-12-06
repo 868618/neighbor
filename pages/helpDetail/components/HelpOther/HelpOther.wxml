@@ -12,7 +12,7 @@
     </view>
 
     <view class="item">地址</view>
-    <input class="input" placeholder-class="placeholder" model:value="{{ address }}" placeholder="请填写你方便的，与求助者见面的地点，比如楼号-单元-房间号" disabled bind:tap="chooseAddress" />
+    <input class="input" placeholder-class="placeholder" model:value="{{ address }}" placeholder="请填写你方便的，与求助者见面的地点，比如楼号-单元-房间号" />
 
     <view class="item">手机号</view>
     <input class="input" placeholder-class="placeholder" model:value="{{ phone }}" placeholder="手机号仅用于求助者与你的紧急联系" />

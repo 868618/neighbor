@@ -36,7 +36,7 @@
 
 <!--    回答列表-->
     <view class="answerList" wx:if="{{ detail.answerList }}">
-        <view class="answer_header">
+        <view class="answer_header  {{ detial.orderType == 10 ? 'image_tip' : null }}">
             <text class="answer_title">{{ detail.answerAreaTitle }}</text>
             <text class="answer_desc" wx:if="{{ detail.answerAreaSubtitle }}">{{ detail.answerAreaSubtitle }}</text>
         </view>
@@ -46,8 +46,8 @@
             <Avatar-Time avatar="{{ item.avatar }}" nickName="{{ item.nickname }}" />
 
             <block wx:if="{{ detail.orderType != 10 }}">
-                <view class="answer_text">地址：{{ item.answer }}</view>
-                <view class="answer_text">时间：{{ item.expectHelpTime }}</view>
+                <view class="answer_text">见面地址：{{ item.answer }}</view>
+                <view class="answer_text">见面时间：{{ item.expectHelpTime }}</view>
                 <view class="answer_text">手机号：{{ item.phone }}</view>
             </block>
 
@@ -60,6 +60,11 @@
                     <!--                </view>-->
                 </view>
             </block>
+        </view>
+
+        <AddCollectionCode wx:if="{{ detail.uploadPaymentCodeFlag && !paymentCodeUrl }}" bind:upLoaded="upLoaded" />
+        <view class="imageCode" wx:if="{{ paymentCodeUrl || detail.paymentCodeUrl }}">
+            <image src="{{ paymentCodeUrl || detail.paymentCodeUrl }}" mode="widthFix" bind:tap="preview" />
         </view>
     </view>
 

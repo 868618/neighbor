@@ -36,29 +36,29 @@ Component({
     },
   },
 
-  pageLifetimes: {
-    async show() {
-      const selectedLocationInfo = chooseLocation.getLocation()
-      if (globalData.isChooseAnswerAddress && selectedLocationInfo) {
-        globalData.isChooseAnswerAddress = false
-        wx.showLoading()
-        const { latitude, longitude, city: cityName, district:districtName, name,  } = selectedLocationInfo
-        const result = await this.reverseGeocoder({ latitude, longitude })
-        const params = this.makeGetIdParams(result, name)
-        const { code, body } = await tool.getIdByCurrAddress(params)
-        if (code == 0) {
-          console.log('body9999', body)
-          this.setData({
-            id: body.id,
-            address: name
-          })
-        }
-        wx.hideLoading()
-        globalData.isChooseAnswerAddress = false
-        chooseLocation.setLocation(null)
-      }
-    },
-  },
+  // pageLifetimes: {
+  //   async show() {
+  //     const selectedLocationInfo = chooseLocation.getLocation()
+  //     if (globalData.isChooseAnswerAddress && selectedLocationInfo) {
+  //       globalData.isChooseAnswerAddress = false
+  //       wx.showLoading()
+  //       const { latitude, longitude, city: cityName, district:districtName, name,  } = selectedLocationInfo
+  //       const result = await this.reverseGeocoder({ latitude, longitude })
+  //       const params = this.makeGetIdParams(result, name)
+  //       const { code, body } = await tool.getIdByCurrAddress(params)
+  //       if (code == 0) {
+  //         console.log('body9999', body)
+  //         this.setData({
+  //           id: body.id,
+  //           address: name
+  //         })
+  //       }
+  //       wx.hideLoading()
+  //       globalData.isChooseAnswerAddress = false
+  //       chooseLocation.setLocation(null)
+  //     }
+  //   },
+  // },
 
   /**
    * 组件的方法列表

@@ -18,10 +18,12 @@ Component({
    * 组件的初始数据
    */
   data: {
-    grids: [1, 5, 10, 15, 25, '其它'],
+    grids: [0, 1, 5, 10, 15, '其它' ],
     activeNum: 1,
     activeMoney: null,
-    title: null
+    title: null,
+    isShowDialog: false,
+    inputNum: null
   },
 
   lifetimes: {
@@ -49,14 +51,26 @@ Component({
       this.triggerEvent('cancel')
     },
     selectChange (e) {
-      console.log('e-----', e)
       const { index:activeNum, item: activeMoney } = e.currentTarget.dataset
-      console.log('activeNum', activeNum)
+      console.log('activeMoney', activeMoney)
+      if (activeMoney == "其它") {
+        this.setData({ activeNum, isShowDialog: true })
+        return
+      }
       this.setData({ activeNum, activeMoney })
     },
-    selectOther () {
-      console.log('其他金额')
-      this.setData({ activeNum: -1, activeMoney: -1 })
+    closeBg () {
+      this.triggerEvent('cancel')
+    },
+    onDialogTap (e) {
+      console.log(e.detail)
+      const isOk = e.detail
+      console.log('isOk', isOk)
+      if (isOk) {
+        this.setData({ activeMoney: this.data.inputNum })
+        this.ok()
+      }
+      this.setData({ isShowDialog: false })
     }
   }
 })

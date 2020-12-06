@@ -4,7 +4,8 @@
     "Avatar-Time": "/components/Avatar-Time/index",
     "Custom-Button": "/components/Custom-Button/index",
     "HelpOther": "./components/HelpOther/HelpOther",
-    "Dialog": "/components/dialog/dialog"
+    "Dialog": "/components/dialog/dialog",
+    "AddCollectionCode": "/components/AddCollectionCode/index"
   },
   "navigationStyle": "custom"
 }

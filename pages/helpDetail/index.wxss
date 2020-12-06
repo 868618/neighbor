@@ -169,6 +169,22 @@ page{
     padding: 0 18rpx 32rpx;
 }
 
+.answerList .image_tip {
+    position: relative;
+}
+
+.answerList .image_tip::after {
+    content: '';
+    position: absolute;
+    right: 28rpx;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 416rpx;
+    height: 42rpx;
+    background: url("https://linjubang.imrookie.cn/nb/image/2020/12/5/47e6e67c5db74e6e8b39a4a6f9db976a.png") no-repeat center;
+    background-size: 416rpx;
+}
+
 .answerList .answer_header .answer_title{
     font-size: 36rpx;
     font-weight: 500;
@@ -348,6 +364,19 @@ page{
 }
 
 
+.imageCode{
+    display: flex;
+    align-items: center;
+    padding: 0 32rpx;
+}
+
+.imageCode image{
+    width: 200rpx;
+}
+
+/*.imageCode .imageCode_item{*/
+/*    width: 30%;*/
+/*}*/
 
 
 

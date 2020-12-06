@@ -18,7 +18,8 @@
   },
   "usingComponents": {
     "Navbar": "/components/Navbar/index",
-    "Mask": "/components/Mask/index"
+    "Mask": "/components/Mask/index",
+    "Dialog": "/components/dialog/dialog"
   },
   "tabBar": {
     "custom": true,

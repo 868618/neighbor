@@ -49,7 +49,7 @@
         <view class="select_name">帮忙费
           <text>{{ formData.rewardMoney }}元</text>
         </view>
-        <view class="select_tip"><text>></text></view>
+        <view class="select_tip"><text>请选择 ></text></view>
       </view>
 
 
@@ -57,7 +57,7 @@
         <view class="select_name">加急
           <text>{{ formData.urgentMoney }}元</text>
         </view>
-        <view class="select_tip"><text>></text></view>
+        <view class="select_tip"><text>请选择 ></text></view>
       </view>
     </view>
 
