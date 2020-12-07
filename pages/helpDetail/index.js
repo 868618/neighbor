@@ -189,10 +189,28 @@ Page({
         const res = await helpDetail.answer(params)
         wx.hideLoading()
         if (res.code == 0) {
-          this.getDetailInfo()
+          this.subscribeMessage()
         }
       }
   },
+
+  subscribeMessage () {
+    const _this = this
+    wx.requestSubscribeMessage({
+      tmplIds: ['pSNQEP8vPyt1NLa981wMEkuS-yHqWnXpfcoH90ahTDs'],
+      success() {
+        console.log('订阅成功')
+      },
+      fail () {
+        console.log('订阅失败')
+      },
+      complete () {
+        _this.getDetailInfo()
+      }
+    })
+  },
+
+
   onShareAppMessage () {
     const currAddress = wx.getStorageSync('currAddress')
     const name = wx.getStorageSync('name')
