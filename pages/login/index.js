@@ -32,7 +32,7 @@ Page({
       wx.showLoading()
       const result = await login.login({ code })
       wx.hideLoading()
-      if (result.info == '成功' && result.code == 0) {
+      if (result.code == 0) {
         const { token, loginSuccess } = result.body
         if (loginSuccess) {
           globalData.headers = { _token: token }

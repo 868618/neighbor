@@ -10,7 +10,7 @@
             <view class="detail_title_tag">{{ status }}</view>
         </view>
 
-        <view class="detail_price" wx:if="{{ Number(detail.price) > 0 }}">￥ <text>{{ detail.price }}元</text></view>
+        <view class="detail_price" wx:if="{{ detail.price }}">￥<text>{{ detail.price }}元</text></view>
 
         <view class="detail_tag">
 <!--            <text>提问</text>-->
@@ -62,7 +62,7 @@
             </block>
         </view>
 
-        <AddCollectionCode wx:if="{{ detail.uploadPaymentCodeFlag && !paymentCodeUrl }}" bind:upLoaded="upLoaded" />
+        <AddCollectionCode wx:if="{{ !detail.uploadPaymentCodeFlag && !paymentCodeUrl }}" bind:upLoaded="upLoaded" />
         <view class="imageCode" wx:if="{{ paymentCodeUrl || detail.paymentCodeUrl }}">
             <image src="{{ paymentCodeUrl || detail.paymentCodeUrl }}" mode="widthFix" bind:tap="preview" />
         </view>

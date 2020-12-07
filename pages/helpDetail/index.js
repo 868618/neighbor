@@ -70,9 +70,10 @@ Page({
     console.log('isX--------------', isX)
     const restartStyle = isX ? 'bottom: 208rpx;' : null
     this.setData({ restartStyle })
+    this.getDetailInfo()
   },
   onShow () {
-    this.getDetailInfo()
+    console.log('onShow---+++')
     // this.makeTargetLocation()
   },
 
@@ -112,10 +113,10 @@ Page({
   },
 
   async getDetailInfo () {
-    // const { orderId } = this.data
     const { orderId } = this.options
     wx.showLoading()
     const { code, body: detail } = await helpDetail.getDetail({ orderId })
+    console.log('detail--------------', Number(detail.price))
     wx.hideLoading()
     if (code == 0) {
       console.log('detail-----', detail)
@@ -125,7 +126,6 @@ Page({
           .set(40, '已完成')
           .set(60, 'yiyingzhu')
       const status = statusMaps.get(detail.status)
-      console.log('detail------', detail)
       this.setData({ detail, status })
     }
   },
@@ -232,6 +232,7 @@ Page({
     const { image:paymentCodeUrl } = e.detail
     // console.log('image', paymentCodeUrl)
     this.setData({ paymentCodeUrl })
+    this.getDetailInfo()
   },
 
   async completeOrder () {

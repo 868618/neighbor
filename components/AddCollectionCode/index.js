@@ -9,9 +9,10 @@ Component({
             const { tempFilePaths } = await surface(wx.chooseImage)
             const [ filePath ] = tempFilePaths
             const upLoadRes = await this.upLoadFile(filePath)
+            console.log('upLoadRes---', upLoadRes)
             const { body, code } = upLoadRes
             if (code == 0) {
-                const result = helpDetail.savePaymentCode({ paymentCodeUrl: body })
+                const result = await helpDetail.savePaymentCode({ paymentCodeUrl: body })
                 if (result.code == 0) this.triggerEvent('upLoaded', { image: body })
             }
         },
