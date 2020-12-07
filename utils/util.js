@@ -236,7 +236,7 @@ const checkConnected = async (hideToast) => {
 const checkIsX = () => {
     const res = wx.getSystemInfoSync()
     const { model } = res
-    const xArr = ['X', 'iPhone 11']
+    const xArr = ['X', 'iPhone 11', 'iPhone13']
     const isX = xArr.some(item => model.includes(item)) ? model : null
     return isX
 }
