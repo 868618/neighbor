@@ -12,7 +12,7 @@ Component({
   lifetimes: {
     attached() {
       const { detail: { price } } = this.properties
-      const _price = Number(price) ? `￥${price}元` : ``
+      const _price = Number(price) ? `${price}元` : ``
       this.setData({ _price })
     }
   }

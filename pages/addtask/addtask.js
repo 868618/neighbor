@@ -227,7 +227,7 @@ Page({
     }
     if (!payMoney) {
       showToast('提交成功')
-      this.refreshIndex()
+      // this.refreshIndex()
       wx.navigateBack()
       return
     }
@@ -237,19 +237,8 @@ Page({
     wx.requestPayment({
       ...options,
       success() {
-        _this.refreshIndex()
-        wx.requestSubscribeMessage({
-          tmplIds: ['txJftY7jelJ0aY2KqVcQSiyJxoqqKjnJ8dVGRmKcQ2Q'],
-          success() {
-            console.log('订阅成功')
-          },
-          fail () {
-            console.log('订阅失败')
-          },
-          complete () {
-            _this.toDetail(orderId)
-          }
-        })
+        // _this.refreshIndex()
+        _this.subscribeMessage(orderId)
       },
       fail(err) {
         console.log('err', err)
@@ -271,4 +260,20 @@ Page({
     const url = `/pages/helpDetail/index?orderId=${orderId}`
     wx.redirectTo({ url })
   },
+
+  subscribeMessage (orderId) {
+    const _this = this
+    wx.requestSubscribeMessage({
+      tmplIds: ['txJftY7jelJ0aY2KqVcQSiyJxoqqKjnJ8dVGRmKcQ2Q'],
+      success() {
+        console.log('订阅成功')
+      },
+      fail () {
+        console.log('订阅失败')
+      },
+      complete () {
+        _this.toDetail(orderId)
+      }
+    })
+  }
 })
