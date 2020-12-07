@@ -1,10 +1,10 @@
 <view class="task_item">
     <view class="task_header">
-        <view class="task_title {{ Number(detail.price) ? 'jiaji' : null }}">{{ detail.title }}</view>
+        <view class="task_title {{ isJiaJi ? 'jiaji' : null }}">{{ detail.title }}</view>
         <view class="task_price">{{ _price }}</view>
     </view>
 
-    <view class="task_header_tag" data-after="{{ _price ? '悬赏' : '爱心帮' }}" />
+    <view class="task_header_tag" data-after="{{ _price ? '帮忙费' : '爱心帮' }}" />
 
     <view class="task_body">
         {{ detail.content }}

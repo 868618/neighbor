@@ -7,13 +7,14 @@ Component({
     detail: Object
   },
   data : {
-    _price: ''
+    _price: '',
+    isJiaJi: false
   },
   lifetimes: {
     attached() {
       const { detail: { price } } = this.properties
-      const _price = Number(price) ? `￥${price}元` : ``
-      this.setData({ _price })
+      const _price = Number(price) ? `${price}元` : ``
+      this.setData({ _price, isJiaJi: Number(price) })
     }
   }
 })

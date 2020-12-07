@@ -36,7 +36,7 @@
 
 <!--    回答列表-->
     <view class="answerList" wx:if="{{ detail.answerList }}">
-        <view class="answer_header  {{ detail.status == 30 && detail.forHelpUserFlag ? 'image_tip' : null }}">
+        <view class="answer_header  {{ detail.orderType != 10 && detail.status == 30 && detail.forHelpUserFlag ? 'image_tip' : null }}">
             <text class="answer_title">{{ detail.answerAreaTitle }}</text>
             <text class="answer_desc" wx:if="{{ detail.answerAreaSubtitle }}">{{ detail.answerAreaSubtitle }}</text>
         </view>
@@ -101,12 +101,12 @@
         <Custom-Button custom-class="custom-class" bind:tap="accept" wx:if="{{ item.code == 20 }}">接受本次求助</Custom-Button>
 
 <!--        帮助已完成-->
-        <Custom-Button custom-class="custom-class" bind:tap="completeOrder" wx:if="{{ item.code == 30 }}">{{ item.text }}</Custom-Button>
+        <Custom-Button custom-class="custom-class" bind:tap="completeOrder" wx:if="{{ item.code == 30 && detail.orderType != 10 }}">{{ item.text }}</Custom-Button>
 
         <Custom-Button custom-class="custom-class" bind:tap="toHelpOther" wx:if="{{ detail.orderType != 10 && item.code == 10 }}">立即帮助</Custom-Button>
         <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask" wx:if="{{ detail.orderType == 10 && item.code == 10 }}">写回答</Custom-Button>
 
-        <view class="restart" wx:if="{{ item.code == 40 }}" >
+        <view class="restart" style="{{ restartStyle }}" wx:if="{{ item.code == 40 }}" >
             <view class="text">无法继续履行帮助时，需要重新求助吗？</view>
             <view class="well" bind:tap="again">
                 <text>好的</text>

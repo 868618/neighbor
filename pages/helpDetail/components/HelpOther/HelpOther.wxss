@@ -39,7 +39,7 @@
 }
 
 .placeholder{
-    font-size: 32rpx;
+    font-size: 28rpx;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.25);
 }

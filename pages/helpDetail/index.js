@@ -1,7 +1,5 @@
-const { showToast, getCurrLocation, globalData } = getApp()
-const chooseLocation = requirePlugin('chooseLocation')
+const { showToast, globalData } = getApp()
 import { helpDetail } from '../../api/index'
-const qs = require('qs')
 
 Page({
 
@@ -58,7 +56,9 @@ Page({
     isShowDialog: false,
     isShared: false,
     phone: null,
-    paymentCodeUrl: null
+    paymentCodeUrl: null,
+    isX: false,
+    restartStyle: null
   },
 
   /**
@@ -66,6 +66,10 @@ Page({
    */
   onLoad: async function (options) {
     this.makeTargetLocation()
+    const { isX } = globalData
+    console.log('isX--------------', isX)
+    const restartStyle = isX ? 'bottom: 208rpx;' : null
+    this.setData({ restartStyle })
   },
   onShow () {
     this.getDetailInfo()
@@ -174,12 +178,13 @@ Page({
 
   // 提交
   async save (e) {
-    const { id: gw_addressId, address } = e.detail
+    console.log('e-----------------9', e)
+    const { address } = e.detail
       this.hideHelpOtherMask()
       const { time: expectHelpTime, phone } = this.data
-      if (gw_addressId && expectHelpTime) {
+      if (address && expectHelpTime) {
         const { orderId } = this.options
-        const params = { gw_addressId, expectHelpTime, orderId, phone, answer: address }
+        const params = { expectHelpTime, orderId, phone, answer: address }
         wx.showLoading()
         const res = await helpDetail.answer(params)
         wx.hideLoading()
