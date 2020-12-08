@@ -3,19 +3,21 @@
     <view class="tip">详细的地址方便求助者更精确的找到你</view>
 
     <view class="item">时间</view>
-    <view class="input">
-        <picker mode="date" model:value="{{ time }}" >
-            <view class="{{ time ? null : 'placeholder' }}" style="color: rgba(0, 0, 0, {{ time ? 0.65 : 0.25 }});">
-                {{time ? time : '请填写你方便的，与求助者见面的时间，具体到小时'}}
-            </view>
-        </picker>
-    </view>
+<!--    <view class="input">-->
+<!--        <picker mode="date" model:value="{{ time }}" >-->
+<!--            <view class="{{ time ? null : 'placeholder' }}" style="color: rgba(0, 0, 0, {{ time ? 0.65 : 0.25 }});">-->
+<!--                {{time ? time : '请填写你方便的见面的时间，具体到小时'}}-->
+<!--            </view>-->
+<!--        </picker>-->
+
+<!--    </view>-->
+        <input class="input" placeholder-class="placeholder" model:value="{{ time }}" placeholder="见面时间，例如今天5点，明天14点，周日全天" />
 
     <view class="item">地址</view>
-    <input class="input" placeholder-class="placeholder" model:value="{{ address }}" placeholder="请填写你方便的，与求助者见面的地点，比如楼号-单元-房间号" />
+    <input class="input" placeholder-class="placeholder" model:value="{{ address }}" placeholder="见面地点，例如建材小区-11号楼-2单元-2003" />
 
     <view class="item">手机号</view>
-    <input class="input" placeholder-class="placeholder" model:value="{{ phone }}" placeholder="手机号仅用于求助者与你的紧急联系" />
+    <input class="input" placeholder-class="placeholder" model:value="{{ phone }}" type="number" placeholder="手机号仅用于求助者与你的紧急联系" />
 
     <Custom-Button custom-class="custom-class" bind:tap="save">保存</Custom-Button>
 </view>

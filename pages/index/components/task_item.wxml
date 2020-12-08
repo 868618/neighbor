@@ -1,6 +1,6 @@
 <view class="task_item">
     <view class="task_header">
-        <view class="task_title ">{{ detail.title }}</view>
+        <view class="task_title {{ _price ? 'jiaji' : null }}">{{ detail.title }}</view>
         <view class="task_price">{{ _price }}</view>
     </view>
 

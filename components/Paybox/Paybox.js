@@ -29,12 +29,15 @@ Component({
   lifetimes: {
     attached() {
       const { defPrice: activeNum, type } = this.properties
+      console.log('type', type)
       const activeMoney = this.data.grids[activeNum]
       const title = type == 1 ? '酬金': '加急'
+      const grids = type == 1 ? [0, 1, 5, 10, 15, '其它' ] : [2]
       this.setData({
         activeNum,
         activeMoney,
-        title
+        title,
+        grids
       })
     }
   },
@@ -44,8 +47,13 @@ Component({
    */
   methods: {
     ok () {
-      const { activeMoney, activeNum } = this.data
-      this.triggerEvent('ok', { activeMoney, activeNum })
+      const { type } = this.properties
+      if (type == 1) {
+        const { activeMoney, activeNum } = this.data
+        this.triggerEvent('ok', { activeMoney, activeNum })
+      } else {
+        this.triggerEvent('ok', { activeMoney: 2, activeNum: 0 })
+      }
     },
     cancel () {
       this.triggerEvent('cancel')

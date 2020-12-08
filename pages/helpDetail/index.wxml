@@ -10,7 +10,7 @@
             <view class="detail_title_tag">{{ status }}</view>
         </view>
 
-        <view class="detail_price" wx:if="{{ detail.price }}">￥<text>{{ detail.price }}元</text></view>
+        <view class="detail_price" wx:if="{{ detail.price != '0' }}">￥<text>{{ detail.price }}元</text></view>
 
         <view class="detail_tag">
 <!--            <text>提问</text>-->
@@ -65,6 +65,7 @@
         <AddCollectionCode wx:if="{{ detail.uploadPaymentCodeFlag && !paymentCodeUrl }}" bind:upLoaded="upLoaded" />
         <view class="imageCode" wx:if="{{ paymentCodeUrl || detail.paymentCodeUrl }}">
             <image src="{{ paymentCodeUrl || detail.paymentCodeUrl }}" mode="widthFix" bind:tap="preview" />
+            <view>我的收款码</view>
         </view>
     </view>
 
@@ -107,7 +108,7 @@
         <Custom-Button custom-class="custom-class" bind:tap="openWriteAnswerMask" wx:if="{{ detail.orderType == 10 && item.code == 10 }}">写回答</Custom-Button>
 
         <view class="restart" style="{{ restartStyle }}" wx:if="{{ item.code == 40 }}" >
-            <view class="text">无法继续履行帮助时，需要重新求助吗？</view>
+            <view class="text">如果对方放鸽子了，你可以重新求助~</view>
             <view class="well" bind:tap="again">
                 <text>好的</text>
             </view>

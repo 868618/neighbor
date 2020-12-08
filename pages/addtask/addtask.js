@@ -100,7 +100,7 @@ Page({
     },
     moneybox: {
       title: '',
-      defPrice: 0,
+      defPrice: 1,
       type: 1
     },
     keywordMaps: {
@@ -177,7 +177,7 @@ Page({
   pricePanel (e) {
     const { type } = e.currentTarget.dataset
     const { rewardMoney, urgentMoney } = this.data.formData
-    const defPrice = type == 1 ? rewardMoney : urgentMoney
+    const defPrice = type == 1 ? rewardMoney : urgentMoney || 0
     const moneybox = { type, defPrice }
     this.setData({ moneybox }, () => this.setData({ isShowPayBox: true }))
   },
