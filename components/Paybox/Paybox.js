@@ -28,14 +28,17 @@ Component({
 
   lifetimes: {
     attached() {
-      const { defPrice: activeNum, type } = this.properties
+      const { defPrice, type } = this.properties
       console.log('type', type)
-      const activeMoney = this.data.grids[activeNum]
+      // console.log('activeNum', activeNum)
+      // const activeMoney = this.data.grids[activeNum]
       const title = type == 1 ? '酬金': '加急'
-      const grids = type == 1 ? [0, 1, 5, 10, 15, '其它' ] : [2]
+      const grids = type == 1 ? [1, 5, 10, 15, 25, '其它' ] : [2]
+
+      const activeNum =grids.findIndex(item => item == defPrice)
       this.setData({
         activeNum,
-        activeMoney,
+        activeMoney: defPrice,
         title,
         grids
       })
