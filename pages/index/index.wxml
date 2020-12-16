@@ -4,7 +4,7 @@
   <block wx:if="{{ orderList.length }}">
     <view class="header">
       <swiper>
-        <swiper-item bind:tap="toSinglePage">
+        <swiper-item bind:tap="toSinglePage" class="swiper_item">
           <view class="swiper_image">
             <image mode="widthFix" src="/images/swiper.png" />
           </view>
