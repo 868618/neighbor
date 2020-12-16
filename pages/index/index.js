@@ -7,8 +7,7 @@ Page({
   data: {
     orderList: [],
     allHeight: 0,
-    isLoaded: false,
-    tmp: 'http://oss.cogo.club/F5C0F173-2651-4F27-83A7-9B664D7FF7EC0FDAC457E6B943DC2B62F9BE28459B61.jpg'
+    isLoaded: false
   },
   onLoad () {
     const { allHeight } = getNavbarInfo()
@@ -16,7 +15,8 @@ Page({
   },
   onShow () {
     typeof this.getTabBar === 'function' && this.getTabBar().setData({ activeNum: 0 })
-    this.locationUpdated()
+    // this.locationUpdated()
+    this.data.upDated && this.locationUpdated()
   },
   toDetail (e) {
     const { orderid: orderId } = e.currentTarget.dataset
@@ -34,6 +34,11 @@ Page({
         }
       })
     }
+  },
+  upDate () {
+    this.setData({
+      upDated: true
+    }, this.locationUpdated)
   },
   async locationUpdated () {
     console.log('更新一把首页接口')
@@ -62,5 +67,8 @@ Page({
       path: '/pages/index/index',
       imageUrl: this.data.orderList.length ? null : '/images/login/logo.png'
     }
+  },
+  toSinglePage () {
+    wx.navigateTo({ url: '/pages/single/index' })
   }
 })

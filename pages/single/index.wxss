@@ -1,0 +1,7 @@
+.single{
+    /*background-color: #F82C20;*/
+}
+
+.single image{
+    width: 100%;
+}

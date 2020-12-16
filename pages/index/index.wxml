@@ -1,12 +1,12 @@
 <!--index.wxml-->
-<Navbar class="navbar" type="location" bind:update="locationUpdated" />
+<Navbar class="navbar" type="location" bind:update="upDate" />
 <view class="container" wx:if="{{ isLoaded }}">
   <block wx:if="{{ orderList.length }}">
     <view class="header">
       <swiper>
-        <swiper-item>
+        <swiper-item bind:tap="toSinglePage">
           <view class="swiper_image">
-            <image mode="heightFix" src="{{tmp}}" />
+            <image mode="widthFix" src="/images/swiper.png" />
           </view>
         </swiper-item>
       </swiper>

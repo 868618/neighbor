@@ -7,7 +7,8 @@
     "pages/login/index",
     "pages/taskList/index",
     "pages/location/index",
-    "pages/helpDetail/index"
+    "pages/helpDetail/index",
+    "pages/single/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

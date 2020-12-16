@@ -1,0 +1,5 @@
+<Navbar title=" " />
+
+<view class="single" style="background: {{ isAddBg ? '#F82C20' : null }}">
+    <image mode="widthFix" src="https://linjubang.imrookie.cn/nb/image/2020/12/16/b490a61d7cb04762acf3bec43ebbf904.png" bind:load="load" />
+</view>
