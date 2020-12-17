@@ -375,9 +375,10 @@ page{
 }
 
 .imageCode .findout{
-    color: rgba(0,0,0, 0.35);
-    font-size: 26rpx;
+    color: rgba(0,0,0, 0.75);
+    font-size: 32rpx;
     margin-top: 20rpx;
+    font-weight: 300;
 }
 
 .imageCode image{
