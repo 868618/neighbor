@@ -57,8 +57,7 @@ Page({
     isShared: false,
     phone: null,
     paymentCodeUrl: null,
-    isX: false,
-    restartStyle: null
+    bottom: null
   },
 
   /**
@@ -66,15 +65,7 @@ Page({
    */
   onLoad: async function (options) {
     this.makeTargetLocation()
-    const { isX } = globalData
-    console.log('isX--------------', isX)
-    const restartStyle = isX ? 'bottom: 208rpx;' : null
-    this.setData({ restartStyle })
     this.getDetailInfo()
-  },
-  onShow () {
-    console.log('onShow---+++')
-    // this.makeTargetLocation()
   },
 
   async makeTargetLocation () {
@@ -126,7 +117,16 @@ Page({
           .set(40, '已完成')
           .set(60, 'yiyingzhu')
       const status = statusMaps.get(detail.status)
-      this.setData({ detail, status })
+
+
+      detail.buttonList && detail.buttonList.reverse()
+      this.setData({ detail, status }, () => {
+        wx.nextTick(() => {
+          this.createSelectorQuery().select('.bottons').boundingClientRect(rect => {
+            this.setData({ bottom: rect.height + 20 })
+          }).exec()
+        })
+      })
     }
   },
 
