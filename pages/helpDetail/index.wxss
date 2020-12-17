@@ -368,8 +368,16 @@ page{
 
 .imageCode{
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
+    /*justify-content: flex-start;*/
+    flex-direction: column;
     padding: 0 32rpx;
+}
+
+.imageCode .findout{
+    color: rgba(0,0,0, 0.35);
+    font-size: 26rpx;
+    margin-top: 20rpx;
 }
 
 .imageCode image{
@@ -378,7 +386,7 @@ page{
 
 .bottons{
     position: fixed;
-    z-index: 5;
+    z-index: 1;
     left: 0;
     right: 0;
     bottom: 0;

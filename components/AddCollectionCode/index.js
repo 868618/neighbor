@@ -3,7 +3,9 @@ import config from "../../config";
 import { helpDetail } from '../../api/index'
 const { surface, getToken } = getApp()
 Component({
-    properties: {},
+    data: {
+        isShowFindOut: false
+    },
     methods: {
         async addImage () {
             const { tempFilePaths } = await surface(wx.chooseImage)
@@ -46,5 +48,11 @@ Component({
             }
             return statusCode == 200 ? json : upLoadRes
         },
+        findOut () {
+            this.setData({ isShowFindOut: true })
+        },
+        iknow () {
+            this.setData({ isShowFindOut: false })
+        }
     }
 });

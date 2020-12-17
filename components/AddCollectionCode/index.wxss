@@ -21,7 +21,7 @@
 }
 
 .addCollectionCode .tip{
-    font-size: 28rpx;
-    color:rgba(0,0,0,0.75);
-    margin-top: 40rpx;
+    font-size: 26rpx;
+    margin-top: 20rpx;
+    color: rgba(0, 0, 0, 0.35);
 }

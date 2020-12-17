@@ -57,7 +57,8 @@ Page({
     isShared: false,
     phone: null,
     paymentCodeUrl: null,
-    bottom: null
+    bottom: null,
+    isShowFindOut: false
   },
 
   /**
@@ -121,7 +122,7 @@ Page({
 
       detail.buttonList && detail.buttonList.reverse()
       this.setData({ detail, status }, () => {
-        wx.nextTick(() => {
+        detail.buttonList && wx.nextTick(() => {
           this.createSelectorQuery().select('.bottons').boundingClientRect(rect => {
             this.setData({ bottom: rect.height + 20 })
           }).exec()
@@ -269,5 +270,12 @@ Page({
     wx.previewImage({
       urls: [this.data.paymentCodeUrl || this.data.detail.paymentCodeUrl]
     })
+  },
+
+  findOut () {
+    this.setData({ isShowFindOut: true })
+  },
+  iknow () {
+    this.setData({ isShowFindOut: false })
   }
 })

@@ -58,8 +58,10 @@
         <AddCollectionCode wx:if="{{ detail.uploadPaymentCodeFlag && !paymentCodeUrl }}" bind:upLoaded="upLoaded" />
         <view class="imageCode" wx:if="{{ paymentCodeUrl || detail.paymentCodeUrl }}">
             <image src="{{ paymentCodeUrl || detail.paymentCodeUrl }}" mode="widthFix" bind:tap="preview" />
-            <view>我的收款码</view>
+            <view class="findout" bind:tap="findOut">了解帮忙费</view>
         </view>
+
+        <Dialog wx:if="{{ isShowFindOut }}" bind:onTap="iknow" content="帮忙费48小时内，通过收款码发放到您的钱包。其中，帮忙费的10%将用以支持平台的研发和服务的维护噢~" actions="{{ ['知道了'] }}" />
     </view>
 
 <!--    我要应助组件-->

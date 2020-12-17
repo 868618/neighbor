@@ -4,5 +4,9 @@
         <text>收款码</text>
     </view>
 
-    <view class="tip">请上传您的首款二维码，48小时内酬金将发到您的钱包</view>
+<!--    <view class="tip">请上传您的收二维码，48小时内酬金将发到您的钱包</view>-->
+<!--    <view class="tip">帮忙费的10%将用以支持平台的研发和服务的维护</view>-->
+    <view class="tip" bind:tap="findOut">为什么要传收款码</view>
+
+    <Dialog wx:if="{{ isShowFindOut }}" bind:onTap="iknow" content="帮忙费48小时内，通过收款码发放到您的钱包。其中，帮忙费的10%将用以支持平台的研发和服务的维护噢~" actions="{{ ['知道了'] }}" />
 </view>
