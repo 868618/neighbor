@@ -116,7 +116,7 @@ page {
 
 .mine .bottomMark{
   margin: 0 auto;
-  width: 340rpx;
+  width: 250rpx;
   margin-top: 100rpx;
 }
 

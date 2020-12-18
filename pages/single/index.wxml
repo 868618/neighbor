@@ -1,5 +1,5 @@
 <Navbar title=" " />
 
-<view class="single" style="background: {{ isAddBg ? '#F82C20' : null }}">
+<view class="single">
     <image mode="widthFix" src="{{item}}" wx:for="{{ list }}" wx:key="index" />
 </view>

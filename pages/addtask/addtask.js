@@ -215,7 +215,7 @@ Page({
     const addressCode = wx.getStorageSync('id')
 
     // const params = { ...formData, rewardMoney: rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
-    const params = { ...formData, rewardMoney: forHelpType == 10 ? 0 : rewardMoney, urgentMoney: urgentMoney, addressCode }
+    const params = { ...formData, rewardMoney: forHelpType == 10 ? 0 : rewardMoney * 100, urgentMoney: urgentMoney * 100, addressCode }
     wx.showLoading()
     const res = await addOrder.forHelpSubmit( Object.assign(params, forHelpType == 20 ? { returnTime } : null) )
     wx.hideLoading()

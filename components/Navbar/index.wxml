@@ -22,4 +22,6 @@
   </view>
 </view>
 
+<Dialog isOpenSetting="{{true}}" actions="{{ ['知道了'] }}" content="授权定位后才能找到邻居噢～" wx:if="{{ isShowDialog }}" />
+
 <view class="bastard" style="{{ bastardStyle }}" wx:if="{{ !isImmersive }}"></view>

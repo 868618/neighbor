@@ -24,6 +24,13 @@
               {{item}}
             </button>
           </view>
+
+          <view wx:elif="{{isOpenSetting}}" class="action-item">
+            <button open-type="openSetting" class="actionButton" bindgetuserinfo="onOpenSetting" style="{{index===destructive ? style : '' }}" hover-class="none">
+              {{item}}
+            </button>
+          </view>
+
           <view wx:else class="action-item" catchtap="onDialogTap" mark:index="{{index}}" style="{{index===destructive ? style : ''}}">
             {{item}}
           </view>

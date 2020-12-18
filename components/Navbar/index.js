@@ -1,4 +1,4 @@
-const { globalData, initLocation, getCurrLocation } = getApp()
+const { globalData, initLocation, getCurrLocation, surface } = getApp()
 const chooseLocation = requirePlugin('chooseLocation')
 import { tool } from '../../api/index'
 
@@ -55,10 +55,88 @@ Component({
     currAddress: null,
     _mark: null,
     menuHeightstyle: "",
-    isInitialized: false
+    isInitialized: false,
+    userLocation: false,
+    isShowDialog: false
   },
   lifetimes: {
     async attached() {
+      this.authentication()
+    }
+  },
+
+  pageLifetimes: {
+    show () {
+      Promise.resolve().then(() => this.authentication()).then(async () => {
+        console.log('进入到逻辑区域')
+        if (globalData.isChooseAnswerAddress && !this.data.userLocation) return
+        const selectedLocationInfo = chooseLocation.getLocation()
+        // 有新的地址变动
+        if (selectedLocationInfo) {
+          const { latitude, longitude, name } = selectedLocationInfo
+          const location = { latitude, longitude }
+          const currAddress = await getCurrLocation(location)
+          wx.setStorageSync('currAddress', currAddress)
+          wx.setStorageSync('name', name)
+          await this.initAndGetId(location)
+        }
+      })
+    }
+  },
+  methods: {
+    authentication() {
+      const userLocation = this.data.userLocation
+      if (userLocation) return userLocation
+      const _this = this
+      wx.getSetting({
+        success(res) {
+          const authSetting = res.authSetting
+          const userLocation = authSetting['scope.userLocation']
+
+          console.log('userLocation', userLocation)
+
+          if (userLocation == undefined) {
+            surface(wx.getLocation, { isHighAccuracy: true }).then(() => {
+              _this.setData({
+                userLocation: true
+              }, _this.init)
+            }).catch(() => {
+              console.log('拒绝以后')
+              _this.showModal()
+            })
+          }
+
+          if (userLocation == false) {
+            _this.showModal()
+          }
+
+          if (userLocation == true) {
+            _this.setData({
+              userLocation: true,
+              isShowDialog: false
+            }, () => _this.init())
+          }
+        }
+      })
+    },
+    showModal () {
+      this.setData({
+        isShowDialog: true
+      })
+      // wx.showModal({
+      //   title: '必须要开启授权才行',
+      //   content: '去开启授权吧',
+      //   success: res => {
+      //     if (res.confirm) {
+      //       wx.openSetting()
+      //     }
+      //   },
+      //   fail(err) {
+      //     console.log('关闭了modal', err)
+      //   }
+      // })
+    },
+    init () {
       this.makeMenuButton()
       this.makeMenuType()
       // 初始化坐标位置及更新一下id
@@ -66,25 +144,7 @@ Component({
         const id = wx.getStorageSync('id')
         id ? this.triggerEvent('update') : this.upDateId()
       })
-    }
-  },
-
-  pageLifetimes: {
-    async show () {
-      if (globalData.isChooseAnswerAddress) return
-      const selectedLocationInfo = chooseLocation.getLocation()
-      // 有新的地址变动
-      if (selectedLocationInfo) {
-        const { latitude, longitude, name } = selectedLocationInfo
-        const location = { latitude, longitude }
-        const currAddress = await getCurrLocation(location)
-        wx.setStorageSync('currAddress', currAddress)
-        wx.setStorageSync('name', name)
-        await this.initAndGetId(location)
-      }
-    }
-  },
-  methods: {
+    },
     initAndGetId (location, isUpDateId = true) {
       return new Promise(async (resolve, reject) => {
         const currAddress = await initLocation(location)

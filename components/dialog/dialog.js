@@ -32,6 +32,11 @@ Component({
     isAuth: {
       type: String,
       value: false
+    },
+    // 是否是打开模态框
+    isOpenSetting: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -62,6 +67,9 @@ Component({
     onAuth(e) {
       //把消息发出去
       this.triggerEvent("onAuth", e);
+    },
+    onOpenSetting(e) {
+      this.triggerEvent('onOpenSetting', e)
     },
 
     fadeDown() {
