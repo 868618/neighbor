@@ -3,10 +3,11 @@ const { miniProgram: { envVersion } } = wx.getAccountInfoSync();
 
 console.log('envVersion', envVersion)
 
-const maps = new Map()
-maps.set('develop', 'https://linjubang.imrookie.cn')
-maps.set('trial', 'https://linjubang.imrookie.cn')
-maps.set('release', 'https://linjubang.imrookie.cn')
+const maps = new Map([
+    ['develop', 'https://www.bgxm.top'],
+    ['trial', 'https://www.bgxm.top'],
+    ['release', 'https://www.bgxm.top'],
+])
 
 const config = {
     baseUrl: maps.get(envVersion)

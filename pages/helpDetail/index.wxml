@@ -1,5 +1,5 @@
 <view class="helpDetail" wx:if="{{ detail }}" style="padding-bottom: {{ bottom }}px;">
-    <Navbar type="{{ masks.navBarType }}" bind:custom="hideHelpOtherMask" isShared="{{ isShared }}" />
+    <Navbar type="{{ masks.navBarType }}" bind:update="test" bind:custom="hideHelpOtherMask" isShared="{{ isShared }}" />
     <view class="detail_info">
         <Avatar-Time avatar="{{ detail.avatar }}" nickName="{{ detail.nickname }}" timeMark="{{detail.timeMark}}" />
 

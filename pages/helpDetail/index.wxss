@@ -43,7 +43,7 @@ page{
     background-size: 100%;
 }
 .yingzhuzhong::after {
-    background: url("https://linjubang.imrookie.cn/nb/image/2020/12/2/ff08810687a04a629c7d587b67833609.png") no-repeat center;
+    background: url("https://www.bgxm.top/nb/image/2020/12/2/ff08810687a04a629c7d587b67833609.png") no-repeat center;
     background-size: 100%;
 }
 
@@ -182,7 +182,7 @@ page{
     transform: translateY(-50%);
     width: 367rpx;
     height: 37rpx;
-    background: url("https://linjubang.imrookie.cn/nb/image/2020/12/5/47e6e67c5db74e6e8b39a4a6f9db976a.png") no-repeat center;
+    background: url("https://www.bgxm.top/nb/image/2020/12/5/47e6e67c5db74e6e8b39a4a6f9db976a.png") no-repeat center;
     background-size: 367rpx;
 }
 
