@@ -64,17 +64,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options) {
+  onShow() {
     this.init()
   },
   init () {
     this.makeTargetLocation()
     this.getDetailInfo()
-  },
-
-  test() {
-    console.log('123')
-    this.init()
   },
 
   async makeTargetLocation () {
