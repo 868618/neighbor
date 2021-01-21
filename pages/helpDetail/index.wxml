@@ -16,12 +16,12 @@
         </view>
 
         <view class="detail_text">
-            {{ detail.content }}
+            <text decode>{{ detail.content }}</text>
         </view>
 
         <view class="detail_images" wx:if="{{ detail.imageList.length }}">
-            <view class="detail_images_item" wx:for="{{ detail.imageList }}" wx:key="index">
-                <image src="{{item}}" mode="widthFix" bind:tap="previewImage" data-image="{{ item }}" />
+            <view class="detail_images_item" wx:for="{{ detail.imageList }}" mark:index="{{index}}" bind:tap="previewImage" wx:key="index">
+                <image src="{{item}}" mode="widthFix" data-image="{{ item }}" />
             </view>
         </view>
 
@@ -48,7 +48,9 @@
             </block>
 
             <block wx:else>
-                <view class="answer_text">{{ item.answer }}</view>
+                <view class="answer_text">
+                    <text decode>{{ item.answer }}</text>
+                </view>
                 <view class="answer_effect">
                     <text class="answer_time">{{ item.answerTime }}</text>
                 </view>
@@ -91,20 +93,20 @@
 
     <Dialog content="你确定帮助者无法履行帮助了吗？" style="color: #FE990C;font-weight: 500;" wx:if="{{ isShowDialog }}" bind:onTap="onTap" />
 
-    <view class="toHome" wx:if="{{isShared  || Number(detail.status) >= 30}}" bind:tap="toIndexPage">返回首页 看其他求助</view>
+    <view class="toHome" wx:if="{{isShared  || Number(detail.status) >= 30}}" catch:tap="toIndexPage">返回首页 看其他求助</view>
 
     <view class="bottons" wx:if="{{ detail.buttonList && detail.buttonList.length }}">
         <block wx:for="{{ detail.buttonList }}" wx:key="index">
-            <Custom-Button bind:tap="accept" wx:if="{{ item.code == 20 }}">接受本次求助</Custom-Button>
+            <Custom-Button catch:tap="accept" wx:if="{{ item.code == 20 }}">接受本次求助</Custom-Button>
             <!--        帮助已完成-->
-            <Custom-Button bind:tap="completeOrder" wx:if="{{ detail.orderType != 10 && item.code == 30 }}">{{ item.text }}</Custom-Button>
+            <Custom-Button catch:tap="completeOrder" wx:if="{{ detail.orderType != 10 && item.code == 30 }}">{{ item.text }}</Custom-Button>
 
-            <Custom-Button bind:tap="toHelpOther" wx:if="{{ detail.orderType != 10 && item.code == 10 }}">立即帮助</Custom-Button>
-            <Custom-Button bind:tap="openWriteAnswerMask" wx:if="{{ detail.orderType == 10 && item.code == 10 }}">写回答</Custom-Button>
+            <Custom-Button catch:tap="toHelpOther" wx:if="{{ detail.orderType != 10 && item.code == 10 }}">立即帮助</Custom-Button>
+            <Custom-Button catch:tap="openWriteAnswerMask" wx:if="{{ detail.orderType == 10 && item.code == 10 }}">写回答</Custom-Button>
 
             <view class="restart" wx:if="{{ item.code == 40 }}" >
                 <view class="text">如果对方放鸽子了，你可以重新求助~</view>
-                <view class="well" bind:tap="again"><text>好的</text></view>
+                <view class="well" catch:tap="again"><text>好的</text></view>
             </view>
         </block>
     </view>

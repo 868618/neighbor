@@ -109,10 +109,10 @@ Page({
 
   async getDetailInfo () {
     const { orderId } = this.options
-    wx.showLoading()
+    // wx.showLoading()
     const { code, body: detail } = await helpDetail.getDetail({ orderId })
-    console.log('detail--------------', Number(detail.price))
-    wx.hideLoading()
+    // console.log('detail--------------', Number(detail.price))
+    // wx.hideLoading()
     if (code == 0) {
       console.log('detail-----', detail)
       const statusMaps = new Map()
@@ -175,9 +175,12 @@ Page({
   // 图片预览
   previewImage (e) {
     console.log(e)
-    const { image } = e.currentTarget.dataset
-    const urls = [image]
-    wx.previewImage({ urls })
+    const { index } = e.mark
+    const { imageList } = this.data.detail
+    console.log('detail.imageList', imageList)
+    const current = imageList[index]
+    const urls = imageList
+    wx.previewImage({ urls, current })
   },
 
   // 提交

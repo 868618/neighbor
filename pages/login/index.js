@@ -38,7 +38,7 @@ Page({
           globalData.headers = { _token: token }
         }
         wx.setStorageSync('headers', result.body)
-
+        userInfo.nickName = userInfo.nickName.replace(/(\ud83c[\udf00-\udfff])|(\ud83d[\udc00-\ude4f\ude80-\udeff])|[\u2600-\u2B55]/g, '')
         const { body } = await mine.getAccountInfo()
         const { avatarUrl: avatar, nickName: nick, gender: sex } = userInfo
         if (body.headerUrl === '') await mine.updateAccountInfo({ avatar, nick, sex })

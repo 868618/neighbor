@@ -118,7 +118,8 @@ page{
     font-size: 32rpx;
     font-weight: 300;
     color: rgba(0, 0, 0, 0.75);
-    line-height: 44rpx;
+    /*line-height: 44rpx;*/
+    line-height: 2;
 }
 
 .detail_info .detail_images{
@@ -134,7 +135,7 @@ page{
 }
 
 .detail_info .detail_images .detail_images_item image{
-    width: 100%;
+    width: 98%;
 }
 
 
@@ -206,14 +207,11 @@ page{
 
 .answerList .answer_item .answer_text{
     margin-top: 28rpx;
-    font-size: 32rpx;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.95);
 
     font-size: 32rpx;
     font-weight: 300;
     color: rgba(0, 0, 0, 0.75);
-    line-height: 1;
+    line-height: 2;
 }
 
 .answerList .answer_item .answer_effect{
